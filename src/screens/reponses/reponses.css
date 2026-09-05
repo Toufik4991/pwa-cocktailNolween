@@ -64,7 +64,17 @@
   object-fit: contain;
 }
 
+.reponses__lieu {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: var(--radius-md);
+}
+
 .reponses__lieu img {
   width: 100%;
+  display: block;
   border-radius: var(--radius-md);
 }

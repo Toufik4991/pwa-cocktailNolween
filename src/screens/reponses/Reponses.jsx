@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useGameState } from "../../store/GameContext.jsx";
 import { NOMS_JEUX, INGREDIENTS, REPONSES_ETAPE_NON_RESOLUE } from "../../config/index.js";
+import LieuPhotoViewer from "../../components/LieuPhotoViewer.jsx";
 import "./reponses.css";
 
 function lieuSuivant(numero) {
@@ -11,6 +13,7 @@ function lieuSuivant(numero) {
 
 export default function Reponses({ onRetour }) {
   const { etapes } = useGameState();
+  const [photoPleinEcran, setPhotoPleinEcran] = useState(null);
 
   return (
     <div className="reponses">
@@ -38,9 +41,13 @@ export default function Reponses({ onRetour }) {
                     <span>{INGREDIENTS[numero].nom}</span>
                   </div>
                   {lieu && (
-                    <div className="reponses__lieu">
+                    <button
+                      className="reponses__lieu"
+                      onClick={() => setPhotoPleinEcran(lieu)}
+                      aria-label="Voir la photo en plein écran"
+                    >
                       <img src={lieu} alt={`Lieu à retrouver pour l'étape ${numero + 1}`} />
-                    </div>
+                    </button>
                   )}
                 </>
               ) : (
@@ -53,6 +60,10 @@ export default function Reponses({ onRetour }) {
           );
         })}
       </div>
+
+      {photoPleinEcran && (
+        <LieuPhotoViewer src={photoPleinEcran} alt="Lieu à retrouver" onFermer={() => setPhotoPleinEcran(null)} />
+      )}
     </div>
   );
 }
