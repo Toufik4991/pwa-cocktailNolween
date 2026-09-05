@@ -10,6 +10,7 @@ import {
 import { tirerTypeFruit, poidsDuFruit, intervalleApparition, traitCoupeLeFruit } from "./jeu1-logic.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
 import { vibrer } from "../../hooks/useVibration.js";
+import { asset } from "../../utils/assetUrl.js";
 import "./jeu1.css";
 
 const GRAVITE = 1900; // px/s^2
@@ -46,11 +47,11 @@ export default function Jeu1({ onVictoire, onAbandon }) {
 
     const images = { entier: {}, coupe: {} };
     for (const type of TOUS_FRUITS) {
-      images.entier[type] = chargerImage(`/assets/images/img-jeu1-${type}-entier.png`);
-      images.coupe[type] = chargerImage(`/assets/images/img-jeu1-${type}-coupe.png`);
+      images.entier[type] = chargerImage(asset(`assets/images/img-jeu1-${type}-entier.png`));
+      images.coupe[type] = chargerImage(asset(`assets/images/img-jeu1-${type}-coupe.png`));
     }
-    images.trainee = chargerImage("/assets/images/img-jeu1-trainee.png");
-    images.eclaboussure = chargerImage("/assets/images/img-jeu1-eclaboussure.png");
+    images.trainee = chargerImage(asset("assets/images/img-jeu1-trainee.png"));
+    images.eclaboussure = chargerImage(asset("assets/images/img-jeu1-eclaboussure.png"));
     imagesRef.current = images;
 
     const canvas = canvasRef.current;
@@ -259,7 +260,11 @@ export default function Jeu1({ onVictoire, onAbandon }) {
   const consigne = CONSIGNES[consigneIndex];
 
   return (
-    <div className="jeu1" ref={conteneurRef}>
+    <div
+      className="jeu1"
+      ref={conteneurRef}
+      style={{ backgroundImage: `url(${asset("assets/images/bg-jeu1.webp")})` }}
+    >
       <div className="jeu1__hud">
         <p className="jeu1__consigne">
           {consigne.fruit} — {grammesConsigne} / {consigne.grammes} g

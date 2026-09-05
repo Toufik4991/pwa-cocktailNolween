@@ -1,19 +1,9 @@
 /* Charte graphique centralisee — solaire, minimaliste, colore.
    Modifier une couleur ici la change partout dans l'app. */
 
-@font-face {
-  font-family: "Titre";
-  src: url("/assets/fonts/font-titre.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Texte";
-  src: url("/assets/fonts/font-texte.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
+/* Les @font-face sont chargees depuis src/theme/fonts.js (Font Loading
+   API), pas ici : un chemin "/assets/..." en dur casserait sous le
+   sous-dossier GitHub Pages, que le CSS ne peut pas resoudre au build. */
 
 :root {
   /* Couleurs des 6 decors narratifs (un aplat par univers de jeu) */

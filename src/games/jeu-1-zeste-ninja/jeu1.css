@@ -3,7 +3,13 @@
   min-height: 100%;
   height: 100%;
   overflow: hidden;
-  background: url("/assets/images/bg-jeu1.webp") center / cover no-repeat, var(--decor-agrumes);
+  /* image de fond posée en inline style par Jeu1.jsx (via asset()) : un
+     chemin "/assets/..." en dur ici casserait sous le sous-dossier
+     GitHub Pages, que le CSS ne peut pas résoudre au build. */
+  background-color: var(--decor-agrumes);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   touch-action: none;
 }
 

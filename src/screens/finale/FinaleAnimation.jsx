@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { INGREDIENTS, SEQUENCES } from "../../config/index.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { asset } from "../../utils/assetUrl.js";
 import Typewriter from "../../engine/Typewriter.jsx";
 import "./finale-animation.css";
 
@@ -38,14 +39,18 @@ export default function FinaleAnimation({ pseudo, onRetourHub }) {
     <div className="finale-animation">
       <div className="finale-animation__verre">
         <img
-          src={`/assets/images/${revele ? "img-final-cocktail.png" : "img-final-verre-vide.png"}`}
+          src={asset(`assets/images/${revele ? "img-final-cocktail.png" : "img-final-verre-vide.png"}`)}
           alt=""
           className="finale-animation__verre-image"
         />
         {revele && (
           <>
-            <img src="/assets/images/img-final-halo.png" alt="" className="finale-animation__halo" />
-            <img src="/assets/images/img-final-etincelles.png" alt="" className="finale-animation__etincelles" />
+            <img src={asset("assets/images/img-final-halo.png")} alt="" className="finale-animation__halo" />
+            <img
+              src={asset("assets/images/img-final-etincelles.png")}
+              alt=""
+              className="finale-animation__etincelles"
+            />
           </>
         )}
       </div>
@@ -54,7 +59,7 @@ export default function FinaleAnimation({ pseudo, onRetourHub }) {
         {ORDRE.map((numero, i) => (
           <img
             key={numero}
-            src={`/assets/images/${INGREDIENTS[numero].image}`}
+            src={asset(`assets/images/${INGREDIENTS[numero].image}`)}
             alt=""
             className={`finale-animation__ingredient ${i < nbTombes ? "finale-animation__ingredient--tombe" : ""}`}
             style={{ animationDelay: `${i * DELAI_ENTRE_CHUTES_MS}ms`, left: `${12 + i * 13}%` }}

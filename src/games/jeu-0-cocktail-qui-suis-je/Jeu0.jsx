@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { JEU_0, COCKTAILS, REPLIQUES_MAUVAISE_REPONSE } from "../../config/index.js";
 import { reponsesCorrespondent } from "../../utils/textNormalize.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { asset } from "../../utils/assetUrl.js";
 import "./jeu0.css";
 
 function auHasard(liste) {
@@ -62,11 +63,11 @@ export default function Jeu0({ onVictoire, onEchec }) {
       <div className="jeu0__silhouette-zone">
         <img
           className="jeu0__silhouette"
-          src={
+          src={asset(
             gagne || voileLeve
-              ? `/assets/images/img-jeu0-${cocktail.id.replace("-", "")}.png`
-              : "/assets/images/img-jeu0-silhouette.png"
-          }
+              ? `assets/images/img-jeu0-${cocktail.id.replace("-", "")}.png`
+              : "assets/images/img-jeu0-silhouette.png"
+          )}
           alt=""
         />
         {!gagne && (

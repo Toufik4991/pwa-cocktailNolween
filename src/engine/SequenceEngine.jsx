@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { DECORS } from "../config/index.js";
+import { asset } from "../utils/assetUrl.js";
 import Typewriter from "./Typewriter.jsx";
 import "./sequence-engine.css";
 
@@ -55,7 +56,7 @@ export default function SequenceEngine({ ecrans, pseudo, libelleBoutonFinal = "S
       <img
         key={ecran.expression}
         className="sequence__mixapero"
-        src={`/assets/images/img-mixapero-${ecran.expression}.png`}
+        src={asset(`assets/images/img-mixapero-${ecran.expression}.png`)}
         alt="Mixapéro"
       />
 

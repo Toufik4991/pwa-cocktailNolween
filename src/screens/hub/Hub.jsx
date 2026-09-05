@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGameDispatch, useGameState } from "../../store/GameContext.jsx";
 import { useWakeLock } from "../../hooks/useWakeLock.js";
+import { asset } from "../../utils/assetUrl.js";
 import { NOMS_JEUX, ETAPE_VERROUILLEE, SEQUENCES, PROPOSITION_ABANDON } from "../../config/index.js";
 import EtapeButton from "../../components/EtapeButton.jsx";
 import HubMenu from "../../components/HubMenu.jsx";
@@ -180,7 +181,7 @@ export default function Hub() {
         </div>
 
         <button className="hub__bouton-reponses" onClick={() => setVue("reponses")}>
-          <img src="/assets/images/img-bouton-reponses.png" alt="" />
+          <img src={asset("assets/images/img-bouton-reponses.png")} alt="" />
           <span>Réponses</span>
         </button>
 

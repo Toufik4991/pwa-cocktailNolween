@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useGameState } from "../../store/GameContext.jsx";
 import { NOMS_JEUX, INGREDIENTS, REPONSES_ETAPE_NON_RESOLUE } from "../../config/index.js";
 import LieuPhotoViewer from "../../components/LieuPhotoViewer.jsx";
+import { asset } from "../../utils/assetUrl.js";
 import "./reponses.css";
 
 function lieuSuivant(numero) {
   // Étape 5 mène directement à la finale : pas de nouveau lieu.
   if (numero >= 5) return null;
   const n = String(numero + 1).padStart(2, "0");
-  return `/assets/images/img-lieu-${n}-a.webp`;
+  return asset(`assets/images/img-lieu-${n}-a.webp`);
 }
 
 export default function Reponses({ onRetour }) {
@@ -37,7 +38,7 @@ export default function Reponses({ onRetour }) {
                   </h2>
                   {etape.passe && <p className="reponses__mention">Étape passée</p>}
                   <div className="reponses__ingredient">
-                    <img src={`/assets/images/${INGREDIENTS[numero].image}`} alt="" />
+                    <img src={asset(`assets/images/${INGREDIENTS[numero].image}`)} alt="" />
                     <span>{INGREDIENTS[numero].nom}</span>
                   </div>
                   {lieu && (

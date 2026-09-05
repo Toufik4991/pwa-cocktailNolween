@@ -3,9 +3,10 @@ import { JEU_3 } from "../../config/index.js";
 import { genererMelange, estResolu } from "./puzzle-logic.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
 import { vibrer } from "../../hooks/useVibration.js";
+import { asset } from "../../utils/assetUrl.js";
 import "./jeu3.css";
 
-const IMAGE = "/assets/images/img-jeu3-puzzle.webp";
+const IMAGE = asset("assets/images/img-jeu3-puzzle.webp");
 
 export default function Jeu3({ onVictoire, onAbandon }) {
   const taille = JEU_3.GRILLE_TAILLE;
