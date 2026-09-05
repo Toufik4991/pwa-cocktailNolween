@@ -1,0 +1,989 @@
+[
+  {
+    "op": "convert-webp",
+    "source": "bg-accueil.png",
+    "dest": "public\\assets\\images\\bg-accueil.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-hub.png",
+    "dest": "public\\assets\\images\\bg-hub.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-jeu0.png",
+    "dest": "public\\assets\\images\\bg-jeu0.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-jeu1.png",
+    "dest": "public\\assets\\images\\bg-jeu1.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-jeu2.png",
+    "dest": "public\\assets\\images\\bg-jeu2.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-jeu3.png",
+    "dest": "public\\assets\\images\\bg-jeu3.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-jeu4.png",
+    "dest": "public\\assets\\images\\bg-jeu4.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-jeu5.png",
+    "dest": "public\\assets\\images\\bg-jeu5.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-pseudo.png",
+    "dest": "public\\assets\\images\\bg-pseudo.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "bg-reponses.png",
+    "dest": "public\\assets\\images\\bg-reponses.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      1080,
+      1920
+    ],
+    "note": ""
+  },
+  {
+    "op": "convert-webp",
+    "source": "img-splash.png",
+    "dest": "public\\assets\\images\\img-splash.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      1080,
+      1350
+    ],
+    "note": "plus petit que la cible, non agrandi"
+  },
+  {
+    "op": "crop-carre-centre+resize (source dupliquee identique x4)",
+    "source": "ico-192.png / ico-512.png / ico-favicon.png / ico-maskable-512.png (identiques)",
+    "dest": "public\\assets\\icons\\ico-192.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      540,
+      675
+    ],
+    "final_size": [
+      192,
+      192
+    ]
+  },
+  {
+    "op": "crop-carre-centre+resize (source dupliquee identique x4)",
+    "source": "ico-192.png / ico-512.png / ico-favicon.png / ico-maskable-512.png (identiques)",
+    "dest": "public\\assets\\icons\\ico-512.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      540,
+      675
+    ],
+    "final_size": [
+      512,
+      512
+    ]
+  },
+  {
+    "op": "crop-carre-centre+resize (source dupliquee identique x4)",
+    "source": "ico-192.png / ico-512.png / ico-favicon.png / ico-maskable-512.png (identiques)",
+    "dest": "public\\assets\\icons\\ico-favicon.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      540,
+      675
+    ],
+    "final_size": [
+      64,
+      64
+    ]
+  },
+  {
+    "op": "reduction-60%+marge-securite-20%(genere)",
+    "source": "ico-512.png (identiques)",
+    "dest": "public\\assets\\icons\\ico-maskable-512.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      540,
+      675
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "note": "version maskable generee a partir de l'icone, non fournie telle quelle"
+  },
+  {
+    "op": "detour(commun)+scale-uniforme",
+    "source": "img-mixapero-neutre.png",
+    "dest": "public\\assets\\images\\img-mixapero-neutre.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      788,
+      1400
+    ],
+    "scale": 0.729
+  },
+  {
+    "op": "detour(commun)+scale-uniforme",
+    "source": "img-mixapero-content.png",
+    "dest": "public\\assets\\images\\img-mixapero-content.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      788,
+      1400
+    ],
+    "scale": 0.729
+  },
+  {
+    "op": "detour(commun)+scale-uniforme",
+    "source": "img-mixapero-moqueur.png",
+    "dest": "public\\assets\\images\\img-mixapero-moqueur.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      788,
+      1400
+    ],
+    "scale": 0.729
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-jeu0.png",
+    "dest": "public\\assets\\images\\img-bouton-jeu0.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      482,
+      512
+    ],
+    "scale": 0.634
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-jeu1.png",
+    "dest": "public\\assets\\images\\img-bouton-jeu1.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      500,
+      512
+    ],
+    "scale": 0.621
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-jeu2.png",
+    "dest": "public\\assets\\images\\img-bouton-jeu2.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      505,
+      512
+    ],
+    "scale": 0.559
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-jeu3.png",
+    "dest": "public\\assets\\images\\img-bouton-jeu3.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      505,
+      512
+    ],
+    "scale": 0.644
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-jeu4.png",
+    "dest": "public\\assets\\images\\img-bouton-jeu4.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      493,
+      512
+    ],
+    "scale": 0.689
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-jeu5.png",
+    "dest": "public\\assets\\images\\img-bouton-jeu5.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      503,
+      512
+    ],
+    "scale": 0.691
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-bouton-reponses.png",
+    "dest": "public\\assets\\images\\img-bouton-reponses.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      503,
+      512
+    ],
+    "scale": 0.655
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-ingredient-canne.png",
+    "dest": "public\\assets\\images\\img-ingredient-canne.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      428,
+      500
+    ],
+    "scale": 1.0
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-ingredient-glacon.png",
+    "dest": "public\\assets\\images\\img-ingredient-glacon.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      472,
+      512
+    ],
+    "scale": 0.89
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-ingredient-prosecco.png",
+    "dest": "public\\assets\\images\\img-ingredient-prosecco.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      481,
+      512
+    ],
+    "scale": 0.962
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-ingredient-secret.png",
+    "dest": "public\\assets\\images\\img-ingredient-secret.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      339,
+      512
+    ],
+    "scale": 0.604
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-ingredient-sirop.png",
+    "dest": "public\\assets\\images\\img-ingredient-sirop.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      214,
+      512
+    ],
+    "scale": 0.664
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-ingredient-zeste.png",
+    "dest": "public\\assets\\images\\img-ingredient-zeste.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      512,
+      512
+    ],
+    "content_size": [
+      374,
+      512
+    ],
+    "scale": 0.732
+  },
+  {
+    "op": "detour+crop+resize-hauteur",
+    "source": "img-jeu0-silhouette.png",
+    "dest": "public\\assets\\images\\img-jeu0-silhouette.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      700,
+      660
+    ]
+  },
+  {
+    "op": "detour+crop+resize-hauteur",
+    "source": "img-jeu0-daiquiri.png",
+    "dest": "public\\assets\\images\\img-jeu0-daiquiri.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      484,
+      802
+    ]
+  },
+  {
+    "op": "detour+crop+resize-hauteur",
+    "source": "img-jeu0-margarita.png",
+    "dest": "public\\assets\\images\\img-jeu0-margarita.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      628,
+      894
+    ]
+  },
+  {
+    "op": "detour+crop+resize-hauteur",
+    "source": "img-jeu0-mojito.png",
+    "dest": "public\\assets\\images\\img-jeu0-mojito.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      572,
+      1024
+    ]
+  },
+  {
+    "op": "detour+crop+resize-hauteur",
+    "source": "img-jeu0-pinacolada.png",
+    "dest": "public\\assets\\images\\img-jeu0-pinacolada.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      649,
+      1024
+    ]
+  },
+  {
+    "op": "detour+crop+resize-hauteur",
+    "source": "img-jeu0-pornstarmartini.png",
+    "dest": "public\\assets\\images\\img-jeu0-pornstarmartini.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      552,
+      834
+    ]
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-banane-coupe.png",
+    "dest": "public\\assets\\images\\img-jeu1-banane-coupe.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      300,
+      160
+    ],
+    "scale": 0.317
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-banane-entier.png",
+    "dest": "public\\assets\\images\\img-jeu1-banane-entier.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      300,
+      202
+    ],
+    "scale": 0.369
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-citronjaune-coupe.png",
+    "dest": "public\\assets\\images\\img-jeu1-citronjaune-coupe.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      215,
+      300
+    ],
+    "scale": 0.286
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-citronjaune-entier.png",
+    "dest": "public\\assets\\images\\img-jeu1-citronjaune-entier.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      197,
+      300
+    ],
+    "scale": 0.284
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-citronvert-coupe.png",
+    "dest": "public\\assets\\images\\img-jeu1-citronvert-coupe.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      204,
+      300
+    ],
+    "scale": 0.375
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-citronvert-entier.png",
+    "dest": "public\\assets\\images\\img-jeu1-citronvert-entier.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      199,
+      300
+    ],
+    "scale": 0.403
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-kiwi-coupe.png",
+    "dest": "public\\assets\\images\\img-jeu1-kiwi-coupe.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      293,
+      300
+    ],
+    "scale": 0.489
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-kiwi-entier.png",
+    "dest": "public\\assets\\images\\img-jeu1-kiwi-entier.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      300,
+      254
+    ],
+    "scale": 0.455
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-orange-coupe.png",
+    "dest": "public\\assets\\images\\img-jeu1-orange-coupe.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      300,
+      293
+    ],
+    "scale": 0.375
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-orange-entier.png",
+    "dest": "public\\assets\\images\\img-jeu1-orange-entier.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      300,
+      300
+    ],
+    "content_size": [
+      290,
+      300
+    ],
+    "scale": 0.415
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu1-zesteur.png",
+    "dest": "public\\assets\\images\\img-jeu1-zesteur.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      200,
+      200
+    ],
+    "content_size": [
+      185,
+      200
+    ],
+    "scale": 0.253
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu4-canne.png",
+    "dest": "public\\assets\\images\\img-jeu4-canne.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      120,
+      500
+    ],
+    "content_size": [
+      31,
+      500
+    ],
+    "scale": 0.309
+  },
+  {
+    "op": "detour+crop+contain",
+    "source": "img-jeu5-charge-pleine.png",
+    "dest": "public\\assets\\images\\img-jeu5-charge-pleine.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      128,
+      128
+    ],
+    "content_size": [
+      77,
+      128
+    ],
+    "scale": 0.139
+  },
+  {
+    "op": "detour+crop (dimension non specifiee, conservee)",
+    "source": "img-glacant-01.png",
+    "dest": "public\\assets\\images\\img-glacant-01.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      824,
+      902
+    ]
+  },
+  {
+    "op": "scale-uniforme(alpha-preexistant)",
+    "source": "img-final-verre-vide.png",
+    "dest": "public\\assets\\images\\img-final-verre-vide.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      576,
+      1024
+    ],
+    "scale": 0.533
+  },
+  {
+    "op": "scale-uniforme(alpha-preexistant)",
+    "source": "img-final-cocktail.png",
+    "dest": "public\\assets\\images\\img-final-cocktail.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      576,
+      1024
+    ],
+    "scale": 0.533
+  },
+  {
+    "op": "detour-noir+crop+contain",
+    "source": "img-final-etincelles.png",
+    "dest": "public\\assets\\images\\img-final-etincelles.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      128,
+      128
+    ]
+  },
+  {
+    "op": "crop-carre+resize",
+    "source": "img-jeu5-grille-fond.png",
+    "dest": "public\\assets\\images\\img-jeu5-grille-fond.webp",
+    "orig_format": "RGBA",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "op": "crop-carre+resize",
+    "source": "img-jeu3-puzzle.png",
+    "dest": "public\\assets\\images\\img-jeu3-puzzle.webp",
+    "orig_format": "RGB",
+    "final_format": "WEBP",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      1024,
+      1024
+    ]
+  }
+]

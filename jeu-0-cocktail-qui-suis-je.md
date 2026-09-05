@@ -45,6 +45,23 @@
     
     ---
     
+    ## Le bouton de levée du voile *(ajouté le 05/09/2026)*
+    
+    Un bouton permet d'entrevoir le cocktail caché sous la silhouette.
+    
+    - Libellé : **« Un coup d'œil »**
+    - Au clic, la silhouette disparaît **exactement 2 secondes**, laissant voir le vrai cocktail, puis revient
+    - Transition en fondu de **300 ms** à l'apparition comme à la disparition
+    - Un **compte à rebours** reste visible pendant les 2 secondes
+    - **Une seule utilisation par partie** : après usage, le bouton est grisé mais **reste visible**, pour que la joueuse sache qu'elle l'a déjà consommé
+    - **Une nouvelle partie** (nouveau cocktail tiré au sort) **réinitialise la charge**
+    - Son réutilisé : `sfx-jeu5-indice.mp3`
+    - Réplique de Mixapéro à l'usage, par exemple : « Deux secondes. Pas une de plus. »
+    
+    Ce bouton ne remplace pas les indices textuels : c'est un raccourci visuel indépendant, disponible dès le premier indice.
+    
+    ---
+    
     ## Validation de la réponse
     
     La saisie doit être tolérante :
@@ -148,8 +165,11 @@
     ## Paramètres configurables
     
     ```
-    TIRAGE_ALEATOIRE  = true
-    SEUIL_ABANDON     = 5
+    TIRAGE_ALEATOIRE   = true
+    SEUIL_ABANDON      = 5
+    DUREE_LEVEE_VOILE  = 2      // secondes
+    CHARGES_LEVEE_VOILE = 1     // par partie
+    FONDU_VOILE        = 300    // ms
     ```
     
     Le nombre d'indices n'est **pas** un paramètre global : il dépend de chaque cocktail et se déduit de la longueur de sa liste d'indices.
@@ -177,6 +197,7 @@
     | `sfx-clic.mp3` | Validation |
     | `sfx-code-faux.mp3` | Mauvaise réponse |
     | `sfx-victoire.mp3` | Bonne réponse |
+    | `sfx-jeu5-indice.mp3` | Réutilisé pour le bouton « Un coup d'œil » *(ajouté le 05/09/2026)* |
     
     > ⚠️ **La silhouette est générique, pas une par cocktail.** Si elle avait la forme du bon verre, elle donnerait la réponse. Un seul fichier suffit.
     > 

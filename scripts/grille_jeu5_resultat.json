@@ -1,0 +1,60 @@
+{
+  "grille": [
+    "AAALUMAKUPQT",
+    "RTUGNOLWEENS",
+    "AMEOSERZMZOS",
+    "NQZDAFTCMEOL",
+    "VERMOUTHLPEP",
+    "SHRUBXEIYIDL",
+    "JAHASDIIZCTA",
+    "BITTERSOTECX",
+    "RLGNADXEYSUM",
+    "AFLOZCJLMRAW",
+    "RGATOOETAEEA",
+    "BANHERBESTNE"
+  ],
+  "positions": {
+    "NOLWEEN": {
+      "depart": [
+        1,
+        4
+      ],
+      "direction": "horizontale"
+    },
+    "VERMOUTH": {
+      "depart": [
+        4,
+        0
+      ],
+      "direction": "horizontale"
+    },
+    "BITTERS": {
+      "depart": [
+        7,
+        0
+      ],
+      "direction": "horizontale"
+    },
+    "EPICES": {
+      "depart": [
+        3,
+        9
+      ],
+      "direction": "verticale"
+    },
+    "HERBES": {
+      "depart": [
+        11,
+        3
+      ],
+      "direction": "horizontale"
+    },
+    "SHRUB": {
+      "depart": [
+        5,
+        0
+      ],
+      "direction": "horizontale"
+    }
+  }
+}

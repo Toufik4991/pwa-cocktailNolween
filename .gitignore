@@ -78,9 +78,14 @@ web_modules/
 .next
 out
 
+# Python
+__pycache__/
+*.pyc
+
 # Nuxt.js build / generate output
 .nuxt
 dist
+dev-dist
 .output
 
 # Gatsby files

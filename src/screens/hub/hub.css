@@ -1,0 +1,44 @@
+.hub {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 4.5rem 1.2rem 2rem;
+  background: var(--color-bg);
+}
+
+.hub h1 {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.hub__grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.hub__bouton-reponses {
+  margin-top: 0.4rem;
+}
+
+.hub__message-verrouille {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  background: var(--color-text);
+  color: white;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: var(--radius-md);
+}
+
+.hub--stub-jeu {
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}

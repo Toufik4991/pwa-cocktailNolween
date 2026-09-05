@@ -1,0 +1,77 @@
+.hub-menu {
+  position: fixed;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 300;
+}
+
+.hub-menu__declencheur {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  padding: 0;
+}
+
+.hub-menu__panneau {
+  position: absolute;
+  top: 3.6rem;
+  right: 0;
+  width: 260px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hub-menu__panneau button {
+  width: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: none;
+  text-align: left;
+}
+
+.hub-menu__progression {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-title);
+  text-align: center;
+}
+
+.hub-menu__pseudo-edit,
+.hub-menu__restaurer {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.hub-menu__pseudo-edit input,
+.hub-menu__restaurer input {
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-locked);
+  padding: 0.4em;
+  font-family: var(--font-text);
+}
+
+.hub-menu__code {
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem;
+}
+
+.hub-menu__erreur {
+  color: #b3261e;
+  font-size: 0.85rem;
+}
+
+.hub-menu__danger {
+  color: #b3261e !important;
+}

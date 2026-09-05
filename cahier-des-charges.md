@@ -94,6 +94,23 @@
     
     **Claude Code ne doit pas poser de questions supplémentaires sur le style** : cette direction suffit. En cas de doute sur un détail, choisir l'option la plus simple et la plus sobre.
     
+    ### Mise à jour du 05/09/2026 — les décors deviennent des couleurs
+    
+    Les 6 décors des séquences texte ne sont plus des images mais des **aplats de couleur unis**, définis en variables CSS :
+    
+    | Univers | Couleur |
+    | --- | --- |
+    | `bar` | `#FFF0C4` |
+    | `agrumes` | `#E4F2BE` |
+    | `bulles` | `#FFDCE3` |
+    | `givre` | `#D8ECF6` |
+    | `sucre` | `#FFD6AE` |
+    | `secret` | `#E2DCC2` |
+    
+    Couleur de texte : `#3A2415`. Couleur d'accent (boutons, éléments actifs) : `#FF6A45`.
+    
+    Aucun fichier `bg-decor-*` n'est nécessaire ni attendu : ils sont retirés de la liste des assets (voir `assets-a-fournir.md`).
+    
     ---
     
     ## 3. Séquences texte
@@ -111,8 +128,8 @@
     
     ### Anatomie d'un écran
     
-    - **Décor** en fond plein écran
-    - **Mixapéro** superposé par-dessus (PNG transparent)
+    - **Décor** en fond plein écran (couleur unie, voir §2 bis)
+    - **Mixapéro** superposé par-dessus (PNG transparent), occupant au moins **60 % de la hauteur** de l'écran, avec une **ombre portée douce** pour se détacher du fond — indispensable sur les décors clairs (ex. `bar`, `#FFF0C4`) où ses zones claires se fondraient sinon dans l'arrière-plan
     - **Bloc de texte** (dialogue)
     - Bouton **"Suivant"** en bas
     - **Flèche en haut à droite** pour passer toute la séquence
@@ -120,21 +137,20 @@
     
     ### Système décor + personnage
     
-    Le décor et le personnage sont **deux images séparées** que le code superpose. Il n'y a que :
+    Le décor est un **aplat de couleur CSS** (§2 bis), le personnage une **image PNG transparente** superposée. Il n'y a que :
     
-    - **6 décors** (un par univers de jeu)
+    - **6 couleurs de décor** (une par univers de jeu), en variables CSS
     - **3 expressions de Mixapéro** : `neutre`, `content`, `moqueur`
     
-    Chaque écran du scénario indique le décor et l'expression à utiliser. Ça permet 40 écrans distincts avec seulement 9 fichiers.
+    Chaque écran du scénario indique la couleur de décor et l'expression à utiliser. Ça permet 40 écrans distincts avec seulement 3 fichiers image (les 3 expressions) + les couleurs.
     
     **Important :** les 3 expressions doivent avoir exactement le **même cadrage et la même position dans l'image**, pour que le changement d'expression donne une impression d'animation et non de saut.
     
     ### Effets à implémenter (aucun asset requis)
     
     - **Texte machine à écrire** : le texte s'écrit lettre par lettre. Un tap affiche tout immédiatement.
-    - **Fondu enchaîné** de 200 ms entre deux décors.
+    - **Fondu enchaîné** de 200 ms lors d'un changement de couleur de décor.
     - **Fondu rapide** de 100 ms lors d'un changement d'expression.
-    - **Zoom lent** (effet Ken Burns) sur le décor pour que l'écran ne soit jamais figé.
     
     ### Reprise
     
@@ -247,7 +263,8 @@
     - Le joueur devine le **nom du cocktail** et le saisit
     - Mauvaise réponse → message taquin de Mixapéro + indice suivant débloqué
     - **Aucun code d'entrée requis** pour cette étape
-    - *(Contenu des devinettes à rédiger — placeholder en attendant)*
+    - Bouton **"Un coup d'œil"** *(ajouté le 05/09/2026)* : dévoile le vrai cocktail pendant 2 secondes, une seule fois par partie — détail complet dans `jeu-0-cocktail-qui-suis-je.md`
+    - Contenu des 5 cocktails et de leurs indices : voir `jeu-0-cocktail-qui-suis-je.md` (rédigé, ce n'est plus un placeholder)
     
     ### Jeu 1 — "Zeste Ninja"
     
@@ -368,6 +385,22 @@
     ### 9.7 Retour haptique
     
     Vibration courte (`navigator.vibrate`) sur : code correct, mot trouvé, pièce de puzzle échangée, fruit tranché. Désactivable avec le son dans le menu.
+    
+    ### 9.8 Musiques *(mise à jour du 05/09/2026)*
+    
+    Deux musiques seulement, au lieu d'une par écran :
+    
+    - `mus-narration` : jouée pendant les séquences de texte
+    - `mus-hub` : jouée partout ailleurs — accueil, saisie du pseudo, hub, page Réponses, les six mini-jeux et l'animation finale
+    
+    Pendant un mini-jeu, `mus-hub` continue de jouer mais à **volume réduit** (pour laisser la place aux effets sonores), avec transition en fondu d'environ 600 ms entre les deux niveaux :
+    
+    ```
+    VOLUME_MUSIQUE_NORMAL = 0.6
+    VOLUME_MUSIQUE_JEU    = 0.15
+    ```
+    
+    La musique ne redémarre jamais en entrant ou sortant d'un mini-jeu : elle continue en boucle, seul son volume change.
     
     ---
     

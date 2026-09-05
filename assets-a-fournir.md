@@ -29,22 +29,23 @@
     
     ---
     
-    ## 1. ⭐ Les 6 décors
+    ## 1. ⭐ Les 6 décors — mise à jour du 05/09/2026 : ce ne sont plus des images
     
-    Le fond seul, **sans Mixapéro dessus**. Il se superposera par-dessus.
+    **Aucun fichier `bg-decor-*` n'est plus attendu.** Les décors des séquences texte sont désormais des **aplats de couleur** définis en variables CSS directement dans le code :
     
-    | Fichier | Décor | Utilisé pour |
+    | Univers | Couleur | Utilisé pour |
     | --- | --- | --- |
-    | `bg-decor-bar.webp` | Le bar de Mixapéro | Ouverture, jeu 0, finale |
-    | `bg-decor-agrumes.webp` | Étal / cuisine d'agrumes | Jeu 1 |
-    | `bg-decor-bulles.webp` | Ambiance prosecco | Jeu 2 |
-    | `bg-decor-givre.webp` | Territoire givré des Glaçants | Jeu 3 |
-    | `bg-decor-sucre.webp` | Table de jeu / champ de canne | Jeu 4 |
-    | `bg-decor-secret.webp` | Ambiance mystérieuse, vieux papiers | Jeu 5 |
+    | `bar` | `#FFF0C4` | Ouverture, jeu 0, finale |
+    | `agrumes` | `#E4F2BE` | Jeu 1 |
+    | `bulles` | `#FFDCE3` | Jeu 2 |
+    | `givre` | `#D8ECF6` | Jeu 3 |
+    | `sucre` | `#FFD6AE` | Jeu 4 |
+    | `secret` | `#E2DCC2` | Jeu 5 |
     
-    > Vertical **1080 × 1920 px**, WebP, moins de 300 Ko chacun.
-    Laisse une zone assez vide (côté ou centre) pour que Mixapéro s'y place, et le bas dégagé pour le bloc de texte.
-    > 
+    Couleur de texte : `#3A2415`. Couleur d'accent : `#FF6A45`.
+    
+    > Conséquence : Mixapéro porte tout l'écran (au moins 60 % de hauteur) et reçoit une ombre portée douce pour se détacher du fond.
+    >
     
     ---
     
@@ -105,15 +106,14 @@
     
     ---
     
-    ## 4. Musiques
+    ## 4. Musiques — mise à jour du 05/09/2026 : deux fichiers seulement
     
     | Fichier | Où |
     | --- | --- |
-    | `mus-accueil.mp3` | Page d'accueil |
-    | `mus-hub.mp3` | Hub |
-    | `mus-narration.mp3` | Séquences texte |
-    | `mus-jeu.mp3` | Mini-jeux |
-    | `mus-final.mp3` | Animation finale |
+    | `mus-narration.mp3` | Pendant les séquences de texte |
+    | `mus-hub.mp3` | Partout ailleurs : accueil, saisie du pseudo, hub, page Réponses, les six mini-jeux et l'animation finale |
+    
+    Pendant un mini-jeu, `mus-hub` continue de jouer mais à volume fortement réduit (géré dans la config, pas un fichier séparé). `mus-accueil`, `mus-jeu` et `mus-final` ne sont plus nécessaires.
     
     > Doivent **boucler proprement** (pas de silence au raccord). 30 s à 2 min.
     > 
@@ -265,6 +265,12 @@
     | `img-jeu1-trainee.png` | Traînée de lame |
     | `img-jeu1-eclaboussure.png` | Jus projeté |
     
+    **Accessoire** *(ajouté le 05/09/2026)* :
+    
+    | Fichier | Description |
+    | --- | --- |
+    | `img-jeu1-zesteur.png` | L'arme de découpe — suit le doigt du joueur pendant le tranchage, 200 × 200 px |
+    
     > PNG transparent, ~300 × 300 px par fruit.
     ⚠️ **Les 5 fruits doivent être très distincts en petit format et en mouvement.** Un citron jaune et une banane peuvent se confondre en pleine action : joue sur les formes autant que sur les couleurs.
     > 
@@ -400,25 +406,25 @@
     
     ---
     
-    ## Récapitulatif
+    ## Récapitulatif *(mis à jour le 05/09/2026)*
     
     | Catégorie | Nb de fichiers |
     | --- | --- |
-    | Décors | 6 |
+    | Décors | 0 — remplacés par des couleurs CSS, voir section 1 |
     | Expressions de Mixapéro | 3 |
-    | Sons SFX | 19 |
-    | Musiques | 5 |
+    | Sons SFX | 18 *(le total précédent de 19 comptait un fichier de trop)* |
+    | Musiques | 2 *(réduites de 5 à 2, voir section 4)* |
     | Fonds d'écrans fixes | 10 |
     | Glaçants *(optionnel)* | 2 |
     | Boutons du hub | 7 |
     | Ingrédients | 6 |
-    | Assets de jeux | 27 |
+    | Assets de jeux | 28 *(ajout de `img-jeu1-zesteur.png`)* |
     | Photos de lieux | 5 à 10 |
     | Animation finale | 4 |
     | Identité & PWA | 6 |
     | Interface *(optionnel, CSS sinon)* | 9 |
     | Polices *(Google Fonts sinon)* | 2 |
-    | **TOTAL** | **~104** — dont **~84 vraiment nécessaires** |
+    | **TOTAL** | **~95** — dont **~75 vraiment nécessaires** |
     
     ---
     
@@ -435,7 +441,7 @@
     Pour avoir une version jouable au plus vite :
     
     1. `ico-192.png`, `ico-512.png`, `ico-maskable-512.png` — le smiley cocktail, pour que la PWA existe sur l'écran d'accueil
-    2. Les **6 décors** + les **3 expressions de Mixapéro** — sans eux, aucune séquence narrative
+    2. Les **3 expressions de Mixapéro** — sans elles, aucune séquence narrative (les décors sont désormais des couleurs CSS, rien à fournir)
     3. Les 4 `sfx-bulle-*.mp3` — le seul jeu qui ne fonctionne pas sans son
     4. `img-jeu3-puzzle.webp` — le seul jeu qui ne fonctionne pas sans image
     5. Les 6 `img-bouton-jeu*.png` — le cœur visuel du hub

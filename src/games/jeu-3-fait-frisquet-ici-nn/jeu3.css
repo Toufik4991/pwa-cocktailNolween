@@ -1,0 +1,88 @@
+.jeu3 {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--decor-givre);
+}
+
+.jeu3__entete {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jeu3__grille {
+  display: grid;
+  grid-template-columns: repeat(var(--taille), 1fr);
+  gap: 3px;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  transition: gap 400ms ease;
+}
+
+.jeu3__grille--gagne {
+  gap: 0;
+}
+
+.jeu3__piece {
+  padding: 0;
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+  background-repeat: no-repeat;
+  transition: transform 250ms ease, outline 150ms ease;
+}
+
+.jeu3__piece--selection {
+  outline: 4px solid var(--color-accent);
+  outline-offset: -4px;
+  transform: scale(0.94);
+}
+
+.jeu3__grille--gagne .jeu3__piece {
+  border-radius: 0;
+  animation: jeu3-brillance 700ms ease;
+}
+
+@keyframes jeu3-brillance {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.35);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.jeu3__modele {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.jeu3__modele img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-md);
+}
+
+.jeu3__abandon {
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}

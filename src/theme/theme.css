@@ -1,0 +1,108 @@
+/* Charte graphique centralisee — solaire, minimaliste, colore.
+   Modifier une couleur ici la change partout dans l'app. */
+
+@font-face {
+  font-family: "Titre";
+  src: url("/assets/fonts/font-titre.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Texte";
+  src: url("/assets/fonts/font-texte.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  /* Couleurs des 6 decors narratifs (un aplat par univers de jeu) */
+  --decor-bar: #fff0c4;
+  --decor-agrumes: #e4f2be;
+  --decor-bulles: #ffdce3;
+  --decor-givre: #d8ecf6;
+  --decor-sucre: #ffd6ae;
+  --decor-secret: #e2dcc2;
+
+  --color-text: #3a2415;
+  --color-accent: #ff6a45;
+  --color-bg: #fffdf8;
+  --color-surface: #ffffff;
+  --color-locked: #d9d2c4;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+
+  --shadow-soft: 0 8px 24px rgba(58, 36, 21, 0.12);
+  --shadow-character: 0 16px 32px rgba(58, 36, 21, 0.18);
+
+  --font-title: "Titre", sans-serif;
+  --font-text: "Texte", sans-serif;
+  --font-size-base: 16px;
+
+  --fondu-decor: 200ms;
+  --fondu-expression: 100ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-text);
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: white;
+  padding: 0.9em 1.6em;
+  box-shadow: var(--shadow-soft);
+}
+
+.mode-test-bandeau {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--color-accent);
+  color: white;
+  text-align: center;
+  padding: 0.4rem;
+  font-family: var(--font-title);
+  letter-spacing: 0.05em;
+}
+
+button:disabled {
+  background: var(--color-locked);
+  color: var(--color-text);
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+}

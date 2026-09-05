@@ -1,0 +1,44 @@
+.splash {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  padding: 2rem;
+  text-align: center;
+  background: var(--decor-bar);
+}
+
+.splash__titre {
+  font-size: 2.6rem;
+  color: var(--color-accent);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.splash__progress {
+  width: 60%;
+  max-width: 260px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(58, 36, 21, 0.15);
+  overflow: hidden;
+}
+
+.splash__progress-fill {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--color-accent);
+  animation-name: remplir;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes remplir {
+  to {
+    transform: scaleX(1);
+  }
+}

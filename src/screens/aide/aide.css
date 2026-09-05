@@ -1,0 +1,31 @@
+.aide {
+  min-height: 100%;
+  background: var(--color-bg);
+  padding: 0 1.2rem 2rem;
+}
+
+.aide__entete {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+}
+
+.aide__entete button {
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+  padding: 0.4em 0.2em;
+}
+
+.aide section {
+  margin-bottom: 1.4rem;
+}
+
+.aide h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}

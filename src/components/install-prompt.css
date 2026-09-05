@@ -1,0 +1,28 @@
+.install-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 500;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 1rem 1.2rem;
+  text-align: center;
+}
+
+.install-banner p {
+  margin: 0 0 0.8rem;
+}
+
+.install-banner__actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.install-banner__skip {
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+}

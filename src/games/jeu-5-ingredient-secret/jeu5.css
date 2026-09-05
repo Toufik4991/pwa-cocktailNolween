@@ -1,0 +1,93 @@
+.jeu5 {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: var(--decor-secret);
+}
+
+.jeu5__progression {
+  font-family: var(--font-title);
+}
+
+.jeu5__message-piege,
+.jeu5__indice-actif {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  max-width: 380px;
+  text-align: center;
+  min-height: 1.4em;
+}
+
+.jeu5__grille {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.jeu5__cellule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  border-radius: 3px;
+}
+
+.jeu5__cellule--active {
+  background: rgba(255, 106, 69, 0.35);
+}
+
+.jeu5__cellule--trouve {
+  background: var(--color-accent);
+  color: white;
+}
+
+.jeu5__cellule--erreur {
+  background: rgba(179, 38, 30, 0.3);
+}
+
+.jeu5__cellule--piege {
+  background: #ffd54f;
+}
+
+.jeu5__mots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  max-width: 380px;
+}
+
+.jeu5__mot {
+  font-family: var(--font-title);
+  letter-spacing: 0.08em;
+}
+
+.jeu5__bas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.jeu5__abandon {
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}

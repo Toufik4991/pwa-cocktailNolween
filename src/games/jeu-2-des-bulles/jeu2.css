@@ -1,0 +1,87 @@
+.jeu2 {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: 1.2rem;
+  text-align: center;
+  background: var(--decor-bulles);
+}
+
+.jeu2__tour {
+  font-family: var(--font-title);
+}
+
+.jeu2__bulles {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  grid-template-rows: repeat(2, 100px);
+  gap: 1rem;
+}
+
+.jeu2__bulle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  padding: 0;
+  box-shadow: var(--shadow-soft);
+  filter: brightness(0.85) saturate(0.8);
+  transition: filter 120ms ease, transform 120ms ease;
+}
+
+.jeu2__bulle--0 {
+  background: #f4a6b8;
+}
+.jeu2__bulle--1 {
+  background: #f7c873;
+}
+.jeu2__bulle--2 {
+  background: #9fd3c7;
+}
+.jeu2__bulle--3 {
+  background: #8fb8e0;
+}
+
+.jeu2__bulle--allumee {
+  filter: brightness(1.3) saturate(1.2);
+  transform: scale(1.08);
+}
+
+.jeu2__bulle:disabled {
+  opacity: 0.9;
+}
+
+.jeu2__bulles--erreur .jeu2__bulle {
+  animation: jeu2-flash-rouge 300ms ease 2;
+}
+
+@keyframes jeu2-flash-rouge {
+  50% {
+    filter: brightness(1.1) saturate(2) hue-rotate(-30deg);
+  }
+}
+
+.jeu2__message,
+.jeu2__indication {
+  min-height: 1.4em;
+  font-style: italic;
+}
+
+.jeu2--avertissement {
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.jeu2__avertissement-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.jeu2__continuer-sans-son {
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+  border: 2px solid var(--color-locked);
+}
