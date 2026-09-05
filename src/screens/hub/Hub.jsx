@@ -14,6 +14,7 @@ import Jeu2 from "../../games/jeu-2-des-bulles/Jeu2.jsx";
 import Jeu3 from "../../games/jeu-3-fait-frisquet-ici-nn/Jeu3.jsx";
 import Jeu4 from "../../games/jeu-4-jeu-de-canne/Jeu4.jsx";
 import Jeu5 from "../../games/jeu-5-ingredient-secret/Jeu5.jsx";
+import FinaleAnimation from "../finale/FinaleAnimation.jsx";
 import "./hub.css";
 
 const CLE_SEQUENCE_INTRO = (n) => `jeu-${n}-intro`;
@@ -35,6 +36,9 @@ export default function Hub() {
   const [etapeEnCours, setEtapeEnCours] = useState(null);
   const [messageVerrouille, setMessageVerrouille] = useState(null);
   const [afficherAbandon, setAfficherAbandon] = useState(false);
+  const [finalePhase, setFinalePhase] = useState(null); // null | 'sequence' | 'animation'
+
+  const toutTermine = [0, 1, 2, 3, 4, 5].every((n) => etapes[n].statut === "complete");
 
   const demarrerEtape = (numero) => setEtapeEnCours({ numero, phase: "intro" });
 
@@ -54,6 +58,20 @@ export default function Hub() {
 
   if (vue === "reponses") return <Reponses onRetour={() => setVue("hub")} />;
   if (vue === "aide") return <Aide onRetour={() => setVue("hub")} />;
+
+  if (finalePhase === "sequence") {
+    return (
+      <SequenceEngine
+        ecrans={SEQUENCES.finale}
+        pseudo={pseudo}
+        onTerminee={() => setFinalePhase("animation")}
+        onQuitter={() => setFinalePhase(null)}
+      />
+    );
+  }
+  if (finalePhase === "animation") {
+    return <FinaleAnimation pseudo={pseudo} onRetourHub={() => setFinalePhase(null)} />;
+  }
 
   if (etapeEnCours) {
     const { numero, phase } = etapeEnCours;
@@ -120,9 +138,8 @@ export default function Hub() {
         pseudo={pseudo}
         libelleBoutonFinal={numero === 5 ? "Terminer" : "Retour au hub"}
         onTerminee={() => {
-          // TODO (palier 7) : pour l'étape 5, enchaîner sur la séquence
-          // finale + l'animation du cocktail au lieu de revenir au hub.
           setEtapeEnCours(null);
+          if (numero === 5) setFinalePhase("sequence");
         }}
         onQuitter={() => setEtapeEnCours(null)}
       />
@@ -150,6 +167,12 @@ export default function Hub() {
       <button className="hub__bouton-reponses" onClick={() => setVue("reponses")}>
         Réponses
       </button>
+
+      {toutTermine && (
+        <button className="hub__revoir-fin" onClick={() => setFinalePhase("sequence")}>
+          Revoir la fin
+        </button>
+      )}
 
       {messageVerrouille && <p className="hub__message-verrouille">{messageVerrouille}</p>}
 

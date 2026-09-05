@@ -25,6 +25,14 @@
   margin-top: 0.4rem;
 }
 
+.hub__revoir-fin {
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
 .hub__message-verrouille {
   position: fixed;
   bottom: 1.2rem;

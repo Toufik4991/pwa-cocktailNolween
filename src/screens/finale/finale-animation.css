@@ -1,0 +1,140 @@
+.finale-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  overflow: hidden;
+  background: var(--decor-bar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.finale-animation__verre {
+  position: relative;
+  height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.finale-animation__verre-image {
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  animation: finale-apparition 500ms ease;
+}
+
+@keyframes finale-apparition {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.finale-animation__halo {
+  position: absolute;
+  inset: -8%;
+  z-index: 1;
+  opacity: 0.5;
+  animation: finale-pulsation 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes finale-pulsation {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.05);
+  }
+}
+
+.finale-animation__etincelles {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  width: 20%;
+  z-index: 3;
+  animation: finale-scintillement 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes finale-scintillement {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: rotate(0deg) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(15deg) scale(1.1);
+  }
+}
+
+.finale-animation__ingredients {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.finale-animation__ingredient {
+  position: absolute;
+  top: -15%;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  opacity: 0;
+}
+
+.finale-animation__ingredient--tombe {
+  animation: finale-chute 700ms ease-in forwards;
+}
+
+@keyframes finale-chute {
+  0% {
+    opacity: 1;
+    top: -15%;
+    transform: scale(1) rotate(0deg);
+  }
+  75% {
+    opacity: 1;
+    top: 42%;
+    transform: scale(0.9) rotate(25deg);
+  }
+  100% {
+    opacity: 0;
+    top: 46%;
+    transform: scale(0.5) rotate(35deg);
+  }
+}
+
+.finale-animation__message {
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 2.5rem;
+  z-index: 5;
+  background: rgba(255, 253, 248, 0.9);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.4rem;
+  text-align: center;
+  animation: finale-apparition 600ms ease;
+}
+
+.finale-animation__message p {
+  margin: 0 0 0.5rem;
+}
+
+.finale-animation__retour {
+  margin-top: 0.4rem;
+}
