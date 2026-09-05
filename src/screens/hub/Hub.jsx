@@ -51,9 +51,9 @@ export default function Hub() {
   // hub ni les séquences texte (§9.2, économie de batterie).
   useWakeLock(etapeEnCours?.phase === "jeu");
 
-  // Musique : volume normal partout, baissé pendant un mini-jeu, coupé
-  // pendant le jeu 2 spécifiquement (voir useMusique.js).
-  useMusiqueSelonEcran(etapeEnCours?.phase === "jeu" ? etapeEnCours.numero : null);
+  // Musique : mus-hub par défaut, mus-jeu pendant un mini-jeu (coupée pour
+  // le jeu 2 spécifiquement), mus-final pendant l'animation (voir useMusique.js).
+  useMusiqueSelonEcran(etapeEnCours?.phase === "jeu" ? etapeEnCours.numero : null, finalePhase === "animation");
 
   const demarrerEtape = (numero) => setEtapeEnCours({ numero, phase: "intro" });
 

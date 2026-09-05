@@ -106,17 +106,18 @@
     
     ---
     
-    ## 4. Musiques — mise à jour du 05/09/2026 : un seul fichier
+    ## 4. Musiques — mise à jour du 05/09/2026 (soir) : 3 fichiers
     
     | Fichier | Où |
     | --- | --- |
-    | `mus-hub.mp3` | **Partout** : accueil, saisie du pseudo, hub, séquences de texte, page Réponses, les six mini-jeux et l'animation finale |
+    | `mus-hub.mp3` | Accueil, saisie du pseudo, hub, séquences de texte, page Réponses |
+    | `mus-jeu.mp3` | Les six mini-jeux |
+    | `mus-final.mp3` | L'animation finale uniquement |
     
-    Une seule piste pour tout le projet, jouée en continu depuis le lancement de l'app — elle ne redémarre jamais d'un écran à l'autre, seul son volume change :
+    Une seule piste audible à la fois, fondu enchaîné d'environ 600 ms entre elles. `mus-hub` et `mus-jeu` tournent en continu en arrière-plan dès le lancement de l'app et ne redémarrent **jamais** d'un écran à l'autre (`mus-jeu` reprend là où elle en était même en changeant de mini-jeu). `mus-final` repart de 0:00 à chaque lancement de l'animation.
     
-    - Volume normal partout sauf pendant un mini-jeu
-    - Volume réduit pendant les jeux 0, 1, 3, 4 et 5
-    - **Silence total** pendant le jeu 2 (mémorisation de sons — la moindre musique de fond gênerait la distinction des hauteurs), avec fondu de sortie 400 ms et fondu de retour 800 ms
+    - Volume normal pour la piste active, quelle qu'elle soit
+    - **Silence total** pendant le jeu 2 (mémorisation de sons — la moindre musique de fond gênerait la distinction des hauteurs) : `mus-jeu` tombe à 0 avec fondu de sortie 400 ms et fondu de retour 800 ms
     
     `mus-accueil`, `mus-narration`, `mus-jeu` et `mus-final` ne sont plus nécessaires.
     
@@ -415,7 +416,7 @@
     | Décors | 0 — remplacés par des couleurs CSS, voir section 1 |
     | Expressions de Mixapéro | 3 |
     | Sons SFX | 19 *(correction du 05/09 : le compte de 18 annoncé plus tôt était une erreur de recomptage, `sfx-final.mp3` avait été oublié)* |
-    | Musiques | 1 *(réduites de 5 à 2 puis à 1 seule, voir section 4)* |
+    | Musiques | 3 *(réduites de 5 à 2, puis à 1 seule un temps, puis fixées à 3 : hub/jeu/final, voir section 4)* |
     | Fonds d'écrans fixes | 10 |
     | Glaçants *(optionnel)* | 2 |
     | Boutons du hub | 7 |

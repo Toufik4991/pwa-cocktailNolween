@@ -1,6 +1,6 @@
 # Inventaire des assets — "Pina Tresolada"
 
-*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 05/09/2026 (soir) : intégration de l'audio réel (19 SFX + 1 musique unique `mus-hub`), retrait des assets abandonnés (`img-jeu1-trainee`, `img-final-halo`, `img-jeu0-carte-indice`, `img-jeu4-table`).*
+*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 05/09/2026 (soir) : intégration de l'audio réel (19 SFX + 3 musiques `mus-hub`/`mus-jeu`/`mus-final`), retrait des assets abandonnés (`img-jeu1-trainee`, `img-final-halo`, `img-jeu0-carte-indice`, `img-jeu4-table`).*
 
 Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont été **copiés puis traités** vers `public/assets/`. Scripts dans `scripts/` : `process_assets.py` (images), `gen_audio_placeholders.sh` / `gen_image_placeholders.py` (placeholders restants).
 
@@ -118,10 +118,12 @@ Tous les sons et l'unique musique fournis dans `ici/` le 05/09 (soir) ont rempla
 | --- | --- |
 | Les 19 SFX (bulle-01→04, clic, texte, code-ok, code-faux, deblocage, echec, final, victoire, jeu1-tranche, jeu1-erreur, jeu3-piece, jeu4-canne, jeu5-mot, jeu5-piege, jeu5-indice) | copiés tels quels dans `public/assets/audio/` |
 | `mus-hub.mp3` | **corrigé avant intégration** : 1,66 s de silence en fin de piste détectées (`ffmpeg silencedetect`), qui auraient cassé la boucle avec un blanc audible toutes les ~68 s. Coupé net à 66,44 s + micro-fondu de 10 ms pour éviter un clic, ré-encodé à 128 kbps (2,1 Mo → 1,0 Mo) |
+| `mus-jeu.mp3` | Copiée telle quelle (pas de silence de raccord détecté), ré-encodée à 128 kbps pour la taille (113,88 s) |
+| `mus-final.mp3` | **corrigée avant intégration** : 0,6 s de silence en fin de piste détectées, coupé net à 129,02 s, ré-encodée à 128 kbps |
 
 `sfx-final.mp3` était déjà dans la spec d'origine ("Fanfare de fin") — voir point de vigilance sur mon erreur de comptage précédente.
 
-**Trouvés dans `ici/` mais non utilisés** : `mus-final.mp3` et `mus-jeu.mp3`. Ils correspondent à l'ancien système à 5 musiques, obsolète depuis la simplification à une seule piste (`mus-hub` partout). Non copiés dans `public/assets/` — dites-moi si vous voulez que je les supprime de `ici/` (je ne supprime jamais rien de ce dossier sans confirmation).
+**Système à 3 musiques (correction du 05/09 en soirée)** : après une simplification temporaire à une seule piste (`mus-hub` partout), vous avez demandé de garder les 3 fichiers — `mus-hub` (accueil/pseudo/hub/séquences texte/Réponses), `mus-jeu` (les 6 mini-jeux), `mus-final` (animation finale uniquement, redémarre à chaque lancement). Les 3 sont maintenant intégrées et vérifiées.
 
 ---
 
@@ -182,7 +184,7 @@ Sur demande explicite du 05/09 (soir), plus besoin de ces 4 assets — retirés 
 6. **img-glacant-01.png** n'avait pas de dimension imposée dans les documents fournis (absente du tableau de redimensionnement de la décision du 05/09) : conservée à sa taille de détourage naturelle (824×902). À préciser si une taille cible existe.
 7. **Correction d'une erreur de ma part** : j'avais précédemment "corrigé" le compte de SFX de 19 à 18, en pensant que `3-assets-a-fournir.md` comptait un fichier en trop. En réalité c'est moi qui avais mal recompté — `sfx-final.mp3` ("fanfare de fin") fait bien partie de la liste d'origine. Remis à 19 partout, fichier bien copié et utilisé dans l'animation finale.
 8. Les images `.png` opaques (boutons, ingrédients, fruits) ne sont volontairement pas passées en WebP même si elles ne sont pas transparentes après recadrage dans certains cas marginaux — la règle appliquée est celle donnée explicitement par la liste de la décision du 05/09 (par famille de fichier), pas une détection automatique de la transparence réelle. Si un fichier de cette liste s'avère in fine sans aucune transparence utile, il pourra être re-basculé en WebP plus tard sans risque.
-9. **`mus-final.mp3` et `mus-jeu.mp3` fournis dans `ici/` mais non intégrés** (voir section audio ci-dessus) : ce sont des restes de l'ancien système à 5 musiques. Je ne les ai pas supprimés de `ici/` (jamais de suppression sans confirmation), juste laissés de côté.
+9. **`mus-final.mp3` et `mus-jeu.mp3`** : d'abord laissés de côté lors de la simplification temporaire à une seule piste, puis réintégrés (voir section audio ci-dessus) suite à votre demande de garder les 3 musiques. Comme `mus-hub`, ils restent dans `ici/` sans y avoir été modifiés (seules les copies dans `public/assets/` sont traitées).
 
 ---
 

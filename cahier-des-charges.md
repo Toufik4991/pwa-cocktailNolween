@@ -386,19 +386,22 @@
     
     Vibration courte (`navigator.vibrate`) sur : code correct, mot trouvé, pièce de puzzle échangée, fruit tranché. Désactivable avec le son dans le menu.
     
-    ### 9.8 Musiques *(mise à jour du 05/09/2026, puis simplifiée à une seule piste)*
+    ### 9.8 Musiques *(mise à jour du 05/09/2026, soir — 3 pistes)*
     
-    **Une seule musique pour tout le projet : `mus-hub`.** Jouée partout — accueil, saisie du pseudo, hub, séquences de texte, page Réponses, les six mini-jeux et l'animation finale — sauf pendant le jeu 2 (voir plus bas).
+    **3 musiques**, une seule audible à la fois, en fondu enchaîné (~600 ms) :
     
-    Elle est lancée une seule fois au démarrage de l'app et tourne en boucle en continu : elle ne redémarre **jamais** d'un écran à l'autre, seul son volume change, en fondu d'environ 600 ms :
+    - `mus-hub` : accueil, saisie du pseudo, hub, séquences de texte, page Réponses
+    - `mus-jeu` : pendant les 6 mini-jeux
+    - `mus-final` : l'animation finale uniquement (pas les 2 écrans de dialogue qui la précèdent, qui restent sur `mus-hub` comme toute séquence texte)
+    
+    `mus-hub` et `mus-jeu` tournent en continu en arrière-plan dès le lancement de l'app et **ne redémarrent jamais** en changeant d'écran — si on quitte un mini-jeu puis en relance un autre, `mus-jeu` reprend là où elle en était, elle ne repart pas du début. `mus-final`, elle, **repart de 0:00 à chaque lancement de l'animation** (y compris en la rejouant depuis "Revoir la fin") — c'est le seul cas de redémarrage volontaire, pour l'effet dramatique.
     
     ```
-    VOLUME_MUSIQUE_NORMAL = 0.6   // accueil, pseudo, hub, séquences texte, Réponses, finale
-    VOLUME_MUSIQUE_JEU    = 0.15  // pendant les jeux 0, 1, 3, 4 et 5
+    VOLUME_MUSIQUE_NORMAL = 0.6   // niveau de la piste active, quelle qu'elle soit
     VOLUME_MUSIQUE_JEU2   = 0     // silence total pendant le jeu 2
     ```
     
-    **Cas particulier du jeu 2 ("Des bulles ?")** : la musique est coupée complètement, pas seulement baissée — le joueur doit mémoriser une mélodie de 4 hauteurs, la moindre musique de fond gênerait la distinction. Fondu de sortie de 400 ms à l'entrée dans le jeu, fondu de retour de 800 ms à la sortie. La piste continue de tourner en silence pendant ce temps et reprend là où elle en était, elle n'est jamais mise en pause.
+    **Cas particulier du jeu 2 ("Des bulles ?")** : `mus-jeu` est coupée complètement, pas seulement baissée — le joueur doit mémoriser une mélodie de 4 hauteurs, la moindre musique de fond gênerait la distinction. Fondu de sortie de 400 ms à l'entrée dans le jeu, fondu de retour de 800 ms à la sortie. La piste continue de tourner en silence pendant ce temps et reprend là où elle en était, elle n'est jamais mise en pause.
     
     ---
     
