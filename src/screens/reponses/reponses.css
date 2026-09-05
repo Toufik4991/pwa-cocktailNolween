@@ -1,6 +1,9 @@
 .reponses {
   min-height: 100%;
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding-bottom: 2rem;
 }
 

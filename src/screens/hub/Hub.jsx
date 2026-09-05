@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useGameDispatch, useGameState } from "../../store/GameContext.jsx";
 import { useWakeLock } from "../../hooks/useWakeLock.js";
-import { asset } from "../../utils/assetUrl.js";
+import { useMusiqueSelonEcran } from "../../hooks/useMusique.js";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import { NOMS_JEUX, ETAPE_VERROUILLEE, SEQUENCES, PROPOSITION_ABANDON } from "../../config/index.js";
 import EtapeButton from "../../components/EtapeButton.jsx";
 import HubMenu from "../../components/HubMenu.jsx";
@@ -49,6 +50,10 @@ export default function Hub() {
   // Wake Lock actif seulement pendant le mini-jeu lui-même, jamais sur le
   // hub ni les séquences texte (§9.2, économie de batterie).
   useWakeLock(etapeEnCours?.phase === "jeu");
+
+  // Musique : volume normal partout, baissé pendant un mini-jeu, coupé
+  // pendant le jeu 2 spécifiquement (voir useMusique.js).
+  useMusiqueSelonEcran(etapeEnCours?.phase === "jeu" ? etapeEnCours.numero : null);
 
   const demarrerEtape = (numero) => setEtapeEnCours({ numero, phase: "intro" });
 
@@ -163,7 +168,7 @@ export default function Hub() {
     }
   } else {
     contenu = (
-      <div className="hub">
+      <div className="hub" style={styleFondImage("assets/images/bg-hub.webp")}>
         <HubMenu onOuvrirAide={() => setVue("aide")} />
 
         <h1>Salut {pseudo} !</h1>

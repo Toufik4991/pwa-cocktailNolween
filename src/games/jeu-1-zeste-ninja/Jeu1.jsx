@@ -50,7 +50,8 @@ export default function Jeu1({ onVictoire, onAbandon }) {
       images.entier[type] = chargerImage(asset(`assets/images/img-jeu1-${type}-entier.png`));
       images.coupe[type] = chargerImage(asset(`assets/images/img-jeu1-${type}-coupe.png`));
     }
-    images.trainee = chargerImage(asset("assets/images/img-jeu1-trainee.png"));
+    // La traînée du doigt est dessinée directement au canvas (voir
+    // dessiner() plus bas), pas de sprite dédié.
     images.eclaboussure = chargerImage(asset("assets/images/img-jeu1-eclaboussure.png"));
     imagesRef.current = images;
 

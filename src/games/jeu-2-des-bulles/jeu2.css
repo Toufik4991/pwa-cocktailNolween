@@ -7,7 +7,10 @@
   gap: 1.4rem;
   padding: 1.2rem;
   text-align: center;
-  background: var(--decor-bulles);
+  background-color: var(--decor-bulles);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .jeu2__tour {
@@ -26,22 +29,17 @@
   height: 100px;
   border-radius: 50%;
   padding: 0;
+  background: transparent;
   box-shadow: var(--shadow-soft);
   filter: brightness(0.85) saturate(0.8);
   transition: filter 120ms ease, transform 120ms ease;
+  overflow: hidden;
 }
 
-.jeu2__bulle--0 {
-  background: #f4a6b8;
-}
-.jeu2__bulle--1 {
-  background: #f7c873;
-}
-.jeu2__bulle--2 {
-  background: #9fd3c7;
-}
-.jeu2__bulle--3 {
-  background: #8fb8e0;
+.jeu2__bulle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .jeu2__bulle--allumee {
@@ -84,4 +82,10 @@
   color: var(--color-text);
   box-shadow: none;
   border: 2px solid var(--color-locked);
+}
+
+.jeu2__verre {
+  max-height: 20vh;
+  object-fit: contain;
+  opacity: 0.9;
 }

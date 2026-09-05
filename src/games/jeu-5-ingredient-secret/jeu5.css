@@ -5,7 +5,10 @@
   align-items: center;
   gap: 0.6rem;
   padding: 1rem;
-  background: var(--decor-secret);
+  background-color: var(--decor-secret);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .jeu5__progression {
@@ -29,7 +32,9 @@
   width: 100%;
   max-width: 380px;
   aspect-ratio: 1;
-  background: var(--color-surface);
+  background-color: var(--color-surface);
+  background-position: center;
+  background-size: cover;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
   touch-action: none;
@@ -82,6 +87,23 @@
   align-items: center;
   gap: 1rem;
   margin-top: auto;
+}
+
+.jeu5__indice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.jeu5__charges {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.jeu5__charges img {
+  width: 16px;
+  height: 16px;
 }
 
 .jeu5__abandon {

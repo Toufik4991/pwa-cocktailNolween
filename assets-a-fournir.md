@@ -106,17 +106,21 @@
     
     ---
     
-    ## 4. Musiques — mise à jour du 05/09/2026 : deux fichiers seulement
+    ## 4. Musiques — mise à jour du 05/09/2026 : un seul fichier
     
     | Fichier | Où |
     | --- | --- |
-    | `mus-narration.mp3` | Pendant les séquences de texte |
-    | `mus-hub.mp3` | Partout ailleurs : accueil, saisie du pseudo, hub, page Réponses, les six mini-jeux et l'animation finale |
+    | `mus-hub.mp3` | **Partout** : accueil, saisie du pseudo, hub, séquences de texte, page Réponses, les six mini-jeux et l'animation finale |
     
-    Pendant un mini-jeu, `mus-hub` continue de jouer mais à volume fortement réduit (géré dans la config, pas un fichier séparé). `mus-accueil`, `mus-jeu` et `mus-final` ne sont plus nécessaires.
+    Une seule piste pour tout le projet, jouée en continu depuis le lancement de l'app — elle ne redémarre jamais d'un écran à l'autre, seul son volume change :
     
-    > Doivent **boucler proprement** (pas de silence au raccord). 30 s à 2 min.
-    > 
+    - Volume normal partout sauf pendant un mini-jeu
+    - Volume réduit pendant les jeux 0, 1, 3, 4 et 5
+    - **Silence total** pendant le jeu 2 (mémorisation de sons — la moindre musique de fond gênerait la distinction des hauteurs), avec fondu de sortie 400 ms et fondu de retour 800 ms
+    
+    `mus-accueil`, `mus-narration`, `mus-jeu` et `mus-final` ne sont plus nécessaires.
+    
+    > Doit **boucler proprement** (pas de silence au raccord).
     
     ---
     
@@ -224,7 +228,6 @@
     
     | Fichier | Description |
     | --- | --- |
-    | `img-jeu0-carte-indice.png` | Cadre d'affichage des indices |
     | `img-jeu0-silhouette.png` | **Silhouette mystère générique** — un verre indéfini, sans forme reconnaissable |
     | `img-jeu0-mojito.png` | Mojito révélé |
     | `img-jeu0-pinacolada.png` | Piña Colada révélée |
@@ -262,8 +265,9 @@
     
     | Fichier | Description |
     | --- | --- |
-    | `img-jeu1-trainee.png` | Traînée de lame |
     | `img-jeu1-eclaboussure.png` | Jus projeté |
+    
+    > La traînée de lame est dessinée directement au canvas (ligne suivant le doigt), pas besoin d'un sprite `img-jeu1-trainee.png`.
     
     **Accessoire** *(ajouté le 05/09/2026)* :
     
@@ -300,9 +304,8 @@
     | Fichier | Description |
     | --- | --- |
     | `img-jeu4-canne.png` | Canne à sucre verticale |
-    | `img-jeu4-table.png` | Support / table *(optionnel)* |
     
-    > ~120 × 500 px pour une canne.
+    > ~120 × 500 px pour une canne. Pas de support/table : les cannes sont posées sur un aplat de couleur, pas besoin d'asset dédié.
     > 
     
     ### Jeu 5 — "L'ingrédient secret"
@@ -339,7 +342,6 @@
     | --- | --- |
     | `img-final-verre-vide.png` | Le verre vide |
     | `img-final-cocktail.png` | **Le cocktail terminé**, lumineux |
-    | `img-final-halo.png` | Halo lumineux |
     | `img-final-etincelles.png` | Particules / paillettes |
     
     > Les ingrédients qui tombent réutilisent les `img-ingredient-*.png`.
@@ -412,19 +414,19 @@
     | --- | --- |
     | Décors | 0 — remplacés par des couleurs CSS, voir section 1 |
     | Expressions de Mixapéro | 3 |
-    | Sons SFX | 18 *(le total précédent de 19 comptait un fichier de trop)* |
-    | Musiques | 2 *(réduites de 5 à 2, voir section 4)* |
+    | Sons SFX | 19 *(correction du 05/09 : le compte de 18 annoncé plus tôt était une erreur de recomptage, `sfx-final.mp3` avait été oublié)* |
+    | Musiques | 1 *(réduites de 5 à 2 puis à 1 seule, voir section 4)* |
     | Fonds d'écrans fixes | 10 |
     | Glaçants *(optionnel)* | 2 |
     | Boutons du hub | 7 |
     | Ingrédients | 6 |
-    | Assets de jeux | 28 *(ajout de `img-jeu1-zesteur.png`)* |
+    | Assets de jeux | 26 *(ajout de `img-jeu1-zesteur.png`, retrait de `img-jeu1-trainee.png` et `img-jeu0-carte-indice.png` — dessinés/mis en page directement, pas d'image nécessaire)* |
     | Photos de lieux | 5 à 10 |
-    | Animation finale | 4 |
+    | Animation finale | 3 *(retrait de `img-final-halo.png`, non utilisé)* |
     | Identité & PWA | 6 |
     | Interface *(optionnel, CSS sinon)* | 9 |
     | Polices *(Google Fonts sinon)* | 2 |
-    | **TOTAL** | **~95** — dont **~75 vraiment nécessaires** |
+    | **TOTAL** | **~92** — dont **~72 vraiment nécessaires** |
     
     ---
     

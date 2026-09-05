@@ -386,21 +386,19 @@
     
     Vibration courte (`navigator.vibrate`) sur : code correct, mot trouvé, pièce de puzzle échangée, fruit tranché. Désactivable avec le son dans le menu.
     
-    ### 9.8 Musiques *(mise à jour du 05/09/2026)*
+    ### 9.8 Musiques *(mise à jour du 05/09/2026, puis simplifiée à une seule piste)*
     
-    Deux musiques seulement, au lieu d'une par écran :
+    **Une seule musique pour tout le projet : `mus-hub`.** Jouée partout — accueil, saisie du pseudo, hub, séquences de texte, page Réponses, les six mini-jeux et l'animation finale — sauf pendant le jeu 2 (voir plus bas).
     
-    - `mus-narration` : jouée pendant les séquences de texte
-    - `mus-hub` : jouée partout ailleurs — accueil, saisie du pseudo, hub, page Réponses, les six mini-jeux et l'animation finale
-    
-    Pendant un mini-jeu, `mus-hub` continue de jouer mais à **volume réduit** (pour laisser la place aux effets sonores), avec transition en fondu d'environ 600 ms entre les deux niveaux :
+    Elle est lancée une seule fois au démarrage de l'app et tourne en boucle en continu : elle ne redémarre **jamais** d'un écran à l'autre, seul son volume change, en fondu d'environ 600 ms :
     
     ```
-    VOLUME_MUSIQUE_NORMAL = 0.6
-    VOLUME_MUSIQUE_JEU    = 0.15
+    VOLUME_MUSIQUE_NORMAL = 0.6   // accueil, pseudo, hub, séquences texte, Réponses, finale
+    VOLUME_MUSIQUE_JEU    = 0.15  // pendant les jeux 0, 1, 3, 4 et 5
+    VOLUME_MUSIQUE_JEU2   = 0     // silence total pendant le jeu 2
     ```
     
-    La musique ne redémarre jamais en entrant ou sortant d'un mini-jeu : elle continue en boucle, seul son volume change.
+    **Cas particulier du jeu 2 ("Des bulles ?")** : la musique est coupée complètement, pas seulement baissée — le joueur doit mémoriser une mélodie de 4 hauteurs, la moindre musique de fond gênerait la distinction. Fondu de sortie de 400 ms à l'entrée dans le jeu, fondu de retour de 800 ms à la sortie. La piste continue de tourner en silence pendant ce temps et reprend là où elle en était, elle n'est jamais mise en pause.
     
     ---
     

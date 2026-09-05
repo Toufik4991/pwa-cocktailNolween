@@ -6,3 +6,10 @@
 export function asset(cheminRelatif) {
   return import.meta.env.BASE_URL + cheminRelatif.replace(/^\/+/, "");
 }
+
+// Petit raccourci pour poser une image de fond en style inline (les
+// url() en dur dans un .css ne peuvent pas passer par asset(), voir plus
+// haut) : style={styleFondImage("images/bg-hub.webp")}.
+export function styleFondImage(cheminRelatif) {
+  return { backgroundImage: `url(${asset(cheminRelatif)})` };
+}

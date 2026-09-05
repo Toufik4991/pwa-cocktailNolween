@@ -5,7 +5,10 @@
   align-items: center;
   gap: 0.8rem;
   padding: 1.2rem;
-  background: var(--decor-bar);
+  background-color: var(--decor-bar);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .jeu0__compteur {

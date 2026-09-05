@@ -44,14 +44,11 @@ export default function FinaleAnimation({ pseudo, onRetourHub }) {
           className="finale-animation__verre-image"
         />
         {revele && (
-          <>
-            <img src={asset("assets/images/img-final-halo.png")} alt="" className="finale-animation__halo" />
-            <img
-              src={asset("assets/images/img-final-etincelles.png")}
-              alt=""
-              className="finale-animation__etincelles"
-            />
-          </>
+          <img
+            src={asset("assets/images/img-final-etincelles.png")}
+            alt=""
+            className="finale-animation__etincelles"
+          />
         )}
       </div>
 

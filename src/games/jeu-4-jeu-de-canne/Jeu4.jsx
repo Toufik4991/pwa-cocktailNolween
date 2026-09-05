@@ -9,7 +9,10 @@ import {
 } from "../../config/index.js";
 import { jouerTourMixapero } from "./nim.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./jeu4.css";
+
+const IMAGE_CANNE = asset("assets/images/img-jeu4-canne.png");
 
 function auHasard(liste) {
   return liste[Math.floor(Math.random() * liste.length)];
@@ -112,7 +115,7 @@ export default function Jeu4({ partieDepart = 1, onVictoire, onEchec }) {
   const indiceTexte = indicePourPartie(numeroPartie);
 
   return (
-    <div className="jeu4">
+    <div className="jeu4" style={styleFondImage("assets/images/bg-jeu4.webp")}>
       <p className="jeu4__compteur">
         {phase === "jeu"
           ? `${cannes} canne${cannes > 1 ? "s" : ""} — ${tour === "joueur" ? "à toi de jouer" : "tour de Mixapéro"}`
@@ -132,7 +135,9 @@ export default function Jeu4({ partieDepart = 1, onVictoire, onEchec }) {
             className={`jeu4__canne ${selection.includes(i) ? "jeu4__canne--selection" : ""}`}
             onClick={() => basculerSelection(i)}
             aria-label={`Canne ${i + 1}`}
-          />
+          >
+            <img src={IMAGE_CANNE} alt="" />
+          </button>
         ))}
       </div>
 

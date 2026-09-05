@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useGameDispatch } from "../../store/GameContext.jsx";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./splash.css";
 
 const BLOCAGE_MS = 5000;
@@ -31,9 +32,9 @@ export default function Splash({ onContinuer }) {
   };
 
   return (
-    <div className="splash">
+    <div className="splash" style={styleFondImage("assets/images/bg-accueil.webp")}>
       <h1 className="splash__titre" onClick={onTapTitre}>
-        Pina Tresolada
+        <img src={asset("assets/images/img-logo-pinatresolada.png")} alt="Pina Tresolada" />
       </h1>
 
       <div className="splash__progress" aria-hidden="true">

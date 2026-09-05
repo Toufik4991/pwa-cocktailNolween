@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useGameState } from "../../store/GameContext.jsx";
 import { NOMS_JEUX, INGREDIENTS, REPONSES_ETAPE_NON_RESOLUE } from "../../config/index.js";
 import LieuPhotoViewer from "../../components/LieuPhotoViewer.jsx";
-import { asset } from "../../utils/assetUrl.js";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./reponses.css";
 
 function lieuSuivant(numero) {
@@ -17,7 +17,7 @@ export default function Reponses({ onRetour }) {
   const [photoPleinEcran, setPhotoPleinEcran] = useState(null);
 
   return (
-    <div className="reponses">
+    <div className="reponses" style={styleFondImage("assets/images/bg-reponses.webp")}>
       <header className="reponses__entete">
         <button onClick={onRetour}>← Retour</button>
         <h1>Réponses</h1>

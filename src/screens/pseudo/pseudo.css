@@ -7,7 +7,10 @@
   gap: 1.4rem;
   padding: 2rem;
   text-align: center;
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .pseudo h1 {

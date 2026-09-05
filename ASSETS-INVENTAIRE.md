@@ -1,19 +1,24 @@
 # Inventaire des assets — "Pina Tresolada"
 
-*Généré automatiquement à partir de `ici/` selon la section 6 du cahier des charges, mise à jour avec les décisions du 05/09/2026 (décors en couleurs, formats/dimensions corrigés, musiques réduites à deux fichiers).*
+*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 05/09/2026 (soir) : intégration de l'audio réel (19 SFX + 1 musique unique `mus-hub`), retrait des assets abandonnés (`img-jeu1-trainee`, `img-final-halo`, `img-jeu0-carte-indice`, `img-jeu4-table`).*
 
-Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont été **copiés puis traités** vers `public/assets/`. Les scripts utilisés sont conservés dans `scripts/` (`process_assets.py`, `gen_audio_placeholders.sh`, `gen_image_placeholders.py`) pour pouvoir relancer le traitement si de nouveaux fichiers arrivent dans `ici/`.
+Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont été **copiés puis traités** vers `public/assets/`. Scripts dans `scripts/` : `process_assets.py` (images), `gen_audio_placeholders.sh` / `gen_image_placeholders.py` (placeholders restants).
 
 ## Résumé
 
 | Catégorie | Nombre |
 | --- | --- |
-| ✅ Assets fournis, identifiés et traités | 56 |
-| ❌ Assets manquants avec placeholder généré | 26 (16 images + 20 audio − ~10 doublons ci-dessous détaillés) |
-| ❌ Assets manquants, volontairement sans placeholder (optionnels / gérés en CSS / à venir) | 13 |
-| ⚠️ Points de vigilance | 8 |
+| ✅ Images fournies, identifiées et traitées | 56 |
+| ✅ Audio réel intégré | 20 (19 SFX + 1 musique) |
+| ✅ Polices sourcées | 2 |
+| ❌ Assets manquants avec placeholder (images seulement, l'audio n'en a plus besoin) | 12 |
+| ❌ Assets abandonnés, retirés du code et de la liste attendue | 4 |
+| ❌ Sans placeholder volontairement (optionnels / gérés en CSS) | 10 |
+| ⚠️ Points de vigilance | 9 |
 | ❓ Ambigus non résolus | 0 |
-| **Poids total de `public/assets/`** | **6,2 Mo** (objectif : < 30 Mo) |
+| **Poids total de `public/assets/`** | **8,1 Mo** (objectif : < 30 Mo) |
+
+> ⚠️ **À signaler explicitement** : au-delà des 5 photos de lieux (attendu, elles dépendent de lieux pas encore choisis), **7 images restent en placeholder** : les 4 bulles du jeu 2, la flûte décorative du jeu 2, la charge d'indice vide du jeu 5, et le logo. Aucun fichier correspondant n'a été trouvé dans `ici/` sous ce nom ou un nom proche — détail dans la section dédiée plus bas.
 
 ---
 
@@ -105,34 +110,34 @@ Vérifié après traitement : les trois boîtes englobantes du personnage ne var
 
 ---
 
-## ❌ Assets manquants — placeholder généré (20 images + audio)
+## ✅ Audio réel intégré (20 fichiers)
 
-Aucun fichier `bg-decor-*` n'a été demandé : conformément à la décision du 05/09, les 6 décors narratifs sont désormais des couleurs CSS, donc **retirés de la liste attendue** — aucun placeholder correspondant.
+Tous les sons et l'unique musique fournis dans `ici/` le 05/09 (soir) ont remplacé les placeholders synthétiques précédents.
 
-### Images (16 fichiers, aplat de couleur + nom écrit dessus)
+| Fichier | Traitement |
+| --- | --- |
+| Les 19 SFX (bulle-01→04, clic, texte, code-ok, code-faux, deblocage, echec, final, victoire, jeu1-tranche, jeu1-erreur, jeu3-piece, jeu4-canne, jeu5-mot, jeu5-piege, jeu5-indice) | copiés tels quels dans `public/assets/audio/` |
+| `mus-hub.mp3` | **corrigé avant intégration** : 1,66 s de silence en fin de piste détectées (`ffmpeg silencedetect`), qui auraient cassé la boucle avec un blanc audible toutes les ~68 s. Coupé net à 66,44 s + micro-fondu de 10 ms pour éviter un clic, ré-encodé à 128 kbps (2,1 Mo → 1,0 Mo) |
+
+`sfx-final.mp3` était déjà dans la spec d'origine ("Fanfare de fin") — voir point de vigilance sur mon erreur de comptage précédente.
+
+**Trouvés dans `ici/` mais non utilisés** : `mus-final.mp3` et `mus-jeu.mp3`. Ils correspondent à l'ancien système à 5 musiques, obsolète depuis la simplification à une seule piste (`mus-hub` partout). Non copiés dans `public/assets/` — dites-moi si vous voulez que je les supprime de `ici/` (je ne supprime jamais rien de ce dossier sans confirmation).
+
+---
+
+## ❌ Assets manquants — placeholder image (12 fichiers)
+
+Aucun fichier audio n'a plus besoin de placeholder (tout est réel désormais, voir ci-dessus).
 
 | Fichier | Dimensions | Usage prévu |
 | --- | --- | --- |
-| img-jeu0-carte-indice.png | 900×400 | cadre d'affichage d'un indice (jeu 0) |
-| img-jeu1-trainee.png | 300×300 | traînée de lame (jeu 1) |
-| img-jeu1-eclaboussure.png | 200×200 | jus projeté (jeu 1) |
 | img-jeu2-bulle-01.png → 04.png | 256×256 ×4 | les 4 bulles (jeu 2) |
 | img-jeu2-verre.png | 300×600 | flûte décorative (jeu 2) |
 | img-jeu5-charge-vide.png | 128×128 | charge d'indice consommée (jeu 5) |
-| img-final-halo.png | 1024×1024 | halo lumineux (animation finale) |
 | img-logo-pinatresolada.png | 800×300 | logo / titre |
-| img-lieu-01-a.webp → 05-a.webp | 1080×1350 ×5 | photos de lieux IRL (le code n'y est évidemment pas encore visible) |
+| img-lieu-01-a.webp → 05-a.webp | 1080×1350 ×5 | photos de lieux IRL (attendu — lieux pas encore choisis) |
 
-### Audio (20 fichiers, tonalités synthétiques très courtes)
-
-Aucun son ni musique n'était présent dans `ici/` — confirmé normal, l'audio arrivera plus tard.
-
-| Fichier | Description du placeholder |
-| --- | --- |
-| sfx-bulle-01 → 04.mp3 | 4 tons purs, hauteurs croissantes (220/294/370/494 Hz) |
-| sfx-clic, sfx-texte, sfx-code-ok, sfx-code-faux, sfx-deblocage, sfx-victoire, sfx-echec | bips courts différenciés |
-| sfx-jeu1-tranche, sfx-jeu1-erreur, sfx-jeu3-piece, sfx-jeu4-canne, sfx-jeu5-mot, sfx-jeu5-piege, sfx-jeu5-indice | bips courts différenciés |
-| mus-narration.mp3, mus-hub.mp3 | boucles douces 20 s, volumes bas (0,15 / 0,2) — **liste réduite à 2 musiques**, cf. décision du 05/09 |
+⚠️ **7 de ces 12 fichiers ne sont pas les photos de lieux** : les 4 bulles, la flûte du jeu 2, la charge vide du jeu 5, et le logo. Je le signale explicitement comme demandé plutôt que de le passer sous silence.
 
 ### Polices (2 fichiers, sourcées réellement — pas de placeholder)
 
@@ -145,18 +150,29 @@ Auto-hébergées dans `public/assets/fonts/` pour respecter le fonctionnement ho
 
 ---
 
-## ❌ Assets manquants — aucun placeholder généré volontairement (13)
+## ❌ Assets abandonnés — retirés du code et de la liste attendue (4)
 
-| Fichier(s) | Raison |
+Sur demande explicite du 05/09 (soir), plus besoin de ces 4 assets — retirés du code, de `3-assets-a-fournir.md` et de cet inventaire :
+
+| Fichier | Pourquoi il n'est plus utilisé |
 | --- | --- |
-| img-jeu4-table.png | marqué optionnel dans la spec, non bloquant pour tester le jeu 4 |
-| img-glacant-02.png | marqué optionnel/décoratif dans la spec |
-| ui-cadre-modale, ui-cadre-texte, ui-icone-son-on/off, ui-icone-menu, ui-icone-suivant, ui-icone-passer, ui-icone-quitter, ui-icone-cadenas, ui-icone-valide (9 fichiers) | la spec prévoit explicitement qu'ils soient **générés en CSS** si non fournis — à faire au moment de l'intégration de l'interface, pas un asset image |
-| bg-decor-bar/agrumes/bulles/givre/sucre/secret | **supprimés de la liste attendue** — remplacés par des couleurs CSS (décision du 05/09) |
+| img-jeu1-trainee.png | la traînée du doigt est dessinée directement au canvas (ligne suivant le tracé), jamais un sprite — cette image était chargée dans le code mais jamais réellement dessinée |
+| img-final-halo.png | retiré de l'animation finale ; celle-ci garde le cocktail + les étincelles |
+| img-jeu0-carte-indice.png | les indices s'affichent en carte CSS, jamais utilisé dans le code |
+| img-jeu4-table.png | les cannes sont posées sur l'aplat de couleur du jeu, pas de support dédié |
 
 ---
 
-## ⚠️ Points de vigilance (8)
+## ❌ Sans placeholder, volontairement (10)
+
+| Fichier(s) | Raison |
+| --- | --- |
+| img-glacant-02.png | marqué optionnel/décoratif dans la spec |
+| ui-cadre-modale, ui-cadre-texte, ui-icone-son-on/off, ui-icone-menu, ui-icone-suivant, ui-icone-passer, ui-icone-quitter, ui-icone-cadenas, ui-icone-valide (9 fichiers) | la spec prévoit explicitement qu'ils soient **générés en CSS** si non fournis |
+
+---
+
+## ⚠️ Points de vigilance (9)
 
 1. **img-splash.webp reste à 1080×1350** au lieu des 1080×1920 attendus : le fichier source fourni est plus petit que la cible et la consigne interdit tout agrandissement (perte de qualité). À refournir en 1080×1920 si l'écran de démarrage doit couvrir tout l'écran.
 2. **Les 4 fichiers `ico-*.png` fournis sont strictement identiques** (même image 540×675, un margarita souriant sur fond corail) : il n'y avait donc pas de version dédiée pour le favicon ni pour le format maskable. J'ai généré moi-même la version maskable (icône réduite à 60 %, marge de sécurité 20 %, fond corail assorti) à partir de cette unique source — à valider visuellement, et idéalement à remplacer par une vraie déclinaison si le rendu maskable ne convient pas.
@@ -164,8 +180,9 @@ Auto-hébergées dans `public/assets/fonts/` pour respecter le fonctionnement ho
 4. **img-final-etincelles.png** : le motif d'origine est une étoile à branches très fines ; réduit à 128×128, les branches les plus fines s'amincissent au point de devenir peu visibles. Fonctionnel mais visuellement discret — un motif plus dense serait plus lisible à cette taille.
 5. **img-jeu5-grille-fond** et **img-jeu3-puzzle** proviennent d'images rectangulaires (1080×1350) recadrées en carré par le centre : une bande de ~163 px a été retirée en haut et en bas. Vérifié visuellement pour `img-jeu3-puzzle` : le motif (glaçons, agrumes, pailles) est réparti sur toute la surface, rien d'important n'est perdu et le puzzle reste bien difficile (aucune zone uniforme). Pas de vérification particulière nécessaire pour `img-jeu5-grille-fond`, simple texture de fond.
 6. **img-glacant-01.png** n'avait pas de dimension imposée dans les documents fournis (absente du tableau de redimensionnement de la décision du 05/09) : conservée à sa taille de détourage naturelle (824×902). À préciser si une taille cible existe.
-7. **Écart de comptage dans `3-assets-a-fournir.md`** : le récapitulatif annonçait 19 sons SFX, mais l'énumération détaillée n'en liste que 18. Corrigé dans la mise à jour du document (voir plus bas).
+7. **Correction d'une erreur de ma part** : j'avais précédemment "corrigé" le compte de SFX de 19 à 18, en pensant que `3-assets-a-fournir.md` comptait un fichier en trop. En réalité c'est moi qui avais mal recompté — `sfx-final.mp3` ("fanfare de fin") fait bien partie de la liste d'origine. Remis à 19 partout, fichier bien copié et utilisé dans l'animation finale.
 8. Les images `.png` opaques (boutons, ingrédients, fruits) ne sont volontairement pas passées en WebP même si elles ne sont pas transparentes après recadrage dans certains cas marginaux — la règle appliquée est celle donnée explicitement par la liste de la décision du 05/09 (par famille de fichier), pas une détection automatique de la transparence réelle. Si un fichier de cette liste s'avère in fine sans aucune transparence utile, il pourra être re-basculé en WebP plus tard sans risque.
+9. **`mus-final.mp3` et `mus-jeu.mp3` fournis dans `ici/` mais non intégrés** (voir section audio ci-dessus) : ce sont des restes de l'ancien système à 5 musiques. Je ne les ai pas supprimés de `ici/` (jamais de suppression sans confirmation), juste laissés de côté.
 
 ---
 

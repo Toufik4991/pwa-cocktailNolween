@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGameDispatch } from "../../store/GameContext.jsx";
+import { styleFondImage } from "../../utils/assetUrl.js";
 import "./pseudo.css";
 
 export default function Pseudo({ onValide }) {
@@ -15,7 +16,7 @@ export default function Pseudo({ onValide }) {
   };
 
   return (
-    <form className="pseudo" onSubmit={soumettre}>
+    <form className="pseudo" onSubmit={soumettre} style={styleFondImage("assets/images/bg-pseudo.webp")}>
       <h1>Ton pseudo… ou ton cocktail préféré ?</h1>
       <input
         type="text"

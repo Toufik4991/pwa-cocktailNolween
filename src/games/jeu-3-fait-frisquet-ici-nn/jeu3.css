@@ -5,7 +5,10 @@
   align-items: center;
   gap: 1rem;
   padding: 1.2rem;
-  background: var(--decor-givre);
+  background-color: var(--decor-givre);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .jeu3__entete {

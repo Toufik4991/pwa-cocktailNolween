@@ -41,10 +41,15 @@ export {
 } from "./jeu-5.config.js";
 
 // Réglages globaux non spécifiques à un jeu (audio, ordre des jeux...).
+// Une seule musique dans tout le projet (mus-hub), jouée en continu sans
+// jamais redémarrer : seul son volume change selon l'écran.
 export const AUDIO = {
-  VOLUME_MUSIQUE_NORMAL: 0.6,
-  VOLUME_MUSIQUE_JEU: 0.15,
-  FONDU_VOLUME_MS: 600,
+  VOLUME_MUSIQUE_NORMAL: 0.6, // accueil, pseudo, hub, séquences texte, Réponses, finale
+  VOLUME_MUSIQUE_JEU: 0.15, // pendant les jeux 0, 1, 3, 4 et 5
+  VOLUME_MUSIQUE_JEU2: 0, // silence total pendant le jeu 2 (mémorisation de sons)
+  FONDU_VOLUME_MS: 600, // fondu par défaut entre deux niveaux
+  FONDU_SORTIE_JEU2_MS: 400, // fondu à l'entrée du jeu 2 (silence rapide)
+  FONDU_ENTREE_JEU2_MS: 800, // fondu à la sortie du jeu 2 (retour plus doux)
 };
 
 export const ORDRE_JEUX = [0, 1, 2, 3, 4, 5];

@@ -3,7 +3,11 @@ import { JEU_5, GRILLE, MOTS, MOT_PIEGE, DEFINITIONS } from "../../config/index.
 import { cellulesDuMot, projeterSurDirection, cellulesEntre, correspondAuMot } from "./grille-logic.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
 import { vibrer } from "../../hooks/useVibration.js";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./jeu5.css";
+
+const IMAGE_CHARGE_PLEINE = asset("assets/images/img-jeu5-charge-pleine.png");
+const IMAGE_CHARGE_VIDE = asset("assets/images/img-jeu5-charge-vide.png");
 
 const MOTS_CIBLES = Object.keys(MOTS);
 const CELLULES_MOTS = Object.fromEntries(
@@ -135,7 +139,7 @@ export default function Jeu5({ onVictoire, onAbandon }) {
   }, [selection, selectionErreur, selectionPiege, trouves]);
 
   return (
-    <div className="jeu5">
+    <div className="jeu5" style={styleFondImage("assets/images/bg-jeu5.webp")}>
       <p className="jeu5__progression">
         Mots trouvés : {Object.keys(trouves).length} / {MOTS_CIBLES.length}
       </p>
@@ -150,7 +154,7 @@ export default function Jeu5({ onVictoire, onAbandon }) {
       <div
         ref={grilleRef}
         className="jeu5__grille"
-        style={{ "--cols": JEU_5.GRILLE_LARGEUR }}
+        style={{ "--cols": JEU_5.GRILLE_LARGEUR, ...styleFondImage("assets/images/img-jeu5-grille-fond.webp") }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -173,8 +177,13 @@ export default function Jeu5({ onVictoire, onAbandon }) {
       </div>
 
       <div className="jeu5__bas">
-        <button onClick={demanderIndice} disabled={charges <= 0}>
-          Indice ({charges})
+        <button className="jeu5__indice" onClick={demanderIndice} disabled={charges <= 0}>
+          Indice
+          <span className="jeu5__charges">
+            {Array.from({ length: JEU_5.NOMBRE_CHARGES_INDICE }, (_, i) => (
+              <img key={i} src={i < charges ? IMAGE_CHARGE_PLEINE : IMAGE_CHARGE_VIDE} alt="" />
+            ))}
+          </span>
         </button>
         {peutAbandonner && (
           <button className="jeu5__abandon" onClick={onAbandon}>

@@ -3,7 +3,7 @@ import { JEU_3 } from "../../config/index.js";
 import { genererMelange, estResolu } from "./puzzle-logic.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
 import { vibrer } from "../../hooks/useVibration.js";
-import { asset } from "../../utils/assetUrl.js";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./jeu3.css";
 
 const IMAGE = asset("assets/images/img-jeu3-puzzle.webp");
@@ -58,7 +58,7 @@ export default function Jeu3({ onVictoire, onAbandon }) {
   };
 
   return (
-    <div className="jeu3">
+    <div className="jeu3" style={styleFondImage("assets/images/bg-jeu3.webp")}>
       <div className="jeu3__entete">
         <span>Échanges : {coups}</span>
         <button

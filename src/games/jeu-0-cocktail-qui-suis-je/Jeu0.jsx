@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { JEU_0, COCKTAILS, REPLIQUES_MAUVAISE_REPONSE } from "../../config/index.js";
 import { reponsesCorrespondent } from "../../utils/textNormalize.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
-import { asset } from "../../utils/assetUrl.js";
+import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./jeu0.css";
 
 function auHasard(liste) {
@@ -55,7 +55,7 @@ export default function Jeu0({ onVictoire, onEchec }) {
   };
 
   return (
-    <div className="jeu0">
+    <div className="jeu0" style={styleFondImage("assets/images/bg-jeu0.webp")}>
       <p className="jeu0__compteur">
         Indice {indexIndice + 1} / {cocktail.indices.length}
       </p>
