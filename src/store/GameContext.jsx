@@ -51,6 +51,19 @@ function reducer(etat, action) {
     case "ACTIVER_MODE_TEST":
       return { ...etat, modeTest: true };
 
+    case "DEBLOQUER_TOUT": {
+      const etapes = {};
+      for (let i = 0; i <= 5; i++) {
+        const actuelle = etat.etapes[i];
+        etapes[i] = {
+          ...actuelle,
+          statut: actuelle.statut === "complete" ? "complete" : "disponible",
+          codeValide: true,
+        };
+      }
+      return { ...etat, etapes };
+    }
+
     case "REMPLACER_ETAT":
       return action.etat;
 

@@ -1,0 +1,79 @@
+.test-panel__fond {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(58, 36, 21, 0.5);
+  display: flex;
+  align-items: flex-end;
+}
+
+.test-panel {
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 1rem 1.2rem 2rem;
+}
+
+.test-panel__entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  padding-bottom: 0.5rem;
+}
+
+.test-panel section {
+  margin: 1rem 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-locked);
+}
+
+.test-panel h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+
+.test-panel__grille-jeux {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.test-panel__paire-sequence {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.test-panel__paire-sequence button {
+  flex: 1;
+  font-size: 0.85rem;
+}
+
+.test-panel__note {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin: 0.3rem 0 0;
+}
+
+.test-panel__codes {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.test-panel__sauvegarde {
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem;
+  font-size: 0.7rem;
+  overflow-x: auto;
+  max-height: 240px;
+}
+
+.test-panel__danger {
+  background: #b3261e;
+  width: 100%;
+}
