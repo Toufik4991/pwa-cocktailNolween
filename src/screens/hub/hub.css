@@ -23,6 +23,16 @@
 
 .hub__bouton-reponses {
   margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5em 1.4em 0.5em 0.6em;
+}
+
+.hub__bouton-reponses img {
+  width: 2.2rem;
+  height: 2.2rem;
+  object-fit: contain;
 }
 
 .hub__revoir-fin {

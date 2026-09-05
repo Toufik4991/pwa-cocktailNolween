@@ -180,7 +180,8 @@ export default function Hub() {
         </div>
 
         <button className="hub__bouton-reponses" onClick={() => setVue("reponses")}>
-          Réponses
+          <img src="/assets/images/img-bouton-reponses.png" alt="" />
+          <span>Réponses</span>
         </button>
 
         {toutTermine && (
