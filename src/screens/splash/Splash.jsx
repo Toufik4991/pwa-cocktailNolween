@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useGameDispatch } from "../../store/GameContext.jsx";
 import { asset, styleFondImage } from "../../utils/assetUrl.js";
+import { jouerMusique } from "../../audio/audio.js";
 import "./splash.css";
 
 const BLOCAGE_MS = 5000;
@@ -11,6 +12,10 @@ export default function Splash({ onContinuer }) {
   const [pret, setPret] = useState(false);
   const dispatch = useGameDispatch();
   const tapsRef = useRef({ count: 0, dernierTap: 0 });
+
+  useEffect(() => {
+    jouerMusique("hub");
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setPret(true), BLOCAGE_MS);

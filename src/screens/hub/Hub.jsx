@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGameDispatch, useGameState } from "../../store/GameContext.jsx";
 import { useWakeLock } from "../../hooks/useWakeLock.js";
-import { useMusiqueSelonEcran } from "../../hooks/useMusique.js";
+import { jouerMusique } from "../../audio/audio.js";
 import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import {
   NOMS_JEUX,
@@ -59,9 +59,13 @@ export default function Hub() {
   // hub ni les séquences texte (§9.2, économie de batterie).
   useWakeLock(etapeEnCours?.phase === "jeu");
 
-  // Musique : mus-hub par défaut, mus-jeu pendant un mini-jeu (coupée pour
-  // le jeu 2 spécifiquement), mus-final pendant l'animation (voir useMusique.js).
-  useMusiqueSelonEcran(etapeEnCours?.phase === "jeu" ? etapeEnCours.numero : null, finalePhase === "animation");
+  // Grille du hub elle-même (pas de composant dédié) : déclare sa musique
+  // à son entrée, comme tout autre écran (§A, 06/09/2026 — chaque jeu, la
+  // page Réponses, Aide, Splash, Pseudo et SequenceEngine font de même).
+  const surLaGrilleDuHub = vue === "hub" && !etapeEnCours && !finalePhase && !sequencePreview;
+  useEffect(() => {
+    if (surLaGrilleDuHub) jouerMusique("hub");
+  }, [surLaGrilleDuHub]);
 
   const demarrerEtape = (numero) => setEtapeEnCours({ numero, phase: "intro" });
 

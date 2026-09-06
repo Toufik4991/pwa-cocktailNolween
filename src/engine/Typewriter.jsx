@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { jouerSon } from "../hooks/useAudio.js";
+import { jouerSon } from "../audio/audio.js";
 import { VITESSE_ECRITURE } from "../config/index.js";
 
 // Découpe "texte\n\nsuite **gras**" en paragraphes de segments {text, bold},
@@ -43,43 +43,43 @@ export default function Typewriter({ texte, skipSignal, onTermine }) {
   useEffect(() => {
     setCompte(0);
     termineRef.current = false;
-    if (chars.length === 0) {
-      termineRef.current = true;
-      onTermine?.();
-      return;
-    }
+    if (chars.length === 0) return;
     // Un seul blip au début de chaque nouveau texte (pas par lettre : sur
     // ~28ms/caractère, un son par lettre saturerait au lieu de rester une
     // ambiance de "machine à écrire"). sfx-texte.mp3 était chargé nulle
     // part avant cette correction (05/09, soir).
     jouerSon("sfx-texte.mp3", { volume: 0.4 });
+    // La fonction passée à setCompte ne doit faire QUE calculer le prochain
+    // compte : appeler onTermine() (qui met à jour le composant PARENT)
+    // depuis l'intérieur d'un updater React est impur et déclenchait un
+    // avertissement React ("Cannot update a component while rendering a
+    // different component"), inoffensif ici mais révélateur d'un vrai bug
+    // de conception. La détection de fin est déplacée dans l'effet dédié
+    // ci-dessous, qui réagit à `compte` — un vrai effet de bord, pas un
+    // calcul de state.
     const id = setInterval(() => {
-      setCompte((c) => {
-        const suivant = c + 1;
-        if (suivant >= chars.length) {
-          clearInterval(id);
-          if (!termineRef.current) {
-            termineRef.current = true;
-            onTermine?.();
-          }
-        }
-        return suivant;
-      });
+      setCompte((c) => c + 1);
     }, VITESSE_ECRITURE);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chars]);
 
   useEffect(() => {
+    if (termineRef.current) return;
+    if (chars.length === 0 || compte >= chars.length) {
+      termineRef.current = true;
+      onTermine?.();
+    }
+  }, [compte, chars.length, onTermine]);
+
+  useEffect(() => {
     if (skipSignal !== dernierSkip.current) {
       dernierSkip.current = skipSignal;
       if (!termineRef.current) {
         setCompte(chars.length);
-        termineRef.current = true;
-        onTermine?.();
       }
     }
-  }, [skipSignal, chars.length, onTermine]);
+  }, [skipSignal, chars.length]);
 
   const visibles = chars.slice(0, compte);
   const paragraphesVisibles = [];

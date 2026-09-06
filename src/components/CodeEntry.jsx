@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CODES, CODE_INCORRECT } from "../config/index.js";
-import { jouerSon } from "../hooks/useAudio.js";
+import { jouerSon } from "../audio/audio.js";
 import { vibrer } from "../hooks/useVibration.js";
 import "./code-entry.css";
 

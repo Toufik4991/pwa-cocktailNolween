@@ -1,6 +1,12 @@
+import { useEffect } from "react";
+import { jouerMusique } from "../../audio/audio.js";
 import "./aide.css";
 
 export default function Aide({ onRetour }) {
+  useEffect(() => {
+    jouerMusique("hub");
+  }, []);
+
   return (
     <div className="aide">
       <header className="aide__entete">

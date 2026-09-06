@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGameState } from "../../store/GameContext.jsx";
 import { NOMS_JEUX, INGREDIENTS, REPONSES_ETAPE_NON_RESOLUE } from "../../config/index.js";
 import LieuPhotoViewer from "../../components/LieuPhotoViewer.jsx";
 import { asset, styleFondImage } from "../../utils/assetUrl.js";
+import { jouerMusique } from "../../audio/audio.js";
 import "./reponses.css";
 
 function lieuSuivant(numero) {
@@ -18,6 +19,10 @@ function lieuSuivant(numero) {
 export default function Reponses({ onRetour }) {
   const { etapes } = useGameState();
   const [photoPleinEcran, setPhotoPleinEcran] = useState(null);
+
+  useEffect(() => {
+    jouerMusique("hub");
+  }, []);
 
   return (
     <div className="reponses" style={styleFondImage("assets/images/bg-reponses.webp")}>

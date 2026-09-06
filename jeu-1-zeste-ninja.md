@@ -95,9 +95,9 @@
     
     ## Trancher
     
-    - Le joueur glisse le doigt : une **traînée** (`img-jeu1-trainee.png`) suit le mouvement
+    - Le joueur glisse le doigt : une **traînée dessinée directement au canvas** suit le mouvement, segment par segment, épaisseur et opacité dégressives (du plus récent, épais et opaque, au plus ancien, fin et transparent). *(§C2, 06/09/2026 : un sprite "zesteur" censé suivre le doigt avait été tenté puis provoquait des bugs — remplacé définitivement par ce trait canvas pur, aucun asset image à fournir.)*
     - Un fruit est tranché si la traînée croise sa zone
-    - **Bon agrume** → coupé en deux, les moitiés retombent, **éclaboussure**, +5 g, son `sfx-jeu1-tranche.mp3`
+    - **Bon agrume** → coupé en deux, les moitiés retombent, +5 g, son `sfx-jeu1-tranche.mp3`. *(§C3, 06/09/2026 : l'éclaboussure a été retirée — les deux moitiés qui s'écartent suffisent, aucun asset image à fournir.)*
     - **Mauvais agrume** → coupé aussi (plus satisfaisant visuellement), compteur inchangé, son `sfx-jeu1-erreur.mp3`, réplique taquine
     - **Leurre (kiwi/banane)** → coupé aussi, compteur inchangé, son `sfx-jeu1-erreur.mp3`, réplique **spécifique aux leurres**
     
@@ -126,10 +126,10 @@
     
     ---
     
-    ## Interface
+    ## Interface *(revu le 06/09/2026 soir, §C1 — le cadre agrandi le matin même mangeait trop l'aire de jeu)*
     
-    - **En haut, en gros** *(agrandi le 06/09/2026 — c'est l'info la plus importante de l'écran, elle doit se lire sans quitter les fruits des yeux)* : la consigne active en toutes lettres (ex. « CITRON JAUNE — 24 / 40 g ») + barre de progression
-    - **Juste en dessous, plus petit :** le total cumulé `X / 150 g au total`
+    - **Tout en haut, hors cadre, en clair sur le fond :** la consigne active en toutes lettres (ex. « CITRON JAUNE — 24 / 40 g »), sans carte ni fond blanc derrière
+    - **Juste en dessous, dans un cadre réduit de moitié :** la barre de progression, puis le total cumulé `X / 150 g au total`
     - **Au centre :** l'aire de jeu
     - **En bas :** rien — laisser l'espace libre pour le doigt
     
@@ -178,8 +178,7 @@
     | `img-jeu1-orange-entier.png` / `-coupe.png` | Orange |
     | `img-jeu1-kiwi-entier.png` / `-coupe.png` | **Kiwi (leurre)** |
     | `img-jeu1-banane-entier.png` / `-coupe.png` | **Banane (leurre)** |
-    | `img-jeu1-trainee.png` | Traînée du doigt |
-    | `img-jeu1-eclaboussure.png` | Jus projeté |
+    | *(aucun — canvas)* | Traînée du doigt et impact de coupe (§C2/§C3, 06/09/2026) |
     | `sfx-jeu1-tranche.mp3` | Bon fruit |
     | `sfx-jeu1-erreur.mp3` | Mauvais fruit ou leurre |
     | `sfx-victoire.mp3` | 150 g atteints |

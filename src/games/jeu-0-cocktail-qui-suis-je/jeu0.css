@@ -143,8 +143,9 @@
 }
 
 .jeu0__transition-mixapero {
-  height: 34vh;
-  max-height: 280px;
+  /* +20% le 06/09/2026 soir (§B) : 34vh/280px -> 40.8vh/336px. */
+  height: 40.8vh;
+  max-height: 336px;
   object-fit: contain;
   filter: drop-shadow(0 16px 20px rgba(58, 36, 21, 0.25));
 }

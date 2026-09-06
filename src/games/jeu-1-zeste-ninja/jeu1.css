@@ -32,29 +32,37 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1rem;
+  /* padding-top agrandi (§C1, 06/09/2026) : la consigne sortie du cadre est
+     assez large pour chevaucher le bouton "Quitter" global (fixed en haut à
+     gauche, voir hub.css .hub__quitter-jeu) si elle démarre trop haut. */
+  padding: 2.6rem 1rem 0.8rem;
   pointer-events: none;
 }
 
-/* Bandeau de consigne (§D1, 06/09/2026) : le §D2 précédent l'avait agrandi
-   trop loin, il mangeait l'aire de jeu. Réduit de moitié (padding, marge,
-   barre) tout en gardant un texte encore net à lire d'un coup d'œil. */
+/* Consigne sortie du cadre (§C1, 06/09/2026) : affichée en clair
+   directement sur le fond, au-dessus. Le cadre en dessous ne garde que la
+   barre de progression et le total cumulé. */
+.jeu1__consigne-texte {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: var(--font-weight-titre);
+  font-size: 1.3rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6), 0 2px 6px rgba(255, 255, 255, 0.5);
+}
+
 .jeu1__consigne-principale {
   width: 100%;
   max-width: 420px;
   background: rgba(255, 255, 255, 0.92);
   border-radius: var(--radius-lg);
-  padding: 0.35rem 0.6rem 0.4rem;
+  padding: 0.5rem 0.6rem;
   box-shadow: var(--shadow-soft);
-}
-
-.jeu1__consigne-texte {
-  margin: 0 0 0.3rem;
-  font-family: var(--font-title);
-  font-weight: var(--font-weight-titre);
-  font-size: 1.2rem;
-  text-align: center;
-  letter-spacing: 0.01em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .jeu1__barre {
@@ -72,9 +80,8 @@
 }
 
 .jeu1__total {
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: var(--radius-md);
-  padding: 0.3rem 0.8rem;
+  margin: 0;
+  text-align: center;
   font-family: var(--font-title);
   font-size: 0.85rem;
 }

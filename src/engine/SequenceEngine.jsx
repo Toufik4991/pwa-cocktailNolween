@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DECORS } from "../config/index.js";
 import { asset } from "../utils/assetUrl.js";
+import { jouerMusique } from "../audio/audio.js";
 import Typewriter from "./Typewriter.jsx";
 import "./sequence-engine.css";
 
@@ -18,6 +19,10 @@ export default function SequenceEngine({ ecrans, pseudo, libelleBoutonFinal = "S
   const [index, setIndex] = useState(0);
   const [texteTermine, setTexteTermine] = useState(false);
   const [skipSignal, setSkipSignal] = useState(0);
+
+  useEffect(() => {
+    jouerMusique("hub");
+  }, []);
 
   const ecran = ecrans[index];
   const dernierEcran = index === ecrans.length - 1;

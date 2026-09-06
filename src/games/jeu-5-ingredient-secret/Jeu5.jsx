@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { JEU_5, GRILLE, MOTS, MOT_PIEGE, DEFINITIONS } from "../../config/index.js";
 import { cellulesDuMot, projeterSurDirection, cellulesEntre, correspondAuMot } from "./grille-logic.js";
-import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import { vibrer } from "../../hooks/useVibration.js";
 import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./jeu5.css";
@@ -32,6 +32,10 @@ export default function Jeu5({ onVictoire, onAbandon }) {
   const [indiceActif, setIndiceActif] = useState(null); // { mot, texte, restant }
   const [peutAbandonner, setPeutAbandonner] = useState(false);
   const dernierPiegeRef = useRef(0);
+
+  useEffect(() => {
+    jouerMusique("jeu");
+  }, []);
 
   useEffect(() => {
     precharger(["sfx-jeu5-mot.mp3", "sfx-jeu5-piege.mp3", "sfx-jeu5-indice.mp3", "sfx-victoire.mp3"]);

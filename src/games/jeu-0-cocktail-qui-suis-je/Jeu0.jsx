@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { JEU_0, COCKTAILS, REPLIQUES_MAUVAISE_REPONSE, REPLIQUES_TRANSITION_COCKTAIL } from "../../config/index.js";
 import { reponsesCorrespondent } from "../../utils/textNormalize.js";
-import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import { asset } from "../../utils/assetUrl.js";
 import "./jeu0.css";
 
@@ -39,6 +39,10 @@ export default function Jeu0({ onVictoire, onEchec }) {
 
   const cocktail = COCKTAILS[ordre[position]];
   const dernierCocktail = position >= ordre.length - 1;
+
+  useEffect(() => {
+    jouerMusique("jeu");
+  }, []);
 
   useEffect(() => {
     precharger(["sfx-clic.mp3", "sfx-code-faux.mp3", "sfx-code-ok.mp3", "sfx-victoire.mp3", "sfx-jeu5-indice.mp3"]);

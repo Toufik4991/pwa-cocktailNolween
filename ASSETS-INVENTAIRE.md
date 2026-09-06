@@ -12,7 +12,7 @@ Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont �
 | ✅ Audio réel intégré | 20 (19 SFX + 1 musique) |
 | ✅ Polices sourcées | 2 |
 | ❌ Assets manquants avec placeholder (images seulement, l'audio n'en a plus besoin) | 6 |
-| ❌ Assets abandonnés, retirés du code et de la liste attendue | 4 |
+| ❌ Assets abandonnés, retirés du code et de la liste attendue | 6 |
 | ❌ Sans placeholder volontairement (optionnels / gérés en CSS) | 14 |
 | ⚠️ Points de vigilance | 9 |
 | ❓ Ambigus non résolus | 0 |
@@ -100,12 +100,13 @@ Vérifié après traitement : les six boîtes englobantes du personnage ne varie
 | img-jeu0-pinacolada.png | 649×1024 | idem |
 | img-jeu0-pornstarmartini.png | 552×834 | idem |
 
-### Jeu 1 — fruits (300×300) et zesteur (200×200)
+### Jeu 1 — fruits (300×300)
+
+*(`img-jeu1-zesteur.png` et `img-jeu1-eclaboussure.png` retirés des assets attendus le 06/09/2026 soir, §C2/§C3 — jamais réellement nécessaires : la traînée du doigt et l'impact de coupe sont entièrement dessinés au canvas, sans aucun sprite.)*
 
 | Origine | Opération |
 | --- | --- |
 | citronvert/citronjaune/orange/kiwi/banane × (entier + coupé) = 10 fichiers | détourage blanc + recadrage + mise en boîte 300×300 |
-| img-jeu1-zesteur.png | détourage blanc + recadrage + mise en boîte 200×200 — identifié par le maître du jeu comme l'objet de découpe qui suit le doigt |
 
 ### Autres jeux
 
@@ -178,13 +179,15 @@ Auto-hébergées dans `public/assets/fonts/` pour respecter le fonctionnement ho
 
 ---
 
-## ❌ Assets abandonnés — retirés du code et de la liste attendue (4)
+## ❌ Assets abandonnés — retirés du code et de la liste attendue (6)
 
-Sur demande explicite du 05/09 (soir), plus besoin de ces 4 assets — retirés du code, de `3-assets-a-fournir.md` et de cet inventaire :
+Sur demande explicite du 05/09 (soir) puis du 06/09 (soir), plus besoin de ces 6 assets — retirés du code, de `assets-a-fournir.md` et de cet inventaire :
 
 | Fichier | Pourquoi il n'est plus utilisé |
 | --- | --- |
 | img-jeu1-trainee.png | la traînée du doigt est dessinée directement au canvas (ligne suivant le tracé), jamais un sprite — cette image était chargée dans le code mais jamais réellement dessinée |
+| img-jeu1-zesteur.png | (§C2, 06/09/2026 soir) censé suivre le doigt comme "l'objet de découpe", provoquait des bugs sans jamais être réellement câblé — remplacé définitivement par la traînée canvas dégressive ci-dessus |
+| img-jeu1-eclaboussure.png | (§C3, 06/09/2026 soir) l'impact de coupe se limite désormais aux deux moitiés du fruit qui s'écartent, sans effet de jus projeté |
 | img-final-halo.png | retiré de l'animation finale ; celle-ci garde le cocktail + les étincelles |
 | img-jeu0-carte-indice.png | les indices s'affichent en carte CSS, jamais utilisé dans le code |
 | img-jeu4-table.png | les cannes sont posées sur l'aplat de couleur du jeu, pas de support dédié |
@@ -218,7 +221,7 @@ Sur demande explicite du 05/09 (soir), plus besoin de ces 4 assets — retirés 
 
 ## ❓ Ambigus non résolus
 
-Aucun. Le seul cas identifié (`img-jeu1-zesteur.png`) a été clarifié par le maître du jeu : c'est l'objet de découpe qui suit le doigt du joueur dans le jeu 1, désormais traité et rangé normalement. Le nom de fichier fautif (`img-jeu1-banane-entier .png`, espace en trop) a été corrigé directement dans `ici/`.
+Aucun. Le cas `img-jeu1-zesteur.png`, un temps clarifié comme "l'objet de découpe qui suit le doigt", a finalement été tranché dans l'autre sens le 06/09/2026 soir (§C2) : il provoquait des bugs sans jamais être réellement câblé, et a été retiré (voir la section "Assets abandonnés" ci-dessus). Le nom de fichier fautif (`img-jeu1-banane-entier .png`, espace en trop) a été corrigé directement dans `ici/`.
 
 ---
 

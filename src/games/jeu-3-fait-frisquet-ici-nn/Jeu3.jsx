@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { JEU_3 } from "../../config/index.js";
 import { genererMelange, estResolu } from "./puzzle-logic.js";
-import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import { vibrer } from "../../hooks/useVibration.js";
 import { asset } from "../../utils/assetUrl.js";
 import "./jeu3.css";
@@ -20,6 +20,10 @@ export default function Jeu3({ onVictoire, onAbandon }) {
   useEffect(() => {
     const t = setTimeout(() => setPeutAbandonner(true), JEU_3.DELAI_BOUTON_ABANDON * 1000);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    jouerMusique("jeu");
   }, []);
 
   useEffect(() => {

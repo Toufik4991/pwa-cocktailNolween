@@ -8,7 +8,7 @@ import {
   INDICES_STRATEGIE,
 } from "../../config/index.js";
 import { jouerTourMixapero } from "./nim.js";
-import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import { asset } from "../../utils/assetUrl.js";
 import "./jeu4.css";
 
@@ -34,6 +34,10 @@ export default function Jeu4({ partieDepart = 1, onVictoire, onEchec }) {
   const [indiceVisible, setIndiceVisible] = useState(indicePourPartie(partieDepart) !== null);
   const [phase, setPhase] = useState("jeu"); // 'jeu' | 'victoire' | 'defaite'
   const [reflexion, setReflexion] = useState(false);
+
+  useEffect(() => {
+    jouerMusique("jeu");
+  }, []);
 
   useEffect(() => {
     precharger(["sfx-jeu4-canne.mp3", "sfx-victoire.mp3", "sfx-echec.mp3"]);

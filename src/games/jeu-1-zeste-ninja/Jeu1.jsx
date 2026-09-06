@@ -9,7 +9,7 @@ import {
   REPLIQUES_LEURRE,
 } from "../../config/index.js";
 import { tirerTypeFruit, poidsDuFruit, intervalleApparition, traitCoupeLeFruit } from "./jeu1-logic.js";
-import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import { vibrer } from "../../hooks/useVibration.js";
 import { asset } from "../../utils/assetUrl.js";
 import "./jeu1.css";
@@ -44,6 +44,10 @@ export default function Jeu1({ onVictoire, onAbandon }) {
   const [peutAbandonner, setPeutAbandonner] = useState(false);
 
   useEffect(() => {
+    jouerMusique("jeu");
+  }, []);
+
+  useEffect(() => {
     const t = setTimeout(() => setPeutAbandonner(true), JEU_1.DELAI_BOUTON_ABANDON * 1000);
     return () => clearTimeout(t);
   }, []);
@@ -57,8 +61,9 @@ export default function Jeu1({ onVictoire, onAbandon }) {
       images.coupe[type] = chargerImage(asset(`assets/images/img-jeu1-${type}-coupe.png`));
     }
     // La traînée du doigt est dessinée directement au canvas (voir
-    // dessiner() plus bas), pas de sprite dédié.
-    images.eclaboussure = chargerImage(asset("assets/images/img-jeu1-eclaboussure.png"));
+    // dessiner() plus bas), pas de sprite dédié. Idem pour l'impact de
+    // coupe : plus d'éclaboussure image (§C3, 06/09/2026), les deux
+    // moitiés qui s'écartent suffisent.
     imagesRef.current = images;
 
     const canvas = canvasRef.current;
@@ -67,7 +72,6 @@ export default function Jeu1({ onVictoire, onAbandon }) {
     const etat = {
       fruits: [],
       morceaux: [],
-      eclaboussures: [],
       trace: [],
       nbFruitsApparus: 0,
       dernierSpawn: 0,
@@ -153,7 +157,6 @@ export default function Jeu1({ onVictoire, onAbandon }) {
         if (fruit.type === consigne.fruit) {
           jouerSon("sfx-jeu1-tranche.mp3");
           vibrer(15);
-          etat.eclaboussures.push({ x: fruit.x, y: fruit.y, age: 0 });
           etat.grammesConsigne += poidsDuFruit(fruit.type);
           etat.total += poidsDuFruit(fruit.type);
           setGrammesConsigne(etat.grammesConsigne);
@@ -244,8 +247,6 @@ export default function Jeu1({ onVictoire, onAbandon }) {
         m.age += dt;
       }
       etat.morceaux = etat.morceaux.filter((m) => m.age < 1.2);
-      etat.eclaboussures.forEach((e) => (e.age += dt));
-      etat.eclaboussures = etat.eclaboussures.filter((e) => e.age < 0.4);
       etat.trace.forEach((p) => (p.age += dt));
       etat.trace = etat.trace.filter((p) => p.age < 0.15);
 
@@ -272,18 +273,19 @@ export default function Jeu1({ onVictoire, onAbandon }) {
       ref={conteneurRef}
     >
       <div className="jeu1__hud">
+        {/* Consigne en clair sur le fond, hors du cadre (§C1, 06/09/2026) */}
+        <p className="jeu1__consigne-texte">
+          {NOMS_FRUITS[consigne.fruit].toUpperCase()} — {grammesConsigne} / {consigne.grammes} g
+        </p>
         <div className="jeu1__consigne-principale">
-          <p className="jeu1__consigne-texte">
-            {NOMS_FRUITS[consigne.fruit].toUpperCase()} — {grammesConsigne} / {consigne.grammes} g
-          </p>
           <div className="jeu1__barre" role="progressbar" aria-valuenow={grammesConsigne} aria-valuemax={consigne.grammes}>
             <div
               className="jeu1__barre-remplissage"
               style={{ width: `${Math.min(100, (grammesConsigne / consigne.grammes) * 100)}%` }}
             />
           </div>
+          <p className="jeu1__total">{total} / {JEU_1.OBJECTIF_TOTAL} g au total</p>
         </div>
-        <p className="jeu1__total">{total} / {JEU_1.OBJECTIF_TOTAL} g au total</p>
       </div>
 
       <canvas ref={canvasRef} className="jeu1__canvas" />
@@ -302,15 +304,26 @@ export default function Jeu1({ onVictoire, onAbandon }) {
 function dessiner(ctx, canvas, etat, images) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Traînée du doigt.
+  // Traînée du doigt : plus de sprite "zesteur" à faire suivre le point de
+  // contact (§C2, 06/09/2026 — provoquait des bugs), uniquement un trait
+  // dessiné au canvas, segment par segment, épaisseur et opacité
+  // dégressives avec l'âge de chaque point (du plus récent, épais et
+  // opaque, au plus ancien, fin et transparent).
+  const DUREE_VIE_TRACE = 0.15;
   if (etat.trace.length > 1) {
     ctx.save();
-    ctx.strokeStyle = "rgba(255,255,255,0.85)";
-    ctx.lineWidth = 6;
     ctx.lineCap = "round";
-    ctx.beginPath();
-    etat.trace.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)));
-    ctx.stroke();
+    for (let i = 1; i < etat.trace.length; i++) {
+      const a = etat.trace[i - 1];
+      const b = etat.trace[i];
+      const progres = 1 - Math.min(1, b.age / DUREE_VIE_TRACE);
+      ctx.strokeStyle = `rgba(255,255,255,${0.85 * progres})`;
+      ctx.lineWidth = 2 + 6 * progres;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
     ctx.restore();
   }
 
@@ -330,12 +343,6 @@ function dessiner(ctx, canvas, etat, images) {
     const alpha = Math.max(0, 1 - m.age / 1.2);
     ctx.globalAlpha = alpha;
     dessinerImage(images.coupe[m.type], m.x, m.y, m.rotation, RAYON_FRUIT * 2.3);
-    ctx.globalAlpha = 1;
-  }
-  for (const e of etat.eclaboussures) {
-    const alpha = Math.max(0, 1 - e.age / 0.4);
-    ctx.globalAlpha = alpha;
-    dessinerImage(images.eclaboussure, e.x, e.y, 0, 60);
     ctx.globalAlpha = 1;
   }
 }

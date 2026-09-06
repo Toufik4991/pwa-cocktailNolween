@@ -109,20 +109,20 @@
     
     ---
     
-    ## 4. Musiques — mise à jour du 05/09/2026 (soir) : 3 fichiers
+    ## 4. Musiques — 3 fichiers (architecture à un seul lecteur depuis le 06/09/2026 soir, §A)
     
     | Fichier | Où |
     | --- | --- |
-    | `mus-hub.mp3` | Accueil, saisie du pseudo, hub, séquences de texte, page Réponses |
-    | `mus-jeu.mp3` | Les six mini-jeux |
+    | `mus-hub.mp3` | Accueil, saisie du pseudo, hub, séquences de dialogue, page Réponses, page Aide |
+    | `mus-jeu.mp3` | Les jeux 0, 1, 3, 4, 5 |
     | `mus-final.mp3` | L'animation finale uniquement |
     
-    Une seule piste audible à la fois, fondu enchaîné d'environ 600 ms entre elles. `mus-hub` et `mus-jeu` tournent en continu en arrière-plan dès le lancement de l'app et ne redémarrent **jamais** d'un écran à l'autre (`mus-jeu` reprend là où elle en était même en changeant de mini-jeu). `mus-final` repart de 0:00 à chaque lancement de l'animation.
+    Un seul lecteur audio pour toute l'app : la superposition de 2 pistes est structurellement impossible. Changement de piste en fondu de 800 ms (coupure de la piste active, puis montée de la nouvelle — jamais les deux ensemble). Redéclarer la même piste ne la redémarre pas ; une piste différente repart toujours de 0:00 (un seul lecteur ne retient qu'une position de lecture à la fois).
     
     - Volume normal pour la piste active, quelle qu'elle soit
-    - **Silence total** pendant le jeu 2 (mémorisation de sons — la moindre musique de fond gênerait la distinction des hauteurs) : `mus-jeu` tombe à 0 avec fondu de sortie 400 ms et fondu de retour 800 ms
+    - **Jeu 2 ("Des bulles ?") : silence total**, pas une histoire de volume réduit — `jouerMusique(null)`, le lecteur est mis en pause. Seuls les 4 sons de bulles s'entendent.
     
-    `mus-accueil`, `mus-narration`, `mus-jeu` et `mus-final` ne sont plus nécessaires.
+    `mus-accueil` et `mus-narration` ne sont plus nécessaires.
     
     > Doit **boucler proprement** (pas de silence au raccord).
     
@@ -263,19 +263,7 @@
     | `img-jeu1-banane-entier.png` | Banane entière |
     | `img-jeu1-banane-coupe.png` | Banane tranchée |
     
-    **Effets** :
-    
-    | Fichier | Description |
-    | --- | --- |
-    | `img-jeu1-eclaboussure.png` | Jus projeté |
-    
-    > La traînée de lame est dessinée directement au canvas (ligne suivant le doigt), pas besoin d'un sprite `img-jeu1-trainee.png`.
-    
-    **Accessoire** *(ajouté le 05/09/2026)* :
-    
-    | Fichier | Description |
-    | --- | --- |
-    | `img-jeu1-zesteur.png` | L'arme de découpe — suit le doigt du joueur pendant le tranchage, 200 × 200 px |
+    ⚠️ **Plus aucun effet à fournir pour ce jeu** (§C2/§C3, 06/09/2026 soir) : la traînée du doigt et l'impact de coupe sont entièrement dessinés au canvas (trait dégressif en épaisseur/opacité, puis les deux moitiés du fruit qui s'écartent). `img-jeu1-trainee.png`, `img-jeu1-eclaboussure.png` et `img-jeu1-zesteur.png` (l'"arme de découpe" ajoutée le 05/09/2026, qui provoquait des bugs sans jamais être réellement câblée) sont retirés de cette liste.
     
     > PNG transparent, ~300 × 300 px par fruit.
     ⚠️ **Les 5 fruits doivent être très distincts en petit format et en mouvement.** Un citron jaune et une banane peuvent se confondre en pleine action : joue sur les formes autant que sur les couleurs.
@@ -416,7 +404,7 @@
     | Glaçants *(optionnel)* | 2 |
     | Boutons du hub | 7 |
     | Ingrédients | 6 |
-    | Assets de jeux | 26 *(ajout de `img-jeu1-zesteur.png`, retrait de `img-jeu1-trainee.png` et `img-jeu0-carte-indice.png` — dessinés/mis en page directement, pas d'image nécessaire)* |
+    | Assets de jeux | 24 *(retrait de `img-jeu1-trainee.png`, `img-jeu1-eclaboussure.png`, `img-jeu1-zesteur.png` et `img-jeu0-carte-indice.png` — traînée, impact de coupe et indices dessinés/mis en page directement, pas d'image nécessaire)* |
     | Photos de lieux | 5 à 10 |
     | Animation finale | 3 *(retrait de `img-final-halo.png`, non utilisé)* |
     | Identité & PWA | 6 |

@@ -129,7 +129,7 @@
     ### Anatomie d'un écran
     
     - **Décor** en fond plein écran (couleur unie, voir §2 bis)
-    - **Mixapéro** superposé par-dessus (PNG transparent), occupant au moins **60 % de la hauteur** de l'écran, avec une **ombre portée douce** pour se détacher du fond — indispensable sur les décors clairs (ex. `bar`, `#FFF0C4`) où ses zones claires se fondraient sinon dans l'arrière-plan
+    - **Mixapéro** superposé par-dessus (PNG transparent), occupant **72 % de la hauteur** de l'écran *(+20% le 06/09/2026 soir, §B — était 60%)*, avec une **ombre portée douce** pour se détacher du fond — indispensable sur les décors clairs (ex. `bar`, `#FFF0C4`) où ses zones claires se fondraient sinon dans l'arrière-plan. Le bloc de texte en dessous a été réduit en conséquence pour ne jamais se chevaucher avec le personnage.
     - **Bloc de texte** (dialogue)
     - Bouton **"Suivant"** en bas
     - **Flèche en haut à droite** pour passer toute la séquence
@@ -347,11 +347,31 @@
     
     Cet état "finale déjà vue" est sauvegardé (persistant), pas seulement pour la session en cours.
     
-    ### Déroulé de l'animation
+    ### Déroulé de l'animation *(réécriture complète du 06/09/2026 soir, §D, en 3 phases précises)*
     
-    - Les six ingrédients tombent un à un dans le verre, de façon animée
-    - L'image du cocktail final apparaît en grand, au centre, avec un effet lumineux
-    - Message de clôture par-dessus (texte dans le scénario)
+    **Phase 1 — La chute**
+    
+    - Le verre vide est affiché, immobile, au centre bas de l'écran.
+    - Les six ingrédients tombent **un par un**, en partant du milieu du haut de l'écran, exactement au-dessus du verre.
+    - Chute lente : environ **1,2 seconde** par ingrédient, légère accélération vers le bas (easing "ease-in"), rotation douce pendant le vol.
+    - Chaque ingrédient touche visiblement le verre et y entre (il s'efface pile à l'impact).
+    - À chaque impact, le verre **tremble** : secousse courte et sèche (~200 ms), d'amplitude croissante d'un ingrédient à l'autre.
+    - Le niveau du liquide dans le verre monte d'**un sixième** à chaque impact (simulé par 2 images de même cadrage empilées — verre vide dessous, cocktail plein recadré depuis le bas par-dessus — pas besoin d'un asset par palier).
+    - Une pause de **400 ms** sépare deux ingrédients, pour bien voir chaque chute séparément.
+    
+    **Phase 2 — La transformation**
+    
+    - Une fois le sixième ingrédient tombé, le verre plein grossit progressivement jusqu'à environ **1,4 fois** sa taille, sur ~2 secondes.
+    - Pendant ce grossissement, une série de flashs blancs se déclenche, de plus en plus rapprochés.
+    - Des étincelles jaillissent en continu (pluie de particules).
+    - Au pic d'intensité, un **flash blanc plein écran**, et le verre disparaît.
+    
+    **Phase 3 — Le texte**
+    
+    - Après la disparition du verre, le message de fin apparaît en fondu, **seul à l'écran**, sur un fond calme (plus de verre, plus d'étincelles).
+    - Puis le bouton de retour au hub, une fois le texte entièrement affiché.
+    
+    **`prefers-reduced-motion`** : l'enchaînement et les chutes sont conservés, mais les secousses et tous les flashs (intermédiaires et plein écran) sont supprimés.
     
     ### Après la fin
     
@@ -425,23 +445,36 @@
     
     Vibration courte (`navigator.vibrate`) sur : code correct, mot trouvé, pièce de puzzle échangée, fruit tranché. Désactivable avec le son dans le menu.
     
-    ### 9.8 Musiques *(mise à jour du 06/09/2026 — 3 pistes, volume dédié au jeu, transition en 2 temps)*
+    ### 9.8 Musiques *(réécriture complète du 06/09/2026 soir, §A — architecture à un seul lecteur, après plusieurs correctifs partiels qui n'avaient jamais éliminé les superpositions)*
     
-    **3 musiques**, **jamais plus d'une audible à la fois** *(§A2, 06/09/2026 : un vrai fondu croisé simultané laissait les 2 pistes clairement audibles en même temps pendant la moitié de la transition — mesuré à l'écran, ~0.22 de volume sur les 2 pistes à la fois)*. La transition se fait désormais en 2 temps successifs sur la durée totale configurée (~800 ms) : d'abord la piste active descend à 0 (1ʳᵉ moitié), puis seulement ensuite la nouvelle piste monte (2ᵉ moitié) — jamais les deux en même temps :
+    **Un seul module audio pour toute l'app**, exporté en instance unique. Aucun composant ne crée son propre lecteur ni n'appelle l'API audio du navigateur directement — tout passe par ce module (`src/audio/audio.js`).
     
-    - `mus-hub` : accueil, saisie du pseudo, hub, séquences de texte, page Réponses
-    - `mus-jeu` : pendant les 6 mini-jeux
-    - `mus-final` : l'animation finale uniquement (pas les 2 écrans de dialogue qui la précèdent, qui restent sur `mus-hub` comme toute séquence texte)
+    **Un seul lecteur `<audio>` pour la musique**, un seul, jamais deux : la superposition de deux pistes est **structurellement impossible**, plus seulement évitée par convention. Une fonction unique, `jouerMusique(nom)` :
     
-    `mus-hub` et `mus-jeu` tournent en continu en arrière-plan dès le lancement de l'app et **ne redémarrent jamais** en changeant d'écran — si on quitte un mini-jeu puis en relance un autre, `mus-jeu` reprend là où elle en était, elle ne repart pas du début. `mus-final`, elle, **repart de 0:00 à chaque lancement de l'animation** (y compris en la rejouant depuis "Revoir la fin") — c'est le seul cas de redémarrage volontaire, pour l'effet dramatique.
+    - coupe (fondu) la piste en cours **avant** de démarrer la nouvelle — jamais les deux en même temps, y compris pendant la transition ;
+    - ne fait rien si `nom` est déjà la piste active (pas de redémarrage) ;
+    - coupe tout si `nom` vaut `null`.
+    
+    Les effets sonores ont leur propre canal (instances clonées à la volée), totalement indépendant du volume de la musique.
+    
+    Le module lit en permanence le réglage son global : s'il est coupé, rien ne joue (ni musique, ni effets).
+    
+    **Répartition des 3 musiques** — chaque écran déclare la musique qu'il veut, une seule fois, à son entrée (pas de sélecteur central branché sur plusieurs paramètres) :
+    
+    - `mus-hub` : accueil, saisie du pseudo, hub, séquences de dialogue (ouverture, intros/fins de jeux, dialogue précédant l'animation finale), page Réponses, page Aide
+    - `mus-jeu` : pendant les jeux 0, 1, 3, 4, 5 (les 5 mini-jeux où la musique est permise)
+    - `mus-final` : l'animation finale uniquement
+    
+    **Jeu 2 ("Des bulles ?") : `jouerMusique(null)`, silence total.** Pas de volume réduit, pas de fondu vers un niveau bas : aucune musique, seuls les 4 sons de bulles s'entendent. Le joueur doit mémoriser une mélodie de 4 hauteurs, la moindre musique de fond gênerait la distinction.
+    
+    Changement de piste en fondu de 800 ms (400 ms pour couper la piste active, puis 400 ms pour faire monter la nouvelle). Redéclarer la même musique en passant d'un écran à l'autre ne la redémarre jamais ; quitter un écran n'arrête rien de force, c'est l'écran suivant qui déclare ce qu'il veut. Une piste différemment nommée repart en revanche toujours de 0:00 (conséquence directe du lecteur unique : il ne peut retenir qu'une seule position de lecture à la fois).
     
     ```
-    VOLUME_MUSIQUE_NORMAL = 0.6   // accueil, pseudo, hub, séquences texte, Réponses
-    VOLUME_MUSIQUE_JEU    = 0.35  // pendant les mini-jeux (hors jeu 2), plus discret que le hub
-    VOLUME_MUSIQUE_JEU2   = 0     // silence total pendant le jeu 2
+    VOLUME_MUSIQUE_HUB   = 0.6   // accueil, pseudo, hub, dialogues, Réponses, Aide
+    VOLUME_MUSIQUE_JEU   = 0.35  // pendant les mini-jeux (hors jeu 2), plus discret que le hub
+    // jeu 2 : jouerMusique(null), pas une histoire de volume
+    DUREE_FONDU           = 800  // ms, fondu croisé en 2 temps de 400 ms
     ```
-    
-    **Cas particulier du jeu 2 ("Des bulles ?")** : `mus-jeu` est coupée complètement, pas seulement baissée — le joueur doit mémoriser une mélodie de 4 hauteurs, la moindre musique de fond gênerait la distinction. Fondu de sortie de 400 ms à l'entrée dans le jeu, fondu de retour de 800 ms à la sortie. La piste continue de tourner en silence pendant ce temps et reprend là où elle en était, elle n'est jamais mise en pause.
     
     ---
     

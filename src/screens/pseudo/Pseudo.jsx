@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGameDispatch } from "../../store/GameContext.jsx";
 import { styleFondImage } from "../../utils/assetUrl.js";
+import { jouerMusique } from "../../audio/audio.js";
 import "./pseudo.css";
 
 export default function Pseudo({ onValide }) {
   const [valeur, setValeur] = useState("");
   const dispatch = useGameDispatch();
+
+  useEffect(() => {
+    jouerMusique("hub");
+  }, []);
 
   const soumettre = (e) => {
     e.preventDefault();

@@ -108,13 +108,12 @@
     
     ---
     
-    ## Musique de fond : silence total *(ajouté le 05/09/2026, précisé le soir même — 3 pistes)*
+    ## Musique de fond : silence total *(réécrit le 06/09/2026 soir, §A — architecture à un seul lecteur)*
     
-    Contrairement aux autres jeux (où `mus-jeu` joue normalement), le jeu 2 la coupe **complètement** : la moindre musique en fond gênerait la distinction des 4 hauteurs à mémoriser.
+    Contrairement aux autres jeux (où `mus-jeu` joue normalement), le jeu 2 appelle `jouerMusique(null)` à son entrée : **silence total**, pas un volume réduit — la moindre musique en fond gênerait la distinction des 4 hauteurs à mémoriser.
     
-    - À l'entrée dans le jeu : fondu de sortie de 400 ms jusqu'au silence total
-    - À la sortie du jeu : fondu de retour de 800 ms vers le volume normal
-    - La piste continue de tourner en silence entre-temps, elle n'est jamais mise en pause ni redémarrée
+    - À l'entrée dans le jeu : fondu de sortie de 400 ms, puis le lecteur est **mis en pause** (pas seulement silencieux)
+    - À la sortie du jeu : l'écran suivant déclare sa propre musique (`mus-hub` ou `mus-jeu`), qui redémarre de 0:00 avec un fondu d'entrée de 400 ms — normal pour un lecteur unique qui change de piste
     
     ---
     

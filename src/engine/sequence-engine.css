@@ -32,18 +32,16 @@
 }
 
 .sequence__mixapero {
-  /* Agrandi le 06/09/2026 (§C3, ×1,5 demandé), puis ramené à 60vh le même
-     jour (§B1) : le texte du bloc ci-dessous et Mixapéro pouvaient encore
-     se chevaucher sur les écrans courts une fois padding et bouton
-     comptés. 60vh + la marge ci-dessous laisse une vraie marge de
-     sécurité au bloc de texte, sans jamais les superposer.
-     flex-shrink:0 corrige le vrai bug sous-jacent : sans lui, flex
+  /* +20% demandé le 06/09/2026 soir (§B) : 60vh -> 72vh. Le bloc de texte
+     ci-dessous est réduit en conséquence (voir .sequence__bloc-texte) pour
+     ne pas réintroduire le chevauchement corrigé au §B1 plus tôt le même
+     jour. flex-shrink:0 corrige le vrai bug sous-jacent : sans lui, flex
      écrasait cette hauteur pour faire tenir le reste, ce qui rendait le
      personnage bien plus petit que la valeur déclarée ici. */
-  height: 60vh;
-  max-height: 60%;
+  height: 72vh;
+  max-height: 72%;
   flex-shrink: 0;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
   object-fit: contain;
   filter: drop-shadow(0 18px 20px rgba(58, 36, 21, 0.28));
   animation: sequence-fondu-expression var(--fondu-expression) ease;
@@ -64,13 +62,14 @@
      Exprimée en rem (pas em) depuis le §B1 du 06/09/2026 : une hauteur en
      em recalcule sur le font-size de CET élément, donc réduire le texte
      réduisait aussi la hauteur dans la même proportion sans que ce soit
-     voulu. 11.5rem couvre le plus long texte du scénario (2 paragraphes
-     de ~25 mots) à la taille de police actuelle ; un débordement
-     improbable resterait lisible grâce au scroll interne plutôt que de
-     casser la mise en page ou d'empiéter sur Mixapéro. */
+     voulu. Réduite à 9rem le même jour, en soirée (§B), pour compenser le
+     Mixapéro agrandi de 20% juste au-dessus sans réintroduire le
+     chevauchement : un débordement improbable resterait lisible grâce au
+     scroll interne plutôt que de casser la mise en page ou d'empiéter sur
+     Mixapéro. */
   width: 100%;
   max-width: 480px;
-  height: 11.5rem;
+  height: 9rem;
   flex-shrink: 0;
   overflow-y: auto;
   display: flex;
@@ -78,7 +77,7 @@
   justify-content: flex-start;
   background: rgba(255, 253, 248, 0.88);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  padding: 1.4rem 1.4rem 1rem;
+  padding: 1.1rem 1.4rem 0.8rem;
   box-shadow: 0 -8px 24px rgba(58, 36, 21, 0.1);
   font-size: 1.125rem; /* -25% (§B1, 06/09/2026) : le texte chevauchait le personnage */
   line-height: 1.35;

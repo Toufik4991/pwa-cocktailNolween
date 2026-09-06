@@ -408,7 +408,11 @@ def main():
             "orig_size": list(orig), "final_size": list(resized.size),
         })
 
-    # ---- 7. Jeu 1 : fruits (300x300) + zesteur (200x200) ----
+    # ---- 7. Jeu 1 : fruits (300x300) ----
+    # img-jeu1-zesteur et img-jeu1-eclaboussure retires des assets attendus
+    # (§C2/§C3, 06/09/2026) : jamais reellement utilises par le jeu (trainee
+    # du doigt et impact de coupe redessines en canvas pur), et le premier
+    # provoquait des bugs quand une integration en avait ete tentee.
     fruit_files = [
         "img-jeu1-banane-coupe.png", "img-jeu1-banane-entier.png",
         "img-jeu1-citronjaune-coupe.png", "img-jeu1-citronjaune-entier.png",
@@ -418,7 +422,6 @@ def main():
     ]
     for f in fruit_files:
         process_detour_square(f, f, (300, 300))
-    process_detour_square("img-jeu1-zesteur.png", "img-jeu1-zesteur.png", (200, 200))
 
     # ---- 8. Jeu 4 : canne (120x500) ----
     process_detour_square("img-jeu4-canne.png", "img-jeu4-canne.png", (120, 500))

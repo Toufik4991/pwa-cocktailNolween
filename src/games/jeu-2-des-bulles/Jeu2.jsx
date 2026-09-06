@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { JEU_2, TOURS, REPLIQUES_ERREUR, MESSAGE_SON_COUPE } from "../../config/index.js";
-import { precharger, jouerSon } from "../../hooks/useAudio.js";
+import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import "./jeu2.css";
 
 const SONS = ["sfx-bulle-01.mp3", "sfx-bulle-02.mp3", "sfx-bulle-03.mp3", "sfx-bulle-04.mp3"];
@@ -39,6 +39,12 @@ export default function Jeu2({ sonActif = true, onActiverSon, onVictoire, onEche
     }
     dernierSonRef.current = jouerSon(SONS[b]);
   };
+
+  // Silence total pendant ce jeu (§A, 06/09/2026) : jamais de musique, pas
+  // même à volume réduit. Seuls les 4 sons de bulles doivent s'entendre.
+  useEffect(() => {
+    jouerMusique(null);
+  }, []);
 
   useEffect(() => {
     precharger(SONS.concat(["sfx-echec.mp3", "sfx-victoire.mp3"]));

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { GameProvider, useGameDispatch, useGameState } from "./store/GameContext.jsx";
 import { SEQUENCES } from "./config/index.js";
-import { definirSonActif, precharger, jouerSon } from "./hooks/useAudio.js";
+import { definirSonActif, precharger, jouerSon } from "./audio/audio.js";
 import { definirVibrationActive } from "./hooks/useVibration.js";
-import { demarrerMusiques, definirSonActifMusique } from "./hooks/useMusique.js";
 import OrientationGuard from "./components/OrientationGuard.jsx";
 import InstallPrompt from "./components/InstallPrompt.jsx";
 import Splash from "./screens/splash/Splash.jsx";
@@ -35,10 +34,6 @@ function SyncReglagesAudio() {
   const { reglages } = useGameState();
   useEffect(() => definirSonActif(reglages.son), [reglages.son]);
   useEffect(() => definirVibrationActive(reglages.vibration), [reglages.vibration]);
-  useEffect(() => definirSonActifMusique(reglages.son), [reglages.son]);
-  // Une seule fois, au tout premier montage : la musique tourne en continu
-  // ensuite, jamais redémarrée d'un écran à l'autre.
-  useEffect(() => demarrerMusiques(), []);
   return null;
 }
 
