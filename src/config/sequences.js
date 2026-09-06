@@ -11,7 +11,7 @@ export const SEQUENCES = {
     {
       decor: "bar",
       expression: "neutre",
-      texte: "Salut ! Moi c'est **Mixapéro**. Mixologue de légende, charme naturel, et accessoirement… moitié cocktail.\n\nNe me demande pas comment.",
+      texte: "Salut ! Moi c'est **Mixapéro**. Mixologue de légende, charme naturel, et… moitié cocktail.\n\nNe me demande pas comment.",
     },
     {
       decor: "bar",
@@ -22,8 +22,8 @@ export const SEQUENCES = {
       // Explique enfin pourquoi il faut réussir une épreuve pour récupérer
       // chaque ingrédient — trou narratif comblé le 06/09/2026 (§G).
       decor: "bar",
-      expression: "moqueur",
-      texte: "Mais ils ne se sont pas contentés de les prendre. Chaque ingrédient est scellé dans un bloc de glace, et la glace ne fond que devant quelqu'un qui résout leur petite énigme.\n\nDes farceurs, je te dis.",
+      expression: "neutre",
+      texte: "Des farceurs, je te dis.",
     },
     {
       decor: "bar",
@@ -65,18 +65,18 @@ export const SEQUENCES = {
   "jeu-1-intro": [
     {
       decor: "agrumes",
-      expression: "content",
+      expression: "neutre",
       texte: "Ah, les agrumes. Mes petits chéris acides.\n\nIls les ont éparpillés en vrac. Citron vert, citron jaune, orange — tout mélangé. Des barbares.",
     },
     {
       decor: "agrumes",
       expression: "neutre",
-      texte: "Je vais te dire quoi trancher, et **quand**. Tu écoutes, tu tranches, tu récoltes.\n\nCent cinquante grammes de zeste. Pas un de moins.",
+      texte: "Je vais te dire quoi trancher, et **quand**. Tu tranches, tu récoltes.\n\nCent cinquante grammes de zeste. Pas un de moins.",
     },
     {
       decor: "agrumes",
       expression: "diabolique",
-      texte: "Et je te préviens tout de suite : si tu tranches le mauvais fruit, je vais le dire.\n\nFort. Plusieurs fois.",
+      texte: "Et je te préviens tout de suite : si tu tranches le mauvais fruit, je vais le dire.\n\nFort et Plusieurs fois.",
     },
   ],
   "jeu-1-fin": [
@@ -88,7 +88,7 @@ export const SEQUENCES = {
     {
       decor: "agrumes",
       expression: "content",
-      texte: "**Les zestes**, deuxième ingrédient. C'est ça qui donne le parfum. Sans zeste, un cocktail c'est juste de l'alcool avec des prétentions.\n\nProchaine étape. Et là, écoute bien : ça va faire du bruit.",
+      texte: "**Les zestes**, deuxième ingrédient. C'est ça qui donne le parfum. Sans zeste, un cocktail c'est juste de l'alcool.\n\nProchaine étape. ça va faire du bruit!.",
     },
   ],
 
@@ -106,19 +106,19 @@ export const SEQUENCES = {
     {
       decor: "bulles",
       expression: "content",
-      texte: "C'est un jeu de mémoire. Mais tkt, je vais commencer doucement.",
+      texte: "C'est un jeu de mémoire. Mais tkt, on y va tranquille.",
     },
   ],
   "jeu-2-fin": [
     {
       decor: "bulles",
       expression: "reveur",
-      texte: "Et hop ! Voilà les bulles ! Écoute-moi ça… ahhh, cette musique si élégante…",
+      texte: "Et hop ! Voilà les bulles ! Yeahhhh…",
     },
     {
       decor: "bulles",
       expression: "neutre",
-      texte: "Troisième ingrédient : **les bulles**. La fête en suspension. Sans elles, on boit. Avec elles, on célèbre.\n\nBon. Prochaine étape, et là, prends une veste. Je crois qu'ils nous attendent.",
+      texte: "Troisième ingrédient : **les bulles**. La fête en suspension. Sans elles, on boit. Avec elles, on célèbre.\n\nBon. Prochaine étape, et là, prends une veste..",
     },
   ],
 
@@ -126,7 +126,7 @@ export const SEQUENCES = {
     {
       decor: "givre",
       expression: "neutre",
-      texte: "Voilà. On y est. Le territoire des Glaçants.\n\nIls ont pris un de leurs propres frères et ils l'ont brisé en morceaux, juste pour m'embêter. Ce sont des gens compliqués.",
+      texte: "Voilà. On y est. Le territoire des Glaçants.\n\nIls ont pris un de leurs propres frères et ils l'ont brisé en morceaux, Glancant!.",
     },
     {
       decor: "givre",
@@ -151,12 +151,12 @@ export const SEQUENCES = {
     {
       decor: "sucre",
       expression: "neutre",
-      texte: "La douceur. Il en faut. Sinon c'est juste amer, et l'amertume sans sucre, c'est de la rancune.",
+      texte: "La douceur. Il en faut. Sinon c'est juste amer, et l'amertume sans sucre, ba c'est degueulasse...",
     },
     {
       decor: "sucre",
       expression: "neutre",
-      texte: "Mais je vais pas te la donner comme ça. On va jouer.\n\nDes cannes à sucre sur la table. Chacun son tour, on en retire une, deux ou trois. Celui qui prend la dernière a perdu.",
+      texte: "On va jouer.\n\nDes cannes à sucre sur la table. Chacun son tour, on en retire une, deux ou trois. Celui qui prend la dernière a perdu.",
     },
     {
       decor: "sucre",
@@ -183,7 +183,7 @@ export const SEQUENCES = {
     {
       decor: "sucre",
       expression: "neutre",
-      texte: "Le sixième ingrédient. Ma propre recette. Je l'ai oublié.\n\nDernière étape. Va falloir aller le chercher dans ma tête.",
+      texte: "Le sixième ingrédient. Ma propre recette. Je l'ai oublié.\n\nDernière étape. Va falloir aller le chercher...",
     },
   ],
 
@@ -213,7 +213,7 @@ export const SEQUENCES = {
     {
       decor: "secret",
       expression: "content",
-      texte: "Mais oui ! **L'amertume.** Voilà ce que j'avais oublié.\n\nPersonne la réclame jamais, alors elle finit par disparaître des recettes. Et pourtant c'est elle qui tient tout le reste debout.",
+      texte: "Mais oui ! **L'amertume.** Voilà ce que j'avais oublié.\n\nPersonne la réclame...elle finit par disparaître des recettes. Et pourtant c'est elle qui tient reste debout.",
     },
     {
       decor: "secret",
@@ -240,7 +240,7 @@ export const SEQUENCES = {
     {
       decor: "bar",
       expression: "content",
-      texte: "Bravo !! On va se le boire, ce cocktail. J'ai soif — et difficile de faire mieux que le mien, t'en penses quoi... {pseudo} ?",
+      texte: "Bravo !! Bon.... On va se le boire ce cocktail! . J'ai soif! — t'en penses quoi... {pseudo} ?",
     },
   ],
 };

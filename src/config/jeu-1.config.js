@@ -14,6 +14,11 @@ export const JEU_1 = {
   MAX_FRUITS_ECRAN: 6,
   DELAI_MIN_REPLIQUE: 1.5, // secondes entre deux répliques
   DELAI_BOUTON_ABANDON: 180, // secondes (pas de condition d'échec dans ce jeu)
+  // Correction du 06/09/2026 : les répliques (mauvais fruit / leurre) restaient
+  // affichées indéfiniment. Une nouvelle réplique remplace toujours la
+  // précédente et relance ce délai à zéro.
+  DUREE_AFFICHAGE_REPLIQUE: 2.5, // secondes avant disparition automatique
+  FONDU_REPLIQUE_MS: 300, // ms, fondu de disparition
 };
 
 // Agrumes : les seuls qui rapportent des grammes.

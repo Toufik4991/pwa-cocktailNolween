@@ -35,11 +35,14 @@ export default function Jeu1({ onVictoire, onAbandon }) {
   const imagesRef = useRef(null);
   const etatRef = useRef(null);
   const rafRef = useRef(null);
+  const messageTimeoutRef = useRef(null);
+  const messageFonduRef = useRef(null);
 
   const [consigneIndex, setConsigneIndex] = useState(0);
   const [grammesConsigne, setGrammesConsigne] = useState(0);
   const [total, setTotal] = useState(0);
   const [message, setMessage] = useState(null);
+  const [messageVisible, setMessageVisible] = useState(false);
   const [termine, setTermine] = useState(false);
   const [peutAbandonner, setPeutAbandonner] = useState(false);
 
@@ -131,7 +134,18 @@ export default function Jeu1({ onVictoire, onAbandon }) {
       const texte = repliqueAleatoire(pool, etat.dernierePliqueTexte);
       etat.dernierePliqueTexte = texte;
       etat.dernierRepliqueTemps = tempsSecondes;
+
+      // Une nouvelle réplique remplace toujours la précédente et relance le
+      // minuteur à zéro : jamais deux répliques empilées à l'écran (correction
+      // 06/09/2026 — elles restaient affichées indéfiniment auparavant).
+      if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
+      if (messageFonduRef.current) clearTimeout(messageFonduRef.current);
       setMessage(texte);
+      setMessageVisible(true);
+      messageTimeoutRef.current = setTimeout(() => {
+        setMessageVisible(false);
+        messageFonduRef.current = setTimeout(() => setMessage(null), JEU_1.FONDU_REPLIQUE_MS);
+      }, JEU_1.DUREE_AFFICHAGE_REPLIQUE * 1000);
     }
 
     function trancherFruit(fruit, tempsSecondes) {
@@ -261,6 +275,8 @@ export default function Jeu1({ onVictoire, onAbandon }) {
       canvas.removeEventListener("pointerdown", onPointerDown);
       canvas.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
+      clearTimeout(messageTimeoutRef.current);
+      clearTimeout(messageFonduRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -286,11 +302,14 @@ export default function Jeu1({ onVictoire, onAbandon }) {
           </div>
           <p className="jeu1__total">{total} / {JEU_1.OBJECTIF_TOTAL} g au total</p>
         </div>
+        {/* Sous le bandeau, hors de la zone de jeu (§ correction, 06/09/2026 —
+            gênait au milieu de l'écran où passent fruits et doigt). */}
+        {message && (
+          <p className={`jeu1__message ${messageVisible ? "jeu1__message--visible" : ""}`}>« {message} »</p>
+        )}
       </div>
 
       <canvas ref={canvasRef} className="jeu1__canvas" />
-
-      {message && <p className="jeu1__message">« {message} »</p>}
 
       {peutAbandonner && !termine && (
         <button className="jeu1__abandon" onClick={onAbandon}>

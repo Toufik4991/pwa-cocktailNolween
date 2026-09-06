@@ -29,7 +29,7 @@ export default function Pseudo({ onValide }) {
         onChange={(e) => setValeur(e.target.value)}
         maxLength={24}
         autoFocus
-        placeholder="Ex : Mojito, Sam, Nolwenn…"
+        placeholder="Ex : Mojito, Mr Coctail, Nolwenn…"
       />
       <button type="submit" disabled={!valeur.trim()}>
         Valider

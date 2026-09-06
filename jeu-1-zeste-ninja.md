@@ -107,6 +107,8 @@
     
     Piochées au hasard, **jamais deux fois la même d'affilée**, **au maximum une toutes les 1,5 s**.
     
+    **Affichage** *(corrigé le 06/09/2026 : restaient affichées indéfiniment)* : la fenêtre qui montre la réplique est placée **sous le bandeau de consigne, en haut de l'écran**, hors de la zone où circulent les fruits et où passe le doigt — elle ne peut donc jamais recouvrir un fruit ni la consigne en cours. Elle disparaît automatiquement au bout de `DUREE_AFFICHAGE_REPLIQUE` (2,5 s), en fondu de `FONDU_REPLIQUE_MS` (300 ms). Si une nouvelle réplique arrive avant la fin de ce délai, elle remplace la précédente et le minuteur repart entièrement à zéro : jamais deux répliques empilées.
+    
     ### Mauvais agrume
     
     - « Un citron vert j'ai dit… t'es sûrement pas mixologue toi ! »
@@ -162,6 +164,8 @@
     MAX_FRUITS_ECRAN       = 6
     DELAI_MIN_REPLIQUE     = 1.5    // secondes
     DELAI_BOUTON_ABANDON   = 180    // secondes
+    DUREE_AFFICHAGE_REPLIQUE = 2.5  // secondes avant disparition automatique (ajouté 06/09/2026)
+    FONDU_REPLIQUE_MS        = 300  // ms, fondu de disparition (ajouté 06/09/2026)
     ```
     
     Les 6 consignes sont également dans la config, sous forme de liste modifiable.
