@@ -58,6 +58,18 @@
   border-radius: var(--radius-md);
 }
 
+.hub__quitter-jeu {
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 800;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-text);
+  box-shadow: none;
+  padding: 0.5em 0.9em;
+  font-size: 0.9rem;
+}
+
 .hub__declencheur-test {
   position: fixed;
   bottom: 1rem;

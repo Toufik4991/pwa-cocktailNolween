@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { jouerSon } from "../hooks/useAudio.js";
 
 const VITESSE_MS_PAR_CARACTERE = 28;
 
@@ -48,6 +49,11 @@ export default function Typewriter({ texte, skipSignal, onTermine }) {
       onTermine?.();
       return;
     }
+    // Un seul blip au début de chaque nouveau texte (pas par lettre : sur
+    // ~28ms/caractère, un son par lettre saturerait au lieu de rester une
+    // ambiance de "machine à écrire"). sfx-texte.mp3 était chargé nulle
+    // part avant cette correction (05/09, soir).
+    jouerSon("sfx-texte.mp3", { volume: 0.4 });
     const id = setInterval(() => {
       setCompte((c) => {
         const suivant = c + 1;

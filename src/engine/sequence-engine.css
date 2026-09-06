@@ -32,8 +32,17 @@
 }
 
 .sequence__mixapero {
-  height: 62vh;
-  max-height: 62%;
+  /* Agrandi le 06/09/2026 (§C3, ×1,5 demandé) : un ×1.5 littéral de 62vh
+     (93vh) ne laisserait plus aucune place au bloc de texte fixe ni au
+     bouton (vérifié à l'écran : le personnage se retrouvait rogné en
+     haut). 64vh est le maximum qui tient réellement avec le bloc de
+     texte ci-dessous et le bouton, sans faire déborder l'écran.
+     flex-shrink:0 corrige le vrai bug sous-jacent : sans lui, flex
+     écrasait cette hauteur pour faire tenir le reste, ce qui rendait le
+     personnage bien plus petit que la valeur déclarée ici. */
+  height: 64vh;
+  max-height: 64%;
+  flex-shrink: 0;
   object-fit: contain;
   filter: drop-shadow(0 18px 20px rgba(58, 36, 21, 0.28));
   animation: sequence-fondu-expression var(--fondu-expression) ease;
@@ -49,17 +58,32 @@
 }
 
 .sequence__bloc-texte {
+  /* Hauteur FIXE (§C1, 06/09/2026) : ne dépend jamais de la longueur du
+     texte en cours de frappe, pour ne plus faire sauter la mise en page.
+     9.5em (~7 lignes à cette taille de police) couvre le plus long texte
+     du scénario (2 paragraphes de ~25 mots) sans empiéter sur la place
+     réservée à Mixapéro et au bouton ; un débordement improbable
+     resterait lisible grâce au scroll interne plutôt que de casser la
+     mise en page. */
   width: 100%;
   max-width: 480px;
+  height: 9.5em;
+  flex-shrink: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background: rgba(255, 253, 248, 0.88);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   padding: 1.4rem 1.4rem 1rem;
   box-shadow: 0 -8px 24px rgba(58, 36, 21, 0.1);
+  font-size: 1.5rem; /* ×1.5 demandé pour le texte des séquences narratives (§C3) */
+  line-height: 1.35;
 }
 
 .sequence__bloc-texte p {
-  margin: 0 0 0.6rem;
-  min-height: 1.4em;
+  margin: 0 0 0.5em;
+  min-height: 1em;
 }
 
 .sequence__bloc-texte p:last-child {
@@ -69,6 +93,7 @@
 .sequence__suivant {
   width: 100%;
   max-width: 480px;
+  flex-shrink: 0;
   border-radius: 0;
   margin: 0;
 }

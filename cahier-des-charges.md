@@ -23,10 +23,10 @@
     PWA de chasse au trésor en extérieur (IRL), utilisable sur mobile. Interface simple mais entièrement stylisable.
     
     **Personnage principal :** **Mixapéro** — mi-humain, mi-cocktail, moqueur.
-    **Antagonistes :** Les Glaçants, qui lui ont volé cinq de ses six ingrédients.
+    **Antagonistes :** Les Glaçants, qui lui ont volé cinq de ses six ingrédients et les ont scellés dans des blocs de glace, chacun gardé par une épreuve *(raison ajoutée le 06/09/2026, voir §3 ter — comblait un trou narratif)*.
     **Le sixième ingrédient** n'a pas été volé : Mixapéro l'a oublié, et le joueur le retrouve en fouillant sa mémoire (jeu 5).
     
-    Le scénario complet et tous les dialogues sont dans le document **`2-scenario.md`**.
+    Le scénario complet et tous les dialogues sont dans le document **`scenario.md`** *(anciennement référencé `2-scenario.md` dans ce document — nom corrigé le 06/09/2026 pour correspondre au fichier réel)*.
     
     ---
     
@@ -59,7 +59,7 @@
     
     - Le numéro et le nom du jeu
     - L'ingrédient récupéré (image + nom)
-    - La ou les **photos du lieu suivant** (zoomables, voir §9.5)
+    - La ou les **photos du lieu suivant** (zoomables, voir §9.5), chacune dans un **cadre** (fond blanc, coins arrondis, bordure fine, ombre douce, photo en `object-fit: contain` sans débordement — ajouté le 06/09/2026, la photo s'affichait nue auparavant)
     - Une mention discrète si l'étape a été **passée** plutôt que gagnée
     
     Pour chaque étape **non résolue** : une carte grisée avec un cadenas et le message « Rien à voir ici. Va la gagner d'abord. »
@@ -85,7 +85,7 @@
     - **Aplats de couleur franche** plutôt que dégradés complexes. Un dégradé doux en fond est acceptable, pas plus.
     - **Coins arrondis** généreux sur les boutons et les cartes.
     - **Ombres douces et diffuses**, jamais dures ni marquées.
-    - **Typographie** : une police sans-serif ronde et lisible. Titres généreux, texte courant confortable (16 px minimum).
+    - **Typographie** : une police ronde et lisible, en graisse épaisse (titres 800-900, texte courant 600 minimum — jamais un sans-serif fin). Texte courant confortable, base à 18,4 px *(+15 % le 06/09/2026, était 16 px)*, dialogues des séquences narratives et personnage à l'écran encore agrandis (×1,5) par-dessus cette base.
     - **Contraste élevé** entre texte et fond : l'app se joue dehors, en plein soleil.
     
     L'interface doit rester **discrète par rapport aux fonds d'écran fournis par le maître du jeu** : c'est eux qui portent l'identité visuelle, l'interface les habille sans les concurrencer. Les blocs de texte des séquences narratives sont donc semi-transparents ou en aplat clair léger, pas des cadres opaques et chargés.
@@ -140,11 +140,15 @@
     Le décor est un **aplat de couleur CSS** (§2 bis), le personnage une **image PNG transparente** superposée. Il n'y a que :
     
     - **6 couleurs de décor** (une par univers de jeu), en variables CSS
-    - **3 expressions de Mixapéro** : `neutre`, `content`, `moqueur`
+    - **6 expressions de Mixapéro** *(mise à jour du 06/09/2026 : 3 nouvelles s'ajoutent aux 3 d'origine)* : `neutre`, `content`, `moqueur`, `diabolique`, `triste`, `rêveur`
     
-    Chaque écran du scénario indique la couleur de décor et l'expression à utiliser. Ça permet 40 écrans distincts avec seulement 3 fichiers image (les 3 expressions) + les couleurs.
+    Chaque écran du scénario indique la couleur de décor et l'expression à utiliser. Ça permet 41 écrans distincts avec seulement 6 fichiers image (les 6 expressions) + les couleurs.
     
-    **Important :** les 3 expressions doivent avoir exactement le **même cadrage et la même position dans l'image**, pour que le changement d'expression donne une impression d'animation et non de saut.
+    **Important :** les 6 expressions doivent avoir exactement le **même cadrage et la même position dans l'image**, pour que le changement d'expression donne une impression d'animation et non de saut.
+    
+    ### Mini-jeux : même couleur de décor que leur séquence texte *(mise à jour du 06/09/2026)*
+    
+    L'écran du mini-jeu lui-même reprend l'**aplat de couleur** de son univers (§2 bis), exactement comme les séquences d'intro/fin qui l'entourent — pas une photo dédiée. Ça évite la rupture visuelle "couleur unie → photo → couleur unie" en entrant/sortant du jeu. Les fichiers `bg-jeu0.webp` → `bg-jeu5.webp` prévus initialement pour ça ne sont plus utilisés.
     
     ### Effets à implémenter (aucun asset requis)
     
@@ -155,6 +159,23 @@
     ### Reprise
     
     Si le joueur quitte en cours de séquence, il revient au hub. La séquence se rejoue s'il relance l'étape, mais **un code déjà validé n'est jamais redemandé**.
+    
+    ### 3 bis. Pourquoi une épreuve par ingrédient ? *(ajouté le 06/09/2026)*
+    
+    Les Glaçants n'ont pas seulement volé les six ingrédients : ils les ont **gelés chacun dans un bloc de glace scellé par une petite énigme**. Le froid ne cède qu'à celui qui la résout — c'est pour ça qu'un mini-jeu garde chaque ingrédient, et c'est pour ça que les Glaçants réapparaissent tout au long de la chasse (§3 ter). Expliqué à l'ouverture (nouvel écran après la présentation des Glaçants) et rappelé brièvement à l'intro du jeu 0.
+    
+    ### 3 ter. Apparitions furtives du Glaçant *(ajouté le 06/09/2026)*
+    
+    Pendant les jeux 0, 1, 2 et 3 (jamais 4 ni 5), le Glaçant traverse brièvement le décor — jamais interactif, toujours en arrière-plan derrière les éléments de jeu (jamais devant un fruit du jeu 1 ni une bulle du jeu 2).
+    
+    Deux images quasi identiques (seuls les yeux/la bouche changent) sont superposées à taille et position rigoureusement fixes pour donner l'impression que ses yeux bougent, sans le moindre saut :
+    
+    1. Glisse depuis un bord de l'écran jusqu'à un coin (600 ms), ou variante : traverse le haut de l'écran de gauche à droite (900 ms)
+    2. Immobile, puis changement d'yeux pendant 1000 ms
+    3. Retour à l'expression de départ (400 ms)
+    4. Ressort par où il est arrivé (800 ms)
+    
+    Une seule apparition par partie, à un délai aléatoire entre 8 et 25 secondes après le début du mini-jeu. Respecte `prefers-reduced-motion` : dans ce cas, simple fondu, sans glissement.
     
     ---
     
@@ -283,6 +304,7 @@
     
     - Jeu type **Simon** (mémorisation de séquence)
     - Sons : `sfx-bulle-01.mp3` à `sfx-bulle-04.mp3`
+    - Les 4 bulles sont dessinées **entièrement en CSS** (06/09/2026) : cercle en dégradé radial, reflet blanc décalé, légère transparence ; l'état allumé = luminosité augmentée + `scale(1.1)`. Aucun asset image n'est nécessaire ni attendu pour elles. La flûte décorative est également en CSS (même raison : aucun asset fourni).
     
     ### Jeu 3 — "Fait frisquet ici nn ?"
     
@@ -386,9 +408,9 @@
     
     Vibration courte (`navigator.vibrate`) sur : code correct, mot trouvé, pièce de puzzle échangée, fruit tranché. Désactivable avec le son dans le menu.
     
-    ### 9.8 Musiques *(mise à jour du 05/09/2026, soir — 3 pistes)*
+    ### 9.8 Musiques *(mise à jour du 06/09/2026 — 3 pistes, volume dédié au jeu et fondu à 800 ms)*
     
-    **3 musiques**, une seule audible à la fois, en fondu enchaîné (~600 ms) :
+    **3 musiques**, une seule audible à la fois, en fondu enchaîné (~800 ms) :
     
     - `mus-hub` : accueil, saisie du pseudo, hub, séquences de texte, page Réponses
     - `mus-jeu` : pendant les 6 mini-jeux
@@ -397,7 +419,8 @@
     `mus-hub` et `mus-jeu` tournent en continu en arrière-plan dès le lancement de l'app et **ne redémarrent jamais** en changeant d'écran — si on quitte un mini-jeu puis en relance un autre, `mus-jeu` reprend là où elle en était, elle ne repart pas du début. `mus-final`, elle, **repart de 0:00 à chaque lancement de l'animation** (y compris en la rejouant depuis "Revoir la fin") — c'est le seul cas de redémarrage volontaire, pour l'effet dramatique.
     
     ```
-    VOLUME_MUSIQUE_NORMAL = 0.6   // niveau de la piste active, quelle qu'elle soit
+    VOLUME_MUSIQUE_NORMAL = 0.6   // accueil, pseudo, hub, séquences texte, Réponses
+    VOLUME_MUSIQUE_JEU    = 0.35  // pendant les mini-jeux (hors jeu 2), plus discret que le hub
     VOLUME_MUSIQUE_JEU2   = 0     // silence total pendant le jeu 2
     ```
     

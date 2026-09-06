@@ -1,0 +1,93 @@
+/* Le Glaçant reste toujours en arrière-plan (z-index bas, non cliquable) :
+   il ne doit jamais gêner un fruit du jeu 1 ni une bulle du jeu 2. */
+.glacant-cameo {
+  /* fixed (pas absolute) : le composant est monté au niveau du Hub, pas
+     à l'intérieur de chaque <div class="jeuN">, donc "absolute" se
+     positionnerait par rapport à un ancêtre positionné imprévisible.
+     Chaque jeuN place ses propres éléments interactifs en z-index:1 (voir
+     leur .css) pour garantir qu'ils restent TOUJOURS devant, quelle que
+     soit leur position dans le DOM (§H, 06/09/2026). */
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  width: 120px;
+  aspect-ratio: 824 / 902;
+}
+
+.glacant-cameo__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.glacant-cameo__image--yeux {
+  transition: opacity 60ms linear;
+}
+
+/* Variante "coin" : glisse depuis le bord le plus proche jusqu'à un coin. */
+.glacant-cameo--coin {
+  transition: transform 600ms ease;
+}
+
+.glacant-cameo--coin.glacant-cameo--phase-retour {
+  transition: transform 800ms ease;
+}
+
+.glacant-cameo--coin.glacant-cameo--phase-anime {
+  transform: translate(0, 0);
+}
+
+.glacant-cameo--haut-gauche {
+  top: 6%;
+  left: 4%;
+  transform: translateX(-140%);
+}
+
+.glacant-cameo--haut-droite {
+  top: 6%;
+  right: 4%;
+  transform: translateX(140%);
+}
+
+.glacant-cameo--bas-gauche {
+  bottom: 14%;
+  left: 4%;
+  transform: translateX(-140%);
+}
+
+.glacant-cameo--bas-droite {
+  bottom: 14%;
+  right: 4%;
+  transform: translateX(140%);
+}
+
+/* Variante "balayage" : traversée rapide du haut de l'écran, gauche -> droite. */
+.glacant-cameo--balayage {
+  top: 4%;
+  left: 0;
+  transform: translateX(-140%);
+  transition: transform 900ms linear;
+}
+
+.glacant-cameo--balayage.glacant-cameo--phase-anime {
+  transform: translateX(calc(100vw + 40px));
+}
+
+/* Accessibilité (prefers-reduced-motion) : ni glissement ni traversée,
+   seulement un fondu sur place. */
+.glacant-cameo--reduit {
+  transform: none !important;
+  transition: opacity 200ms ease;
+  opacity: 0;
+}
+
+.glacant-cameo--reduit.glacant-cameo--phase-anime {
+  opacity: 1;
+}
+
+.glacant-cameo--reduit.glacant-cameo--phase-retour {
+  transition: opacity 400ms ease;
+  opacity: 0;
+}

@@ -237,6 +237,26 @@
     "note": "version maskable generee a partir de l'icone, non fournie telle quelle"
   },
   {
+    "op": "detour+crop+contain",
+    "source": "image-logo.png",
+    "dest": "public\\assets\\images\\img-logo-pinatresolada.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1350
+    ],
+    "final_size": [
+      800,
+      300
+    ],
+    "content_size": [
+      662,
+      300
+    ],
+    "scale": 0.718
+  },
+  {
     "op": "detour(commun)+scale-uniforme",
     "source": "img-mixapero-neutre.png",
     "dest": "public\\assets\\images\\img-mixapero-neutre.png",
@@ -272,6 +292,54 @@
     "op": "detour(commun)+scale-uniforme",
     "source": "img-mixapero-moqueur.png",
     "dest": "public\\assets\\images\\img-mixapero-moqueur.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      788,
+      1400
+    ],
+    "scale": 0.729
+  },
+  {
+    "op": "detour(commun)+scale-uniforme",
+    "source": "img-mixapero-diabolique.png",
+    "dest": "public\\assets\\images\\img-mixapero-diabolique.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      788,
+      1400
+    ],
+    "scale": 0.729
+  },
+  {
+    "op": "detour(commun)+scale-uniforme",
+    "source": "img-mixapero-triste.png",
+    "dest": "public\\assets\\images\\img-mixapero-triste.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      788,
+      1400
+    ],
+    "scale": 0.729
+  },
+  {
+    "op": "detour(commun)+scale-uniforme",
+    "source": "img-mixapero-reveur.png",
+    "dest": "public\\assets\\images\\img-mixapero-reveur.png",
     "orig_format": "PNG",
     "final_format": "PNG",
     "orig_size": [
@@ -895,7 +963,7 @@
     "scale": 0.139
   },
   {
-    "op": "detour+crop (dimension non specifiee, conservee)",
+    "op": "detour+crop-union-commun(paire-animation)",
     "source": "img-glacant-01.png",
     "dest": "public\\assets\\images\\img-glacant-01.png",
     "orig_format": "PNG",
@@ -905,8 +973,23 @@
       1920
     ],
     "final_size": [
-      824,
-      902
+      832,
+      911
+    ]
+  },
+  {
+    "op": "detour+crop-union-commun(paire-animation)",
+    "source": "img-glacant-02.png",
+    "dest": "public\\assets\\images\\img-glacant-02.png",
+    "orig_format": "PNG",
+    "final_format": "PNG",
+    "orig_size": [
+      1080,
+      1920
+    ],
+    "final_size": [
+      832,
+      911
     ]
   },
   {

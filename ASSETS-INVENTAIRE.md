@@ -1,6 +1,6 @@
 # Inventaire des assets — "Pina Tresolada"
 
-*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 05/09/2026 (soir) : intégration de l'audio réel (19 SFX + 3 musiques `mus-hub`/`mus-jeu`/`mus-final`), retrait des assets abandonnés (`img-jeu1-trainee`, `img-final-halo`, `img-jeu0-carte-indice`, `img-jeu4-table`).*
+*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 06/09/2026 : logo réel intégré (`image-logo.png` → `img-logo-pinatresolada.png`), `img-glacant-02` traité (paire d'animation, voir cahier des charges §3 ter), 3 nouvelles expressions Mixapéro (`diabolique`/`triste`/`rêveur`) traitées dans le même lot que les 3 premières, `img-jeu0-silhouette` et `img-jeu3-puzzle` retraités (sources mises à jour dans `ici/`). Les 4 bulles et la flûte du jeu 2 ne sont plus en attente d'asset : décidé qu'elles restent en CSS pur (voir `jeu-2-des-bulles.md`). `bg-jeu0.webp` → `bg-jeu5.webp` ne sont plus utilisés (mini-jeux passés en aplat de couleur, cahier des charges §2 bis).*
 
 Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont été **copiés puis traités** vers `public/assets/`. Scripts dans `scripts/` : `process_assets.py` (images), `gen_audio_placeholders.sh` / `gen_image_placeholders.py` (placeholders restants).
 
@@ -8,17 +8,17 @@ Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont �
 
 | Catégorie | Nombre |
 | --- | --- |
-| ✅ Images fournies, identifiées et traitées | 56 |
+| ✅ Images fournies, identifiées et traitées | 61 |
 | ✅ Audio réel intégré | 20 (19 SFX + 1 musique) |
 | ✅ Polices sourcées | 2 |
-| ❌ Assets manquants avec placeholder (images seulement, l'audio n'en a plus besoin) | 12 |
+| ❌ Assets manquants avec placeholder (images seulement, l'audio n'en a plus besoin) | 6 |
 | ❌ Assets abandonnés, retirés du code et de la liste attendue | 4 |
-| ❌ Sans placeholder volontairement (optionnels / gérés en CSS) | 10 |
+| ❌ Sans placeholder volontairement (optionnels / gérés en CSS) | 14 |
 | ⚠️ Points de vigilance | 9 |
 | ❓ Ambigus non résolus | 0 |
-| **Poids total de `public/assets/`** | **8,1 Mo** (objectif : < 30 Mo) |
+| **Poids total de `public/assets/`** | **8,1 Mo** (objectif : < 30 Mo) *(avant retrait de `bg-jeu0..5`, désormais orphelins mais pas supprimés sans confirmation)* |
 
-> ⚠️ **À signaler explicitement** : au-delà des 5 photos de lieux (attendu, elles dépendent de lieux pas encore choisis), **7 images restent en placeholder** : les 4 bulles du jeu 2, la flûte décorative du jeu 2, la charge d'indice vide du jeu 5, et le logo. Aucun fichier correspondant n'a été trouvé dans `ici/` sous ce nom ou un nom proche — détail dans la section dédiée plus bas.
+> ⚠️ **À signaler explicitement** : il ne reste plus que les 5 photos de lieux (attendu, elles dépendent de lieux pas encore choisis) et la charge d'indice vide du jeu 5 en placeholder. Le logo est fourni depuis le 06/09/2026 ; les 4 bulles et la flûte du jeu 2 ne sont plus considérées comme des assets manquants (choix : CSS pur, voir plus bas).
 
 ---
 
@@ -53,11 +53,27 @@ Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont �
 
 | Origine | Final | Format | Dimensions | Opération |
 | --- | --- | --- | --- | --- |
-| img-mixapero-neutre.png | images/img-mixapero-neutre.png | PNG | 1080×1920 → 788×1400 | détourage fond crème + **même échelle** que les 2 autres (aucun recadrage individuel, pour préserver l'alignement) |
+| img-mixapero-neutre.png | images/img-mixapero-neutre.png | PNG | 1080×1920 → 788×1400 | détourage fond crème + **même échelle** que les 5 autres (aucun recadrage individuel, pour préserver l'alignement) |
 | img-mixapero-content.png | images/img-mixapero-content.png | PNG | 1080×1920 → 788×1400 | idem |
 | img-mixapero-moqueur.png | images/img-mixapero-moqueur.png | PNG | 1080×1920 → 788×1400 | idem |
+| img-mixapero-diabolique.png | images/img-mixapero-diabolique.png | PNG | 1080×1920 → 788×1400 | idem — **ajouté le 06/09/2026**, traité dans le même lot que les 5 autres pour garantir la même échelle (0.729) |
+| img-mixapero-triste.png | images/img-mixapero-triste.png | PNG | 1080×1920 → 788×1400 | idem — ajouté le 06/09/2026 |
+| img-mixapero-reveur.png | images/img-mixapero-reveur.png | PNG | 1080×1920 → 788×1400 | idem — ajouté le 06/09/2026 |
 
-Vérifié après traitement : les trois boîtes englobantes du personnage ne varient que de 1 à 2 px entre expressions — le cadrage est bien identique.
+Vérifié après traitement : les six boîtes englobantes du personnage ne varient que de 1 à 2 px entre expressions — le cadrage est bien identique.
+
+### Logo → PNG transparent, 800×300 *(ajouté le 06/09/2026)*
+
+| Origine | Final | Dimensions | Opération |
+| --- | --- | --- | --- |
+| image-logo.png | images/img-logo-pinatresolada.png | 1080×1350 → 800×300 | détourage du fond corail plein (traité comme un fond uni classique, pas seulement le blanc) + recadrage au contenu + mise en boîte centrée — remplace le placeholder transparent généré précédemment |
+
+### Glaçants → PNG transparent, paire à cadrage identique garanti *(img-glacant-02 ajouté le 06/09/2026)*
+
+| Origine | Final | Dimensions | Opération |
+| --- | --- | --- | --- |
+| img-glacant-01.png | images/img-glacant-01.png | 1080×1920 → 832×911 | détourage + recadrage sur l'**union** des boîtes de contenu des 2 images (jamais un recadrage individuel), pour que l'alternance 01↔02 ne saute pas d'un pixel — voir cahier des charges §3 ter |
+| img-glacant-02.png | images/img-glacant-02.png | 1080×1920 → 832×911 | idem — dimension identique à `-01` par construction |
 
 ### Boutons du hub → PNG transparent, 512×512
 
@@ -96,7 +112,6 @@ Vérifié après traitement : les trois boîtes englobantes du personnage ne var
 | --- | --- | --- | --- |
 | img-jeu4-canne.png | images/img-jeu4-canne.png | 1080×1920 → 120×500 | détourage blanc + recadrage + boîte |
 | img-jeu5-charge-pleine.png | images/img-jeu5-charge-pleine.png | 1080×1350 → 128×128 | détourage blanc + recadrage + boîte — ⚠️ contenu petit dans le cadre, voir vigilance |
-| img-glacant-01.png | images/img-glacant-01.png | 1080×1920 → 824×902 | détourage blanc + recadrage au contenu, **dimension non imposée** (absente de la liste fournie) |
 | img-jeu5-grille-fond.png | images/img-jeu5-grille-fond.webp | 1080×1350 → 1024×1024 | recadrage carré centré + conversion WebP (texture opaque, pas de détourage) |
 | img-jeu3-puzzle.png | images/img-jeu3-puzzle.webp | 1080×1350 → 1024×1024 | recadrage carré centré + conversion WebP |
 
@@ -127,19 +142,16 @@ Tous les sons et l'unique musique fournis dans `ici/` le 05/09 (soir) ont rempla
 
 ---
 
-## ❌ Assets manquants — placeholder image (12 fichiers)
+## ❌ Assets manquants — placeholder image (6 fichiers)
 
-Aucun fichier audio n'a plus besoin de placeholder (tout est réel désormais, voir ci-dessus).
+Aucun fichier audio n'a plus besoin de placeholder (tout est réel désormais, voir ci-dessus). Depuis le 06/09/2026 : le logo est fourni (retiré de cette liste), et les 4 bulles + la flûte du jeu 2 ne sont plus en attente d'asset (choix définitif : CSS pur, voir la section "sans placeholder" ci-dessous).
 
 | Fichier | Dimensions | Usage prévu |
 | --- | --- | --- |
-| img-jeu2-bulle-01.png → 04.png | 256×256 ×4 | les 4 bulles (jeu 2) |
-| img-jeu2-verre.png | 300×600 | flûte décorative (jeu 2) |
 | img-jeu5-charge-vide.png | 128×128 | charge d'indice consommée (jeu 5) |
-| img-logo-pinatresolada.png | 800×300 | logo / titre |
 | img-lieu-01-a.webp → 05-a.webp | 1080×1350 ×5 | photos de lieux IRL (attendu — lieux pas encore choisis) |
 
-⚠️ **7 de ces 12 fichiers ne sont pas les photos de lieux** : les 4 bulles, la flûte du jeu 2, la charge vide du jeu 5, et le logo. Je le signale explicitement comme demandé plutôt que de le passer sous silence.
+⚠️ Il ne reste plus que la charge vide du jeu 5 en dehors des 5 photos de lieux (attendu, lieux pas encore choisis).
 
 ### Polices (2 fichiers, sourcées réellement — pas de placeholder)
 
@@ -165,12 +177,14 @@ Sur demande explicite du 05/09 (soir), plus besoin de ces 4 assets — retirés 
 
 ---
 
-## ❌ Sans placeholder, volontairement (10)
+## ❌ Sans placeholder, volontairement (14)
+
+`img-glacant-02.png` retiré de cette liste le 06/09/2026 : il est désormais fourni et traité (voir résumé en tête de document et cahier des charges §3 ter), plus besoin de le marquer optionnel.
 
 | Fichier(s) | Raison |
 | --- | --- |
-| img-glacant-02.png | marqué optionnel/décoratif dans la spec |
 | ui-cadre-modale, ui-cadre-texte, ui-icone-son-on/off, ui-icone-menu, ui-icone-suivant, ui-icone-passer, ui-icone-quitter, ui-icone-cadenas, ui-icone-valide (9 fichiers) | la spec prévoit explicitement qu'ils soient **générés en CSS** si non fournis |
+| img-jeu2-bulle-01.png → 04.png, img-jeu2-verre.png (5 fichiers, ajoutés le 06/09/2026) | choix définitif : dessinés entièrement en CSS (dégradé, reflet, teintes), jamais d'asset image prévu pour eux désormais — voir `jeu-2-des-bulles.md` |
 
 ---
 
@@ -181,7 +195,7 @@ Sur demande explicite du 05/09 (soir), plus besoin de ces 4 assets — retirés 
 3. **img-jeu5-charge-pleine.png** : après détourage, le motif (une goutte) n'occupe que 77 px de large sur les 128 px du cadre — l'icône risque de paraître petite dans l'interface. À surveiller lors de l'intégration ; un recadrage plus serré à la source réglerait ça.
 4. **img-final-etincelles.png** : le motif d'origine est une étoile à branches très fines ; réduit à 128×128, les branches les plus fines s'amincissent au point de devenir peu visibles. Fonctionnel mais visuellement discret — un motif plus dense serait plus lisible à cette taille.
 5. **img-jeu5-grille-fond** et **img-jeu3-puzzle** proviennent d'images rectangulaires (1080×1350) recadrées en carré par le centre : une bande de ~163 px a été retirée en haut et en bas. Vérifié visuellement pour `img-jeu3-puzzle` : le motif (glaçons, agrumes, pailles) est réparti sur toute la surface, rien d'important n'est perdu et le puzzle reste bien difficile (aucune zone uniforme). Pas de vérification particulière nécessaire pour `img-jeu5-grille-fond`, simple texture de fond.
-6. **img-glacant-01.png** n'avait pas de dimension imposée dans les documents fournis (absente du tableau de redimensionnement de la décision du 05/09) : conservée à sa taille de détourage naturelle (824×902). À préciser si une taille cible existe.
+6. **img-glacant-01/02.png** n'ont pas de dimension imposée dans les documents fournis : conservées à leur taille de détourage naturelle, désormais **832×911 pour les deux** (mise à jour du 06/09/2026 — recadrées sur l'union de leurs boîtes de contenu respectives, pas individuellement, pour que la paire s'anime sans saut ; voir cahier des charges §3 ter). À préciser si une taille cible existe.
 7. **Correction d'une erreur de ma part** : j'avais précédemment "corrigé" le compte de SFX de 19 à 18, en pensant que `3-assets-a-fournir.md` comptait un fichier en trop. En réalité c'est moi qui avais mal recompté — `sfx-final.mp3` ("fanfare de fin") fait bien partie de la liste d'origine. Remis à 19 partout, fichier bien copié et utilisé dans l'animation finale.
 8. Les images `.png` opaques (boutons, ingrédients, fruits) ne sont volontairement pas passées en WebP même si elles ne sont pas transparentes après recadrage dans certains cas marginaux — la règle appliquée est celle donnée explicitement par la liste de la décision du 05/09 (par famille de fichier), pas une détection automatique de la transparence réelle. Si un fichier de cette liste s'avère in fine sans aucune transparence utile, il pourra être re-basculé en WebP plus tard sans risque.
 9. **`mus-final.mp3` et `mus-jeu.mp3`** : d'abord laissés de côté lors de la simplification temporaire à une seule piste, puis réintégrés (voir section audio ci-dessus) suite à votre demande de garder les 3 musiques. Comme `mus-hub`, ils restent dans `ici/` sans y avoir été modifiés (seules les copies dans `public/assets/` sont traitées).

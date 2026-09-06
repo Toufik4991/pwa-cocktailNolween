@@ -35,11 +35,14 @@
     
     Chaque **écran** = un décor + une expression de Mixapéro + un bloc de texte + un bouton "Suivant".
     
-    Il n'y a que **3 expressions** de Mixapéro à fournir. L'expression à utiliser est indiquée entre crochets sur chaque écran :
+    Il y a **6 expressions** de Mixapéro (mise à jour du 06/09/2026 : 3 nouvelles s'ajoutent aux 3 d'origine). L'expression à utiliser est indiquée entre crochets sur chaque écran :
     
     - **`neutre`** — il parle normalement, il explique
     - **`content`** — il est ravi, fier, ému
     - **`moqueur`** — il taquine, il doute, il se moque
+    - **`diabolique`** — il annonce qu'il va tricher ou se moquer, il savoure par avance
+    - **`triste`** — il vient de perdre, il a oublié quelque chose, un coup dur
+    - **`rêveur`** — il se souvient, il écoute, un moment suspendu
     
     `{pseudo}` est remplacé automatiquement par le pseudo saisi par le joueur.
     
@@ -57,15 +60,23 @@
     > Ne me demande pas comment.
     > 
     
-    **Écran 2** — décor `bar` · `neutre`
+    **Écran 2** — décor `bar` · `triste`
     
     > Ce matin je me réveille, et ma recette : envolée. Six ingrédients. Volés.
     > 
     > 
-    > Ce sont **Les Glaçants**. Une bande de glaçons aigris qui trouvent que la vie est trop sucrée.
+    > Ce sont **Les Glaçants**. Une bande de glaçons aigris qui trouvent que la vie est trop sucrée....
     > 
     
-    **Écran 3** — décor `bar` · `moqueur`
+    **Écran 3** — décor `bar` · `moqueur` *(nouveau, 06/09/2026 — comble le trou narratif : pourquoi des épreuves ?)*
+    
+    > Mais ils ne se sont pas contentés de les prendre. Chaque ingrédient est scellé dans un bloc de glace, et la glace ne fond que devant quelqu'un qui résout leur petite énigme.
+    > 
+    > 
+    > Des farceurs, je te dis.
+    > 
+    
+    **Écran 4** — décor `bar` · `moqueur`
     
     > Moi je peux pas y aller, j'ai des jambes en verre. Donc ce sera toi.
     > 
@@ -73,7 +84,7 @@
     > Oui, toi, {pseudo}.
     > 
     
-    **Écran 4** — décor `bar` · `content`
+    **Écran 5** — décor `bar` · `content`
     
     > Six ingrédients. Six lieux. Six épreuves.
     > 
@@ -103,6 +114,9 @@
     > 
     > Enfin… simple pour moi. 🌝🍹
     > 
+    > 
+    > Ah, et rappelle-toi : chaque ingrédient est pris dans la glace. Résous l'épreuve, elle fond. *(ajouté 06/09/2026, rappel du §écran 3 de l'ouverture)*
+    > 
     
     → Bouton **"Commencer le jeu"**
     
@@ -121,7 +135,7 @@
     > Bon. Le suivant est plus loin. Regarde bien l'image que je te laisse, va sur place, et cherche le code.
     > 
     > 
-    > Il y est. Quelque part.
+    > Il y est... Quelque part....
     > 
     
     → Bouton **"Retour au hub"**
@@ -150,7 +164,7 @@
     > Cent cinquante grammes de zeste. Pas un de moins.
     > 
     
-    **Écran 3** — décor `agrumes` · `moqueur`
+    **Écran 3** — décor `agrumes` · `diabolique`
     
     > Et je te préviens tout de suite : si tu tranches le mauvais fruit, je vais le dire.
     > 
@@ -164,7 +178,7 @@
     
     **Écran 1** — décor `agrumes` · `moqueur`
     
-    > Bon. T'as la main. Un peu tremblante, mais t'as la main.
+    > Bon. T'as la main. Un peu tremblante, mais t'as la main, Bravo!.
     > 
     
     **Écran 2** — décor `agrumes` · `content`
@@ -207,14 +221,14 @@
     
     ## Séquence de fin
     
-    **Écran 1** — décor `bulles` · `content`
+    **Écran 1** — décor `bulles` · `rêveur`
     
-    > Et hop ! Voilà les bulles ! Écoute-moi ça… ahhh, cette musique si élégante…
+    > Et hop ! Voilà les bulles ! Écoute-moi ça… ahhh, c'est si élégante…
     > 
     
     **Écran 2** — décor `bulles` · `neutre`
     
-    > Troisième ingrédient : **les bulles**. La fête en suspension. Sans elles, on boit. Avec elles, on célèbre.
+    > Troisième ingrédient : **les bulles**. Sans elles... on boit. Avec elles, on célèbre!.
     > 
     > 
     > Bon. Prochaine étape, et là, prends une veste. Je crois qu'ils nous attendent.
@@ -235,7 +249,7 @@
     > Voilà. On y est. Le territoire des Glaçants.
     > 
     > 
-    > Ils ont pris un de leurs propres frères et ils l'ont brisé en morceaux, juste pour m'embêter. Ce sont des gens compliqués.
+    > Ils ont pris un de leurs propres frères et ils l'ont brisé en morceaux... Glacant....
     > 
     
     **Écran 2** — décor `givre` · `neutre`
@@ -245,7 +259,7 @@
     
     **Écran 3** — décor `givre` · `moqueur`
     
-    > Et fais vite, parce que moi, j'ai froid…
+    > Et fais vite, parce que moi... j'ai froid…
     > 
     
     → Bouton **"Commencer le jeu"**
@@ -254,10 +268,10 @@
     
     **Écran 1** — décor `givre` · `content`
     
-    > Ha ha ! Reconstitué ! Regarde-moi ce glaçon. Parfait. Transparent. Innocent.
+    > Ha ha ! Reconstitué ! Regarde-moi ce glaçon. presque pas eu le temps de fondre! Parfait! .... 
     > 
     > 
-    > Allez, la suite !
+    > Bon il semblait innoncent...Bref! Allez, la suite !
     > 
     
     → Bouton **"Retour au hub"**
@@ -276,14 +290,11 @@
     > 
     
     **Écran 2** — décor `sucre` · `neutre`
-    
-    > Mais je vais pas te la donner comme ça. On va jouer.
-    > 
-    > 
+
     > Des cannes à sucre sur la table. Chacun son tour, on en retire une, deux ou trois. Celui qui prend la dernière a perdu.
     > 
     
-    **Écran 3** — décor `sucre` · `moqueur`
+    **Écran 3** — décor `sucre` · `diabolique`
     
     > Je te préviens : je joue à ça depuis très, très longtemps.
     > 
@@ -295,7 +306,7 @@
     
     ## Séquence de fin
     
-    **Écran 1** — décor `sucre` · `moqueur`
+    **Écran 1** — décor `sucre` · `triste`
     
     > …
     > 
@@ -321,10 +332,10 @@
     
     **Écran 4** — décor `sucre` · `neutre`
     
-    > Le sixième ingrédient. Ma propre recette. Je l'ai oublié.
+    > Le sixième ingrédient. Ma propre recette. Je l'ai oublié....
     > 
     > 
-    > Dernière étape. Va falloir aller le chercher dans ma tête.
+    > Dernière étape. Va falloir aller le chercher dans ma tête...
     > 
     
     → Bouton **"Retour au hub"**
@@ -337,7 +348,7 @@
     
     ## Séquence d'intro
     
-    **Écran 1** — décor `secret` · `neutre`
+    **Écran 1** — décor `secret` · `triste`
     
     > Le dernier ingrédient, je l'ai sur le bout de la langue depuis ce matin. Impossible de le retrouver.
     > 
@@ -362,7 +373,7 @@
     
     ## Séquence de fin
     
-    **Écran 1** — décor `secret` · `neutre`
+    **Écran 1** — décor `secret` · `rêveur`
     
     > Vermouth. Épices. Bitters. Herbes. Shrub.
     > 
@@ -399,21 +410,16 @@
     > Le sirop. Les zestes. Les bulles. La glace. Le sucre. Et l'amertume.
     > 
     
-    **Écran 2** — décor `bar` · `content`
+    **Écran 2** — décor `bar` · `rêveur`
     
     > Regarde bien. C'est la seule partie que je peux faire tout seul.
     > 
     
     → **L'animation du cocktail se lance**
     
-    **Écran final** — par-dessus l'image du cocktail
+    **Écran final** — par-dessus l'image du cocktail *(remplacé le 06/09/2026, §J)*
     
-    > Bravo. À toi, {pseudo}.
-    > 
-    > 
-    > Merci, pour tout ! À bientôt. Peut-être.
-    > 
-    > **Pina Tresolada.**
+    > Bravo !! On va se le boire, ce cocktail. J'ai soif — et difficile de faire mieux que le mien, t'en penses quoi... {pseudo} ?
     > 
     
     ---
@@ -477,7 +483,7 @@
     
     | Séquence | Nb d'écrans |
     | --- | --- |
-    | Ouverture | 4 |
+    | Ouverture | 5 *(+1 écran, 06/09/2026 : explication du bloc de glace, §G)* |
     | Jeu 0 — intro / fin | 2 / 2 |
     | Jeu 1 — intro / fin | 3 / 2 |
     | Jeu 2 — intro / fin | 3 / 2 |
@@ -485,7 +491,7 @@
     | Jeu 4 — intro / fin | 3 / 4 |
     | Jeu 5 — intro / fin | 3 / 3 |
     | Finale | 2 + écran final |
-    | **TOTAL** | **40 écrans** |
+    | **TOTAL** | **41 écrans** |
     
-    > Ces 40 écrans ne demandent que **6 décors + 3 expressions de Mixapéro** = **9 fichiers**. Le code fait les combinaisons.
+    > Ces 41 écrans ne demandent que **6 décors + 6 expressions de Mixapéro** = **12 fichiers**. Le code fait les combinaisons.
     >

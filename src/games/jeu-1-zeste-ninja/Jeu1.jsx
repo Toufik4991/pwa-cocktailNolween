@@ -4,6 +4,7 @@ import {
   CONSIGNES,
   AGRUMES,
   LEURRES,
+  NOMS_FRUITS,
   REPLIQUES_MAUVAIS_AGRUME,
   REPLIQUES_LEURRE,
 } from "../../config/index.js";
@@ -13,7 +14,12 @@ import { vibrer } from "../../hooks/useVibration.js";
 import { asset } from "../../utils/assetUrl.js";
 import "./jeu1.css";
 
-const GRAVITE = 1900; // px/s^2
+// -25% de vitesse verticale demandé le 06/09/2026 (§D1) : en scalant la
+// gravité par 0.75^2 = 0.5625, vy0 = sqrt(2*GRAVITE*hauteurVisee) diminue
+// exactement de 25% tout en gardant le même sommet d'arc visé (70-95% de
+// l'écran) — un simple ×0.75 sur vy0 sans toucher la gravité aurait
+// raccourci les arcs au lieu de les ralentir.
+const GRAVITE = 1900 * 0.5625; // px/s^2
 const RAYON_FRUIT = 34;
 const TOUS_FRUITS = [...AGRUMES, ...LEURRES];
 
@@ -264,13 +270,20 @@ export default function Jeu1({ onVictoire, onAbandon }) {
     <div
       className="jeu1"
       ref={conteneurRef}
-      style={{ backgroundImage: `url(${asset("assets/images/bg-jeu1.webp")})` }}
     >
       <div className="jeu1__hud">
-        <p className="jeu1__consigne">
-          {consigne.fruit} — {grammesConsigne} / {consigne.grammes} g
-        </p>
-        <p className="jeu1__total">{total} / {JEU_1.OBJECTIF_TOTAL} g</p>
+        <div className="jeu1__consigne-principale">
+          <p className="jeu1__consigne-texte">
+            {NOMS_FRUITS[consigne.fruit].toUpperCase()} — {grammesConsigne} / {consigne.grammes} g
+          </p>
+          <div className="jeu1__barre" role="progressbar" aria-valuenow={grammesConsigne} aria-valuemax={consigne.grammes}>
+            <div
+              className="jeu1__barre-remplissage"
+              style={{ width: `${Math.min(100, (grammesConsigne / consigne.grammes) * 100)}%` }}
+            />
+          </div>
+        </div>
+        <p className="jeu1__total">{total} / {JEU_1.OBJECTIF_TOTAL} g au total</p>
       </div>
 
       <canvas ref={canvasRef} className="jeu1__canvas" />

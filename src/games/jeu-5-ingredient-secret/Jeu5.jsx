@@ -139,7 +139,7 @@ export default function Jeu5({ onVictoire, onAbandon }) {
   }, [selection, selectionErreur, selectionPiege, trouves]);
 
   return (
-    <div className="jeu5" style={styleFondImage("assets/images/bg-jeu5.webp")}>
+    <div className="jeu5">
       <p className="jeu5__progression">
         Mots trouvés : {Object.keys(trouves).length} / {MOTS_CIBLES.length}
       </p>

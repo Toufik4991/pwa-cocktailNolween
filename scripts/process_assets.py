@@ -256,6 +256,32 @@ def process_texture_square(name, out_name, target, dest_dir=IMAGES, out_fmt="web
     })
 
 
+def process_glacant_pair(name_a, name_b, tol=32, pad=6):
+    """Detoure 2 images censees etre identiques hors un petit detail
+    (les yeux du Glacant) et les recadre sur l'UNION de leurs boites de
+    contenu, pour que les 2 sorties aient exactement la meme taille et le
+    meme point d'ancrage (indispensable pour une animation par
+    superposition, voir §H de la correction du 05/09)."""
+    im_a = remove_background(open_src(name_a), tol=tol)
+    im_b = remove_background(open_src(name_b), tol=tol)
+    box_a = content_bbox(im_a)
+    box_b = content_bbox(im_b)
+    l = max(0, min(box_a[0], box_b[0]) - pad)
+    t = max(0, min(box_a[1], box_b[1]) - pad)
+    r = min(im_a.width, max(box_a[2], box_b[2]) + pad)
+    b = min(im_a.height, max(box_a[3], box_b[3]) + pad)
+    for name, im in [(name_a, im_a), (name_b, im_b)]:
+        cropped = im.crop((l, t, r, b))
+        dest = os.path.join(IMAGES, name)
+        save_png(cropped, dest)
+        log({
+            "op": "detour+crop-union-commun(paire-animation)",
+            "source": name, "dest": os.path.relpath(dest, ROOT),
+            "orig_format": "PNG", "final_format": "PNG",
+            "orig_size": [im.width, im.height], "final_size": [r - l, b - t],
+        })
+
+
 def process_icons():
     src_name = "ico-512.png"  # les 4 fichiers source sont identiques (verifie par hash)
     raw = open_src(src_name)
@@ -315,9 +341,19 @@ def main():
     # ---- 2. Icones PWA ----
     process_icons()
 
-    # ---- 3. Mixapero : cadrage commun obligatoire, meme echelle pour les 3 ----
+    # ---- 2bis. Logo (05/09, soir) : fond corail plein -> detoure comme
+    # un fond uni classique, meme si ce n'est pas du blanc ----
+    process_detour_square("image-logo.png", "img-logo-pinatresolada.png", (800, 300), tol=30)
+
+    # ---- 3. Mixapero : cadrage commun obligatoire, meme echelle pour les 6 ----
+    # (05/09, soir) : 3 nouvelles expressions (diabolique/triste/reveur)
+    # ajoutees au meme groupe pour garantir la meme echelle et le meme
+    # cadrage que les 3 premieres (neutre/content/moqueur).
     process_height_group(
-        ["img-mixapero-neutre.png", "img-mixapero-content.png", "img-mixapero-moqueur.png"],
+        [
+            "img-mixapero-neutre.png", "img-mixapero-content.png", "img-mixapero-moqueur.png",
+            "img-mixapero-diabolique.png", "img-mixapero-triste.png", "img-mixapero-reveur.png",
+        ],
         target_h=1400, tol=40,
     )
 
@@ -366,18 +402,13 @@ def main():
     process_detour_square("img-jeu5-charge-pleine.png", "img-jeu5-charge-pleine.png", (128, 128))
 
     # ---- 10. Glacants (pas de dimension imposee, detoure seulement) ----
-    im = open_src("img-glacant-01.png")
-    orig = im.size
-    im = remove_background(im, tol=32)
-    im = crop_to_content(im)
-    dest = os.path.join(IMAGES, "img-glacant-01.png")
-    save_png(im, dest)
-    log({
-        "op": "detour+crop (dimension non specifiee, conservee)",
-        "source": "img-glacant-01.png", "dest": os.path.relpath(dest, ROOT),
-        "orig_format": "PNG", "final_format": "PNG",
-        "orig_size": list(orig), "final_size": list(im.size),
-    })
+    # (05/09, soir) : img-glacant-02 fourni (memes yeux/bouche changes,
+    # pour l'animation en 2 temps du point H). Les 2 images DOIVENT garder
+    # exactement le meme cadrage/la meme taille de sortie, sinon
+    # l'alternance 01<->02 fait un saut au lieu d'une simple animation :
+    # on detoure les 2 independamment puis on recadre sur l'UNION de
+    # leurs deux boites englobantes de contenu (jamais un crop individuel).
+    process_glacant_pair("img-glacant-01.png", "img-glacant-02.png", tol=32)
 
     # ---- 11. Animation finale : verre vide + cocktail, MEME cadrage, alpha deja presente ----
     process_height_group(

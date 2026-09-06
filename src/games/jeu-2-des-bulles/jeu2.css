@@ -1,3 +1,10 @@
+/* Garantit que tout le contenu du jeu reste devant le Glaçant (§H,
+   06/09/2026, voir glacant-cameo.css). */
+.jeu2 > * {
+  position: relative;
+  z-index: 1;
+}
+
 .jeu2 {
   min-height: 100%;
   display: flex;
@@ -24,27 +31,42 @@
   gap: 1rem;
 }
 
+/* Bulles dessinées entièrement en CSS (§A6, 06/09/2026) : un dégradé
+   radial doux pour le volume, un reflet blanc décalé façon bulle de
+   savon, une légère transparence. Chaque bulle a sa teinte propre,
+   assortie à la palette solaire du jeu. */
 .jeu2__bulle {
+  --teinte: 210, 235, 255;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   padding: 0;
-  background: transparent;
-  box-shadow: var(--shadow-soft);
-  filter: brightness(0.85) saturate(0.8);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.35) 10%, transparent 16%),
+    radial-gradient(circle at 62% 70%, rgba(255, 255, 255, 0.5) 0%, transparent 6%),
+    radial-gradient(circle at 50% 55%, rgba(var(--teinte), 0.55) 0%, rgba(var(--teinte), 0.85) 70%, rgba(var(--teinte), 0.95) 100%);
+  box-shadow: var(--shadow-soft), inset 0 -6px 14px rgba(0, 0, 0, 0.08);
+  filter: brightness(0.9) saturate(0.85);
   transition: filter 120ms ease, transform 120ms ease;
-  overflow: hidden;
 }
 
-.jeu2__bulle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.jeu2__bulle--0 {
+  --teinte: 255, 176, 197; /* rose bulles */
+}
+.jeu2__bulle--1 {
+  --teinte: 255, 214, 140; /* or champagne */
+}
+.jeu2__bulle--2 {
+  --teinte: 158, 221, 214; /* aqua */
+}
+.jeu2__bulle--3 {
+  --teinte: 205, 179, 255; /* lilas */
 }
 
 .jeu2__bulle--allumee {
-  filter: brightness(1.3) saturate(1.2);
-  transform: scale(1.08);
+  filter: brightness(1.35) saturate(1.3);
+  transform: scale(1.1);
 }
 
 .jeu2__bulle:disabled {
@@ -84,8 +106,38 @@
   border: 2px solid var(--color-locked);
 }
 
+/* Flûte décorative, dessinée en CSS (§A6, 06/09/2026) : aucun asset
+   fourni pour img-jeu2-verre.png (placeholder quasi invisible), remplacée
+   par une forme cohérente avec les bulles ci-dessus. */
 .jeu2__verre {
-  max-height: 20vh;
-  object-fit: contain;
-  opacity: 0.9;
+  width: 74px;
+  height: 22vh;
+  max-height: 170px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.jeu2__verre-forme {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.6) 45%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.5), var(--shadow-soft);
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    58% 60%,
+    58% 85%,
+    68% 92%,
+    68% 100%,
+    32% 100%,
+    32% 92%,
+    42% 85%,
+    42% 60%
+  );
 }

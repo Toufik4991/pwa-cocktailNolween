@@ -3,8 +3,15 @@ import { useGameDispatch, useGameState } from "../../store/GameContext.jsx";
 import { useWakeLock } from "../../hooks/useWakeLock.js";
 import { useMusiqueSelonEcran } from "../../hooks/useMusique.js";
 import { asset, styleFondImage } from "../../utils/assetUrl.js";
-import { NOMS_JEUX, ETAPE_VERROUILLEE, SEQUENCES, PROPOSITION_ABANDON } from "../../config/index.js";
+import {
+  NOMS_JEUX,
+  ETAPE_VERROUILLEE,
+  SEQUENCES,
+  PROPOSITION_ABANDON,
+  CONFIRMATION_QUITTER_JEU,
+} from "../../config/index.js";
 import EtapeButton from "../../components/EtapeButton.jsx";
+import GlacantCameo from "../../components/GlacantCameo.jsx";
 import HubMenu from "../../components/HubMenu.jsx";
 import CodeEntry from "../../components/CodeEntry.jsx";
 import ConfirmDialog from "../../components/ConfirmDialog.jsx";
@@ -41,6 +48,7 @@ export default function Hub() {
   const [etapeEnCours, setEtapeEnCours] = useState(null);
   const [messageVerrouille, setMessageVerrouille] = useState(null);
   const [afficherAbandon, setAfficherAbandon] = useState(false);
+  const [confirmationQuitterJeu, setConfirmationQuitterJeu] = useState(false);
   const [finalePhase, setFinalePhase] = useState(null); // null | 'sequence' | 'animation'
   const [sequencePreview, setSequencePreview] = useState(null); // écrans rejoués depuis le mode test
   const [panneauTestOuvert, setPanneauTestOuvert] = useState(false);
@@ -140,6 +148,14 @@ export default function Hub() {
       contenu = (
         <>
           <Composant {...props} />
+          <GlacantCameo numeroJeu={numero} />
+          <button
+            className="hub__quitter-jeu"
+            onClick={() => setConfirmationQuitterJeu(true)}
+            aria-label="Quitter le mini-jeu et revenir au hub"
+          >
+            ✕ Quitter
+          </button>
           {afficherAbandon && (
             <ConfirmDialog
               texte={PROPOSITION_ABANDON.texte}
@@ -147,6 +163,19 @@ export default function Hub() {
               boutonAnnuler={PROPOSITION_ABANDON.boutonReessaie}
               onConfirmer={() => gagnerEtape(numero, true)}
               onAnnuler={() => setAfficherAbandon(false)}
+            />
+          )}
+          {confirmationQuitterJeu && (
+            <ConfirmDialog
+              texte={CONFIRMATION_QUITTER_JEU}
+              boutonConfirmer="Quitter"
+              boutonAnnuler="Continuer à jouer"
+              onConfirmer={() => {
+                setConfirmationQuitterJeu(false);
+                setAfficherAbandon(false);
+                setEtapeEnCours(null);
+              }}
+              onAnnuler={() => setConfirmationQuitterJeu(false)}
             />
           )}
         </>

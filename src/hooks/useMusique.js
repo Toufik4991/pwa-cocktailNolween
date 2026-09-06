@@ -125,7 +125,7 @@ export function useMusiqueSelonEcran(numeroJeuActif, enAnimationFinale) {
 
     if (numeroJeuActif != null) {
       const duree = etaitJeu2.current ? AUDIO.FONDU_ENTREE_JEU2_MS : AUDIO.FONDU_VOLUME_MS;
-      activerPisteSeule("jeu", AUDIO.VOLUME_MUSIQUE_NORMAL, duree);
+      activerPisteSeule("jeu", AUDIO.VOLUME_MUSIQUE_JEU, duree);
       derniereCible.current = "jeu";
       etaitJeu2.current = false;
       return;

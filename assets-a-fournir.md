@@ -58,9 +58,12 @@
     | `img-mixapero-neutre.png` | Il parle, il explique | Par défaut |
     | `img-mixapero-content.png` | Ravi, fier, ému | Victoires, moments chaleureux |
     | `img-mixapero-moqueur.png` | Sourire en coin, taquin | Piques et provocations |
+    | `img-mixapero-diabolique.png` | Sournois, savoure par avance | Annonce qu'il va tricher/se moquer *(ajouté 06/09/2026)* |
+    | `img-mixapero-triste.png` | Abattu, déçu | Coup dur, oubli, défaite *(ajouté 06/09/2026)* |
+    | `img-mixapero-reveur.png` | Ailleurs, se souvient, écoute | Moments suspendus *(ajouté 06/09/2026)* |
     
     > PNG transparent, hauteur ~1400 px.
-    **⚠️ Point critique : garde exactement le même cadrage, la même taille et la même position du corps sur les trois images.** Seuls le visage et éventuellement les bras changent. C'est ce décalage minimal qui crée l'illusion d'animation ; si la position change, ça fait un saut désagréable.
+    **⚠️ Point critique : garde exactement le même cadrage, la même taille et la même position du corps sur les six images.** Seuls le visage et éventuellement les bras changent. C'est ce décalage minimal qui crée l'illusion d'animation ; si la position change, ça fait un saut désagréable. Les 3 nouvelles expressions doivent respecter le même cadrage que les 3 premières — traitées ensemble dans le même lot au 06/09/2026 pour garantir une échelle identique.
     > 
     
     ---
@@ -133,10 +136,11 @@
     | `bg-pseudo.webp` | Saisie du pseudo |
     | `bg-hub.webp` | Hub |
     | `bg-reponses.webp` | Liste des réponses |
-    | `bg-jeu0.webp` → `bg-jeu5.webp` | Fond pendant chaque mini-jeu (6 fichiers) |
     
     > Vertical 1080 × 1920 px.
     > 
+    
+    ⚠️ **`bg-jeu0.webp` → `bg-jeu5.webp` ne sont plus utilisés** (mise à jour du 06/09/2026) : l'écran de chaque mini-jeu reprend désormais l'aplat de couleur de son décor (même couleur que ses séquences texte d'intro/fin), pas une photo dédiée — voir cahier des charges §2 bis.
     
     ---
     
@@ -144,11 +148,10 @@
     
     | Fichier | Description |
     | --- | --- |
-    | `img-glacant-01.png` | Ennemi glaçant n°1 |
-    | `img-glacant-02.png` | Ennemi glaçant n°2 |
+    | `img-glacant-01.png` | Ennemi glaçant, yeux/bouche "neutres" |
+    | `img-glacant-02.png` | Même personnage, yeux/bouche différents |
     
-    > Facultatif — pour décorer les décors `givre` et `bulles` si tu veux.
-    > 
+    Les deux sont **fournis et utilisés** depuis le 06/09/2026 pour l'apparition furtive du Glaçant pendant les jeux 0/1/2/3 (voir cahier des charges §3 ter) : superposées à taille et position identiques, elles créent l'illusion que ses yeux bougent. Ce n'est plus facultatif.
     
     ---
     
@@ -282,13 +285,7 @@
     
     ### Jeu 2 — "Des bulles ?"
     
-    | Fichier | Description |
-    | --- | --- |
-    | `img-jeu2-bulle-01.png` → `img-jeu2-bulle-04.png` | Les 4 bulles au repos |
-    | `img-jeu2-verre.png` | Flûte décorative |
-    
-    > L'état illuminé est géré en CSS.
-    > 
+    ⚠️ **Plus aucun asset à fournir pour ce jeu** (décidé le 06/09/2026) : les 4 bulles et la flûte décorative sont dessinées entièrement en CSS (dégradé radial, reflet, teinte par bulle — voir `jeu-2-des-bulles.md`). `img-jeu2-bulle-01.png` → `-04.png` et `img-jeu2-verre.png` sont retirés de cette liste.
     
     ### Jeu 3 — "Fait frisquet ici nn ?"
     
@@ -374,7 +371,7 @@
     
     | Fichier | Description |
     | --- | --- |
-    | `img-logo-pinatresolada.png` | Logo / titre, PNG transparent |
+    | `img-logo-pinatresolada.png` | Logo / titre, PNG transparent — **fourni le 06/09/2026** |
     | `img-splash.webp` | Écran de démarrage, 1080 × 1920 |
     
     ---

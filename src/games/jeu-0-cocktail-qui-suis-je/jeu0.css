@@ -1,3 +1,11 @@
+/* Garantit que tout le contenu du jeu reste devant le Glaçant (§H,
+   06/09/2026, voir glacant-cameo.css) : sans ça, un élément non positionné
+   passe TOUJOURS derrière un élément positionné, même en z-index 0. */
+.jeu0 > * {
+  position: relative;
+  z-index: 1;
+}
+
 .jeu0 {
   min-height: 100%;
   display: flex;

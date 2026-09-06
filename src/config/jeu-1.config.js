@@ -5,9 +5,9 @@
 export const JEU_1 = {
   POIDS_PAR_FRUIT: 5, // grammes, identique pour les 3 agrumes
   OBJECTIF_TOTAL: 150, // grammes
-  INTERVALLE_APPARITION: 0.8, // secondes, au départ
-  ACCELERATION: 0.02, // réduction de l'intervalle par fruit apparu
-  INTERVALLE_MINIMUM: 0.4, // secondes
+  INTERVALLE_APPARITION: 1.1, // secondes, au départ (06/09/2026 : les fruits allaient trop vite)
+  ACCELERATION: 0.012, // réduction de l'intervalle par fruit apparu
+  INTERVALLE_MINIMUM: 0.65, // secondes
   RATIO_BON_FRUIT: 0.55,
   RATIO_MAUVAIS_AGRUME: 0.25,
   RATIO_LEURRE: 0.2,
@@ -21,6 +21,16 @@ export const AGRUMES = ["citronvert", "citronjaune", "orange"];
 
 // Leurres : jamais demandés, ne rapportent jamais rien.
 export const LEURRES = ["kiwi", "banane"];
+
+// Noms affichables (le bandeau de consigne affichait la clé brute
+// "citronjaune" au lieu d'un nom lisible — §D2/A4, 06/09/2026).
+export const NOMS_FRUITS = {
+  citronvert: "Citron vert",
+  citronjaune: "Citron jaune",
+  orange: "Orange",
+  kiwi: "Kiwi",
+  banane: "Banane",
+};
 
 // Les 6 consignes jouées dans l'ordre, pour un total de 150g.
 // "annonce" est la réplique de Mixapéro au démarrage de la consigne :

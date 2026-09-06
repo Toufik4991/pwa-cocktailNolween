@@ -1,3 +1,12 @@
+/* Garantit que tout le contenu du jeu reste devant le Glaçant (§H,
+   06/09/2026, voir glacant-cameo.css). Les enfants directs ci-dessous
+   redéclarent déjà leur propre position/z-index plus loin dans ce
+   fichier ; cette règle n'est qu'un filet de sécurité. */
+.jeu1 > * {
+  position: relative;
+  z-index: 1;
+}
+
 .jeu1 {
   position: relative;
   min-height: 100%;
@@ -20,20 +29,54 @@
   right: 0;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
   padding: 0.8rem 1rem;
   pointer-events: none;
 }
 
-.jeu1__consigne,
-.jeu1__total {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: var(--radius-md);
-  padding: 0.4rem 0.8rem;
+/* Bandeau de consigne agrandi (§D2, 06/09/2026) : c'est l'info la plus
+   importante de l'écran, elle doit se lire sans quitter les fruits des
+   yeux — gros texte + barre de progression sous le fruit demandé. */
+.jeu1__consigne-principale {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius-lg);
+  padding: 0.7rem 1rem 0.8rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.jeu1__consigne-texte {
+  margin: 0 0 0.5rem;
   font-family: var(--font-title);
-  font-size: 0.95rem;
-  text-transform: capitalize;
+  font-weight: var(--font-weight-titre);
+  font-size: 1.6rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.jeu1__barre {
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-locked);
+  overflow: hidden;
+}
+
+.jeu1__barre-remplissage {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: inherit;
+  transition: width 200ms ease;
+}
+
+.jeu1__total {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-md);
+  padding: 0.3rem 0.8rem;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
 }
 
 .jeu1__canvas {

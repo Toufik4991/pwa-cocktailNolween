@@ -1,3 +1,10 @@
+/* Garantit que tout le contenu du jeu reste devant le Glaçant (§H,
+   06/09/2026, voir glacant-cameo.css). */
+.jeu3 > * {
+  position: relative;
+  z-index: 1;
+}
+
 .jeu3 {
   min-height: 100%;
   display: flex;

@@ -82,8 +82,8 @@ def main():
     # Finale
     placeholder("img-final-halo.png", 1024, 1024, transparent=True, idx=i); i += 1
 
-    # Identite
-    placeholder("img-logo-pinatresolada.png", 800, 300, transparent=True, idx=i); i += 1
+    # Identite : logo reel fourni et traite le 06/09 (voir process_assets.py),
+    # ne plus regenerer de placeholder ici.
 
     # Photos de lieux (5, la variante -b est facultative donc non generee)
     for n in range(1, 6):

@@ -17,6 +17,7 @@ export {
   JEU_1,
   AGRUMES,
   LEURRES,
+  NOMS_FRUITS,
   CONSIGNES,
   REPLIQUES_MAUVAIS_AGRUME,
   REPLIQUES_LEURRE,
@@ -47,11 +48,21 @@ export {
 // enchaîné, jamais de coupure nette ni de redémarrage — sauf mus-final qui
 // repart du début à chaque lancement de l'animation (effet dramatique).
 export const AUDIO = {
-  VOLUME_MUSIQUE_NORMAL: 0.6, // niveau de la piste active, quelle qu'elle soit
+  VOLUME_MUSIQUE_NORMAL: 0.6, // accueil, pseudo, hub, séquences texte, Réponses
+  VOLUME_MUSIQUE_JEU: 0.35, // pendant les mini-jeux (hors jeu 2), plus discret que le hub
   VOLUME_MUSIQUE_JEU2: 0, // silence total pendant le jeu 2 (mémorisation de sons)
-  FONDU_VOLUME_MS: 600, // fondu par défaut entre deux pistes/niveaux
+  FONDU_VOLUME_MS: 800, // fondu croisé par défaut entre deux pistes (06/09/2026)
   FONDU_SORTIE_JEU2_MS: 400, // fondu à l'entrée du jeu 2 (silence rapide)
   FONDU_ENTREE_JEU2_MS: 800, // fondu à la sortie du jeu 2 (retour plus doux)
+};
+
+// Apparitions furtives du Glaçant pendant certains mini-jeux (§H, 06/09/2026).
+export const GLACANT = {
+  ACTIF_SUR: [0, 1, 2, 3], // jamais jeu 4 (canne) ni jeu 5 (secret)
+  DELAI_MIN: 8, // secondes après le début du jeu
+  DELAI_MAX: 25,
+  APPARITIONS_MAX: 1, // par partie
+  DUREE_YEUX: 1000, // ms, superposition de img-glacant-02
 };
 
 export const ORDRE_JEUX = [0, 1, 2, 3, 4, 5];

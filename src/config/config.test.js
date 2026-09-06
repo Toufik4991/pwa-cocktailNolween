@@ -15,7 +15,7 @@ describe("config centrale — cohérence structurelle", () => {
       expect(ecrans.length, `séquence ${nom} vide`).toBeGreaterThan(0);
       for (const ecran of ecrans) {
         expect(config.DECORS[ecran.decor], `décor inconnu dans ${nom}`).toBeDefined();
-        expect(["neutre", "content", "moqueur"]).toContain(ecran.expression);
+        expect(["neutre", "content", "moqueur", "diabolique", "triste", "reveur"]).toContain(ecran.expression);
         expect(ecran.texte.length).toBeGreaterThan(0);
       }
     }

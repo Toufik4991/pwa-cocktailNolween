@@ -79,8 +79,8 @@
     
     ## Apparition des fruits
     
-    - Les fruits montent depuis le bas, décrivent un arc et retombent (gravité simple)
-    - **Un nouveau fruit toutes les 0,8 s** au départ, accéléré progressivement
+    - Les fruits montent depuis le bas, décrivent un arc et retombent (gravité simple) — vitesse verticale réduite de 25 % le 06/09/2026 (les fruits allaient trop vite), même hauteur d'arc visée
+    - **Un nouveau fruit toutes les 1,1 s** au départ, accéléré progressivement *(était 0,8 s — ralenti le 06/09/2026)*
     - Répartition à chaque apparition :
         - **55 %** → le fruit demandé par la consigne active
         - **25 %** → un autre agrume (mauvais agrume)
@@ -128,8 +128,8 @@
     
     ## Interface
     
-    - **En haut :** la consigne active + barre de progression `X / Y g`
-    - **En haut à droite :** le total cumulé `X / 150 g`
+    - **En haut, en gros** *(agrandi le 06/09/2026 — c'est l'info la plus importante de l'écran, elle doit se lire sans quitter les fruits des yeux)* : la consigne active en toutes lettres (ex. « CITRON JAUNE — 24 / 40 g ») + barre de progression
+    - **Juste en dessous, plus petit :** le total cumulé `X / 150 g au total`
     - **Au centre :** l'aire de jeu
     - **En bas :** rien — laisser l'espace libre pour le doigt
     
@@ -153,9 +153,9 @@
     ```
     POIDS_PAR_FRUIT        = 5      // grammes
     OBJECTIF_TOTAL         = 150    // grammes
-    INTERVALLE_APPARITION  = 0.8    // secondes
-    ACCELERATION           = 0.02   // réduction de l'intervalle par fruit apparu
-    INTERVALLE_MINIMUM     = 0.4    // secondes
+    INTERVALLE_APPARITION  = 1.1    // secondes (était 0.8, ralenti le 06/09/2026)
+    ACCELERATION           = 0.012  // réduction de l'intervalle par fruit apparu (était 0.02)
+    INTERVALLE_MINIMUM     = 0.65   // secondes (était 0.4)
     RATIO_BON_FRUIT        = 0.55
     RATIO_MAUVAIS_AGRUME   = 0.25
     RATIO_LEURRE           = 0.20

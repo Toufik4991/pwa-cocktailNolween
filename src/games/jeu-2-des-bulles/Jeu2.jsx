@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { JEU_2, TOURS, REPLIQUES_ERREUR, MESSAGE_SON_COUPE } from "../../config/index.js";
 import { precharger, jouerSon } from "../../hooks/useAudio.js";
-import { asset, styleFondImage } from "../../utils/assetUrl.js";
 import "./jeu2.css";
 
 const SONS = ["sfx-bulle-01.mp3", "sfx-bulle-02.mp3", "sfx-bulle-03.mp3", "sfx-bulle-04.mp3"];
-const IMAGES_BULLES = [1, 2, 3, 4].map((n) => asset(`assets/images/img-jeu2-bulle-0${n}.png`));
+// Les 4 bulles sont dessinées entièrement en CSS (§A6, 06/09/2026) : aucun
+// asset image n'existe pour elles, seule la teinte change d'une bulle à
+// l'autre (voir jeu2.css, .jeu2__bulle--0..3).
 
 function attendre(ms, enregistrerAnnulation) {
   return new Promise((resolve) => {
@@ -125,20 +126,18 @@ export default function Jeu2({ sonActif = true, onActiverSon, onVictoire, onEche
   const controlesActifs = phase === "repetition";
 
   return (
-    <div className="jeu2" style={styleFondImage("assets/images/bg-jeu2.webp")}>
+    <div className="jeu2">
       <p className="jeu2__tour">Tour {tourIndex + 1} / {TOURS.length}</p>
 
       <div className={`jeu2__bulles ${phase === "erreur" ? "jeu2__bulles--erreur" : ""}`}>
         {[0, 1, 2, 3].map((i) => (
           <button
             key={i}
-            className={`jeu2__bulle ${bulleAllumee === i ? "jeu2__bulle--allumee" : ""}`}
+            className={`jeu2__bulle jeu2__bulle--${i} ${bulleAllumee === i ? "jeu2__bulle--allumee" : ""}`}
             onClick={() => taperBulle(i)}
             disabled={!controlesActifs}
             aria-label={`Bulle ${i + 1}`}
-          >
-            <img src={IMAGES_BULLES[i]} alt="" />
-          </button>
+          />
         ))}
       </div>
 
@@ -146,7 +145,9 @@ export default function Jeu2({ sonActif = true, onActiverSon, onVictoire, onEche
       {phase === "ecoute" && <p className="jeu2__indication">Écoute…</p>}
       {phase === "repetition" && <p className="jeu2__indication">À toi</p>}
 
-      <img className="jeu2__verre" src={asset("assets/images/img-jeu2-verre.png")} alt="" />
+      <div className="jeu2__verre" aria-hidden="true">
+        <div className="jeu2__verre-forme" />
+      </div>
     </div>
   );
 }

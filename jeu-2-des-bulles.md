@@ -23,18 +23,18 @@
     
     ## Disposition
     
-    Les 4 bulles, en losange ou en carré, bien espacées (cibles tactiles d'au moins 80 × 80 px) :
+    Les 4 bulles, en losange ou en carré, bien espacées (cibles tactiles d'au moins 80 × 80 px). **Dessinées entièrement en CSS** *(décidé le 06/09/2026 — aucun asset image n'a jamais été fourni pour elles, placeholders quasi invisibles retirés)* : cercle en dégradé radial (volume), reflet blanc décalé façon bulle de savon, légère transparence, chacune avec sa propre teinte :
     
-    | Bulle | Asset | Son |
+    | Bulle | Teinte CSS | Son |
     | --- | --- | --- |
-    | 1 | `img-jeu2-bulle-01.png` | `sfx-bulle-01.mp3` (grave) |
-    | 2 | `img-jeu2-bulle-02.png` | `sfx-bulle-02.mp3` |
-    | 3 | `img-jeu2-bulle-03.png` | `sfx-bulle-03.mp3` |
-    | 4 | `img-jeu2-bulle-04.png` | `sfx-bulle-04.mp3` (aiguë) |
+    | 1 | rose | `sfx-bulle-01.mp3` (grave) |
+    | 2 | or champagne | `sfx-bulle-02.mp3` |
+    | 3 | aqua | `sfx-bulle-03.mp3` |
+    | 4 | lilas | `sfx-bulle-04.mp3` (aiguë) |
     
-    L'état "allumé" est généré en **CSS** : luminosité augmentée + agrandissement (scale 1.1). Aucun asset supplémentaire.
+    L'état "allumé" : luminosité augmentée + agrandissement (`scale(1.1)`).
     
-    Une flûte décorative (`img-jeu2-verre.png`) peut habiller le bas ou le côté.
+    Une flûte décorative habille le bas de l'écran, également dessinée en CSS (même raison : aucun asset fourni).
     
     ---
     
@@ -133,9 +133,8 @@
     
     | Fichier | Usage |
     | --- | --- |
-    | `bg-jeu2.webp` | Fond |
-    | `img-jeu2-bulle-01.png` → `-04.png` | Les 4 bulles |
-    | `img-jeu2-verre.png` | Décor |
+    | *(aucun — décor en aplat de couleur `--decor-bulles`)* | Fond, depuis le 06/09/2026 : même couleur que les séquences texte de ce jeu, plus de `bg-jeu2.webp` (voir cahier des charges §2 bis) |
+    | *(aucun — CSS)* | Les 4 bulles et la flûte décorative, voir §Disposition |
     | `sfx-bulle-01.mp3` → `-04.mp3` | Sons des bulles |
     | `sfx-echec.mp3` | Erreur |
     | `sfx-victoire.mp3` | Victoire |

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GameProvider, useGameDispatch, useGameState } from "./store/GameContext.jsx";
 import { SEQUENCES } from "./config/index.js";
-import { definirSonActif } from "./hooks/useAudio.js";
+import { definirSonActif, precharger, jouerSon } from "./hooks/useAudio.js";
 import { definirVibrationActive } from "./hooks/useVibration.js";
 import { demarrerMusiques, definirSonActifMusique } from "./hooks/useMusique.js";
 import OrientationGuard from "./components/OrientationGuard.jsx";
@@ -10,6 +10,26 @@ import Splash from "./screens/splash/Splash.jsx";
 import Pseudo from "./screens/pseudo/Pseudo.jsx";
 import Hub from "./screens/hub/Hub.jsx";
 import SequenceEngine from "./engine/SequenceEngine.jsx";
+
+// Clic générique sur les boutons de navigation (hub, menus, séquences,
+// codes...), PAS dans les mini-jeux eux-mêmes : ceux-ci ont déjà leur
+// propre son dédié par action (tranche, bulle, pièce...) et un clic
+// générique par-dessus ferait doublon. sfx-clic.mp3 était chargé mais
+// jamais joué nulle part avant cette correction (05/09, soir).
+function SonClicGlobal() {
+  useEffect(() => {
+    precharger(["sfx-clic.mp3", "sfx-texte.mp3"]);
+    const onClick = (e) => {
+      const bouton = e.target.closest("button");
+      if (!bouton || bouton.disabled) return;
+      if (bouton.closest(".jeu0, .jeu1, .jeu2, .jeu3, .jeu4, .jeu5")) return;
+      jouerSon("sfx-clic.mp3", { volume: 0.5 });
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+  return null;
+}
 
 function SyncReglagesAudio() {
   const { reglages } = useGameState();
@@ -72,6 +92,7 @@ export default function App() {
   return (
     <GameProvider>
       <SyncReglagesAudio />
+      <SonClicGlobal />
       <ModeTestBandeau />
       <Navigation />
       <OrientationGuard />

@@ -15,8 +15,15 @@ export const SEQUENCES = {
     },
     {
       decor: "bar",
-      expression: "neutre",
+      expression: "triste",
       texte: "Ce matin je me réveille, et ma recette : envolée. Six ingrédients. Volés.\n\nCe sont **Les Glaçants**. Une bande de glaçons aigris qui trouvent que la vie est trop sucrée.",
+    },
+    {
+      // Explique enfin pourquoi il faut réussir une épreuve pour récupérer
+      // chaque ingrédient — trou narratif comblé le 06/09/2026 (§G).
+      decor: "bar",
+      expression: "moqueur",
+      texte: "Mais ils ne se sont pas contentés de les prendre. Chaque ingrédient est scellé dans un bloc de glace, et la glace ne fond que devant quelqu'un qui résout leur petite énigme.\n\nDes farceurs, je te dis.",
     },
     {
       decor: "bar",
@@ -39,7 +46,7 @@ export const SEQUENCES = {
     {
       decor: "bar",
       expression: "neutre",
-      texte: "Je te donne des indices. Toi tu me donnes le nom. Simple.\n\nEnfin… simple pour moi. 🌝🍹",
+      texte: "Je te donne des indices. Toi tu me donnes le nom. Simple.\n\nEnfin… simple pour moi. 🌝🍹\n\nAh, et rappelle-toi : chaque ingrédient est pris dans la glace. Résous l'épreuve, elle fond.",
     },
   ],
   "jeu-0-fin": [
@@ -68,7 +75,7 @@ export const SEQUENCES = {
     },
     {
       decor: "agrumes",
-      expression: "moqueur",
+      expression: "diabolique",
       texte: "Et je te préviens tout de suite : si tu tranches le mauvais fruit, je vais le dire.\n\nFort. Plusieurs fois.",
     },
   ],
@@ -105,7 +112,7 @@ export const SEQUENCES = {
   "jeu-2-fin": [
     {
       decor: "bulles",
-      expression: "content",
+      expression: "reveur",
       texte: "Et hop ! Voilà les bulles ! Écoute-moi ça… ahhh, cette musique si élégante…",
     },
     {
@@ -153,14 +160,14 @@ export const SEQUENCES = {
     },
     {
       decor: "sucre",
-      expression: "moqueur",
+      expression: "diabolique",
       texte: "Je te préviens : je joue à ça depuis très, très longtemps.\n\nEt je triche uniquement quand je perds.",
     },
   ],
   "jeu-4-fin": [
     {
       decor: "sucre",
-      expression: "moqueur",
+      expression: "triste",
       texte: "…\n\nBon. Bien joué.",
     },
     {
@@ -183,7 +190,7 @@ export const SEQUENCES = {
   "jeu-5-intro": [
     {
       decor: "secret",
-      expression: "neutre",
+      expression: "triste",
       texte: "Le dernier ingrédient, je l'ai sur le bout de la langue depuis ce matin. Impossible de le retrouver.",
     },
     {
@@ -200,7 +207,7 @@ export const SEQUENCES = {
   "jeu-5-fin": [
     {
       decor: "secret",
-      expression: "neutre",
+      expression: "reveur",
       texte: "Vermouth. Épices. Bitters. Herbes. Shrub.\n\n…",
     },
     {
@@ -223,7 +230,7 @@ export const SEQUENCES = {
     },
     {
       decor: "bar",
-      expression: "content",
+      expression: "reveur",
       texte: "Regarde bien. C'est la seule partie que je peux faire tout seul.",
     },
   ],
@@ -233,7 +240,7 @@ export const SEQUENCES = {
     {
       decor: "bar",
       expression: "content",
-      texte: "Bravo. À toi, {pseudo}.\n\nMerci, pour tout ! À bientôt. Peut-être.\n\n**Pina Tresolada.**",
+      texte: "Bravo !! On va se le boire, ce cocktail. J'ai soif — et difficile de faire mieux que le mien, t'en penses quoi... {pseudo} ?",
     },
   ],
 };

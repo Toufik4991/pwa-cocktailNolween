@@ -35,3 +35,7 @@ export const PROPOSITION_ABANDON = {
 
 export const CONFIRMATION_RESET =
   "Tu veux tout effacer ? Six ingrédients, à la poubelle ? Confirme, si tu oses.";
+
+// Bouton "quitter" discret en haut de chaque mini-jeu (§A7, 06/09/2026).
+export const CONFIRMATION_QUITTER_JEU =
+  "Quitter maintenant ? Ta progression dans cette épreuve sera perdue — mais un code déjà validé reste acquis.";

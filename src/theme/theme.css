@@ -29,7 +29,14 @@
 
   --font-title: "Titre", sans-serif;
   --font-text: "Texte", sans-serif;
-  --font-size-base: 16px;
+  /* +15% (06/09/2026) : le texte était trop petit sur l'ensemble de l'app. */
+  --font-size-base: 18.4px;
+  /* Graisses : les 2 polices ne sont chargées qu'en un seul poids fixe
+     (Titre=700, Texte=500, voir src/theme/fonts.js), donc demander plus
+     lourd ici s'appuie sur la synthèse "faux gras" du navigateur — c'est
+     voulu et suffisant pour l'effet "rond et épais" demandé. */
+  --font-weight-titre: 800;
+  --font-weight-texte: 600;
 
   --fondu-decor: 200ms;
   --fondu-expression: 100ms;
@@ -46,11 +53,20 @@ body,
   margin: 0;
 }
 
+html {
+  /* Beaucoup de composants dimensionnent leur texte en rem, qui se
+     calcule TOUJOURS sur <html>, jamais sur <body> : le +15% (§C2) doit
+     donc être posé ici pour se propager partout, pas seulement aux
+     éléments sans font-size explicite. */
+  font-size: var(--font-size-base);
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-text);
-  font-size: var(--font-size-base);
+  font-size: 1rem;
+  font-weight: var(--font-weight-texte);
   line-height: 1.4;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
@@ -60,11 +76,13 @@ h1,
 h2,
 h3 {
   font-family: var(--font-title);
+  font-weight: var(--font-weight-titre);
   margin: 0;
 }
 
 button {
   font-family: var(--font-text);
+  font-weight: var(--font-weight-texte);
   font-size: 1rem;
   cursor: pointer;
   border: none;
