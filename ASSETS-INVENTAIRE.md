@@ -1,6 +1,6 @@
 # Inventaire des assets — "Pina Tresolada"
 
-*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 06/09/2026 : logo réel intégré (`image-logo.png` → `img-logo-pinatresolada.png`), `img-glacant-02` traité (paire d'animation, voir cahier des charges §3 ter), 3 nouvelles expressions Mixapéro (`diabolique`/`triste`/`rêveur`) traitées dans le même lot que les 3 premières, `img-jeu0-silhouette` et `img-jeu3-puzzle` retraités (sources mises à jour dans `ici/`). Les 4 bulles et la flûte du jeu 2 ne sont plus en attente d'asset : décidé qu'elles restent en CSS pur (voir `jeu-2-des-bulles.md`). `bg-jeu0.webp` → `bg-jeu5.webp` ne sont plus utilisés (mini-jeux passés en aplat de couleur, cahier des charges §2 bis).*
+*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 06/09/2026 (soir, §G1/§C2) : les 10 photos de lieux (`img-lieu-01..05-a/b.webp`) sont fournies et traitées (pas de recadrage, largeur max 1080 px, qualité webp élevée — un code y est écrit et doit rester lisible) ; `img-jeu0-silhouette.png` est retiré des assets attendus (détourage raté, écran redessiné sans elle, voir `jeu-0-cocktail-qui-suis-je.md`). Mise à jour précédente (06/09/2026, matin) : logo réel intégré (`image-logo.png` → `img-logo-pinatresolada.png`), `img-glacant-02` traité (paire d'animation, voir cahier des charges §3 ter), 3 nouvelles expressions Mixapéro (`diabolique`/`triste`/`rêveur`) traitées dans le même lot que les 3 premières, `img-jeu3-puzzle` retraité (source mise à jour dans `ici/`). Les 4 bulles et la flûte du jeu 2 ne sont plus en attente d'asset : décidé qu'elles restent en CSS pur (voir `jeu-2-des-bulles.md`). `bg-jeu0.webp` → `bg-jeu5.webp` ne sont plus utilisés (mini-jeux passés en aplat de couleur, cahier des charges §2 bis).*
 
 Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont été **copiés puis traités** vers `public/assets/`. Scripts dans `scripts/` : `process_assets.py` (images), `gen_audio_placeholders.sh` / `gen_image_placeholders.py` (placeholders restants).
 
@@ -88,12 +88,13 @@ Vérifié après traitement : les six boîtes englobantes du personnage ne varie
 | --- | --- | --- |
 | img-ingredient-canne/glacon/prosecco/secret/sirop/zeste.png (6) | 1080×1350 → 512×512 | détourage blanc + recadrage + mise en boîte centrée |
 
-### Jeu 0 — silhouette + cocktails révélés → PNG transparent, hauteur 1024
+### Jeu 0 — cocktails révélés → PNG transparent, hauteur 1024
+
+*(`img-jeu0-silhouette.png` retiré des assets attendus le 06/09/2026, §C2 — l'écran ne l'affiche plus du tout.)*
 
 | Origine | Dimensions finales | Opération |
 | --- | --- | --- |
-| img-jeu0-silhouette.png | 700×660 | détourage + recadrage au contenu + redimension par hauteur |
-| img-jeu0-daiquiri.png | 484×802 | idem |
+| img-jeu0-daiquiri.png | 484×802 | détourage + recadrage au contenu + redimension par hauteur |
 | img-jeu0-margarita.png | 628×894 | idem |
 | img-jeu0-mojito.png | 572×1024 | idem |
 | img-jeu0-pinacolada.png | 649×1024 | idem |
@@ -144,14 +145,27 @@ Tous les sons et l'unique musique fournis dans `ici/` le 05/09 (soir) ont rempla
 
 ## ❌ Assets manquants — placeholder image (6 fichiers)
 
-Aucun fichier audio n'a plus besoin de placeholder (tout est réel désormais, voir ci-dessus). Depuis le 06/09/2026 : le logo est fourni (retiré de cette liste), et les 4 bulles + la flûte du jeu 2 ne sont plus en attente d'asset (choix définitif : CSS pur, voir la section "sans placeholder" ci-dessous).
+Aucun fichier audio n'a plus besoin de placeholder (tout est réel désormais, voir ci-dessus). Depuis le 06/09/2026 : le logo est fourni (retiré de cette liste), les 4 bulles + la flûte du jeu 2 ne sont plus en attente d'asset (choix définitif : CSS pur, voir la section "sans placeholder" ci-dessous), et les 10 photos de lieux (`-a` + `-b`, voir ci-dessous) sont désormais fournies et traitées — retirées de cette liste.
 
 | Fichier | Dimensions | Usage prévu |
 | --- | --- | --- |
 | img-jeu5-charge-vide.png | 128×128 | charge d'indice consommée (jeu 5) |
-| img-lieu-01-a.webp → 05-a.webp | 1080×1350 ×5 | photos de lieux IRL (attendu — lieux pas encore choisis) |
 
-⚠️ Il ne reste plus que la charge vide du jeu 5 en dehors des 5 photos de lieux (attendu, lieux pas encore choisis).
+⚠️ Il ne reste plus que la charge vide du jeu 5 en attente de placeholder.
+
+### Photos de lieux IRL (10 fichiers, fournies le 06/09/2026, §G1)
+
+Traitement dédié (`process_photo_no_crop` dans `process_assets.py`) : **jamais de recadrage** (un code est écrit sur les photos `-a` et doit rester entièrement visible), redimensionnement en largeur seulement au-delà de 1080 px (jamais d'agrandissement), qualité webp 90 pour rester lisible.
+
+| Fichier | Usage | Rattachement |
+| --- | --- | --- |
+| `img-lieu-01-a.webp` / `img-lieu-01-b.webp` | Photo du lieu / rappel carte | Révélé après l'étape 0 |
+| `img-lieu-02-a.webp` / `img-lieu-02-b.webp` | idem | Révélé après l'étape 1 |
+| `img-lieu-03-a.webp` / `img-lieu-03-b.webp` | idem | Révélé après l'étape 2 |
+| `img-lieu-04-a.webp` / `img-lieu-04-b.webp` | idem | Révélé après l'étape 3 |
+| `img-lieu-05-a.webp` / `img-lieu-05-b.webp` | idem | Révélé après l'étape 4 |
+
+⚠️ `ici/img-lieu-02-a (2).png` est un doublon écarté (deux photos différentes sous des noms voisins) : seule `img-lieu-02-a.png` (sans suffixe) a été traitée, sur confirmation explicite. Les fichiers `scrnli_*.png` et autres captures d'écran isolées trouvées dans `ici/` ne sont pas des assets de jeu et n'ont pas été traités.
 
 ### Polices (2 fichiers, sourcées réellement — pas de placeholder)
 

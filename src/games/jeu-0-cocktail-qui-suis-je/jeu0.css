@@ -21,22 +21,13 @@
 
 .jeu0__compteur {
   font-family: var(--font-title);
+  font-size: 1.2rem;
 }
 
-.jeu0__silhouette-zone {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.jeu0__silhouette {
-  height: 40vh;
-  max-height: 320px;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 16px rgba(58, 36, 21, 0.2));
-  transition: opacity 300ms ease;
+.jeu0__sous-compteur {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-top: -0.6rem;
 }
 
 .jeu0__coup-oeil {
@@ -44,28 +35,34 @@
   padding: 0.5em 1em;
 }
 
+/* Zone des indices et du champ de réponse agrandie (§C2, 06/09/2026) :
+   la silhouette (détourage raté) a été retirée sans remplacement, cet
+   espace libéré revient aux indices et au champ de saisie. */
 .jeu0__indices {
   width: 100%;
-  max-width: 420px;
-  max-height: 30vh;
+  max-width: 460px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.6rem;
+  padding: 0.2rem 0;
 }
 
 .jeu0__indice--recent {
   background: var(--color-surface);
   border-radius: var(--radius-md);
-  padding: 0.7rem 1rem;
+  padding: 0.9rem 1.1rem;
   box-shadow: var(--shadow-soft);
   font-weight: 600;
+  font-size: 1.05rem;
 }
 
 .jeu0__indice--ancien {
   opacity: 0.55;
   font-size: 0.9rem;
-  padding: 0 1rem;
+  padding: 0 1.1rem;
 }
 
 .jeu0__message {
@@ -76,10 +73,9 @@
 
 .jeu0__form {
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
   display: flex;
   gap: 0.5rem;
-  margin-top: auto;
 }
 
 .jeu0__form input {
@@ -87,12 +83,75 @@
   min-width: 0;
   border-radius: var(--radius-md);
   border: 2px solid var(--color-locked);
-  padding: 0.7em 0.9em;
+  padding: 0.8em 1em;
   font-family: var(--font-text);
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 .jeu0__form input:focus {
   outline: none;
   border-color: var(--color-accent);
+}
+
+/* Aperçu déclenché par "Un coup d'œil" (§C3, 06/09/2026) : montre la
+   vraie image du cocktail en cours, en overlay, avec fondu et compte à
+   rebours — plus de voile ni de silhouette à animer. */
+.jeu0__apercu {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(58, 36, 21, 0.55);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.jeu0__apercu--visible {
+  opacity: 1;
+}
+
+.jeu0__apercu img {
+  max-width: 70vw;
+  max-height: 50vh;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.35));
+}
+
+.jeu0__apercu-compte {
+  font-family: var(--font-title);
+  font-weight: var(--font-weight-titre);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.35);
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Transition entre deux cocktails (§C1, 06/09/2026). */
+.jeu0--transition {
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.jeu0__transition-mixapero {
+  height: 34vh;
+  max-height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 20px rgba(58, 36, 21, 0.25));
+}
+
+.jeu0__transition-texte {
+  max-width: 420px;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
 }

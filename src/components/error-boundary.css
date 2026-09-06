@@ -1,0 +1,20 @@
+.error-boundary {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.error-boundary__titre {
+  font-family: var(--font-title);
+  font-weight: var(--font-weight-titre);
+  font-size: 1.4rem;
+}

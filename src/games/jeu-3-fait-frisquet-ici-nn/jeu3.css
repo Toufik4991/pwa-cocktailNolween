@@ -34,6 +34,12 @@
   max-width: 420px;
   aspect-ratio: 1;
   transition: gap 400ms ease;
+  /* Recentrage optique (§F1, 06/09/2026) : le puzzle restait collé en haut,
+     juste sous l'entête. Les marges auto absorbent tout l'espace libre
+     entre l'entête et le bouton d'abandon, ce qui centre verticalement la
+     grille dans l'espace restant sans toucher à leur position. */
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .jeu3__grille--gagne {

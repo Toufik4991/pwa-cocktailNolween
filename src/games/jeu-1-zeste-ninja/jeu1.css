@@ -36,29 +36,29 @@
   pointer-events: none;
 }
 
-/* Bandeau de consigne agrandi (§D2, 06/09/2026) : c'est l'info la plus
-   importante de l'écran, elle doit se lire sans quitter les fruits des
-   yeux — gros texte + barre de progression sous le fruit demandé. */
+/* Bandeau de consigne (§D1, 06/09/2026) : le §D2 précédent l'avait agrandi
+   trop loin, il mangeait l'aire de jeu. Réduit de moitié (padding, marge,
+   barre) tout en gardant un texte encore net à lire d'un coup d'œil. */
 .jeu1__consigne-principale {
   width: 100%;
   max-width: 420px;
   background: rgba(255, 255, 255, 0.92);
   border-radius: var(--radius-lg);
-  padding: 0.7rem 1rem 0.8rem;
+  padding: 0.35rem 0.6rem 0.4rem;
   box-shadow: var(--shadow-soft);
 }
 
 .jeu1__consigne-texte {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.3rem;
   font-family: var(--font-title);
   font-weight: var(--font-weight-titre);
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   text-align: center;
   letter-spacing: 0.01em;
 }
 
 .jeu1__barre {
-  height: 14px;
+  height: 8px;
   border-radius: 999px;
   background: var(--color-locked);
   overflow: hidden;

@@ -27,6 +27,18 @@ export default function Jeu2({ sonActif = true, onActiverSon, onVictoire, onEche
   const [bulleAllumee, setBulleAllumee] = useState(null);
   const [message, setMessage] = useState(null);
   const generationRef = useRef(0);
+  // Dernier son de bulle joué : coupé explicitement avant d'en lancer un
+  // nouveau, pour ne jamais laisser deux bulles se superposer si le timing
+  // est serré (§E1, 06/09/2026).
+  const dernierSonRef = useRef(null);
+
+  const jouerSonBulle = (b) => {
+    if (dernierSonRef.current) {
+      dernierSonRef.current.pause();
+      dernierSonRef.current.currentTime = 0;
+    }
+    dernierSonRef.current = jouerSon(SONS[b]);
+  };
 
   useEffect(() => {
     precharger(SONS.concat(["sfx-echec.mp3", "sfx-victoire.mp3"]));
@@ -48,12 +60,16 @@ export default function Jeu2({ sonActif = true, onActiverSon, onVictoire, onEche
         if (annule || generationRef.current !== gen) return;
         const b = sequence[i];
         setBulleAllumee(b);
-        jouerSon(SONS[b]);
+        jouerSonBulle(b);
         await attendre(tour.dureeAllumage, enregistrer);
         if (annule || generationRef.current !== gen) return;
         setBulleAllumee(null);
         await attendre(tour.pause, enregistrer);
       }
+      if (annule || generationRef.current !== gen) return;
+      // Pause avant de rendre la main au joueur, pour ne pas confondre la
+      // dernière bulle de la démo avec sa propre première réponse (§E1).
+      await attendre(JEU_2.PAUSE_FIN_ECOUTE, enregistrer);
       if (annule || generationRef.current !== gen) return;
       setPositionRepetition(0);
       setPhase("repetition");
@@ -69,7 +85,7 @@ export default function Jeu2({ sonActif = true, onActiverSon, onVictoire, onEche
     if (phase !== "repetition") return;
 
     setBulleAllumee(b);
-    jouerSon(SONS[b]);
+    jouerSonBulle(b);
     setTimeout(() => setBulleAllumee(null), 200);
 
     if (b !== sequence[positionRepetition]) {

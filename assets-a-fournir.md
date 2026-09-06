@@ -232,15 +232,13 @@
     
     | Fichier | Description |
     | --- | --- |
-    | `img-jeu0-silhouette.png` | **Silhouette mystère générique** — un verre indéfini, sans forme reconnaissable |
     | `img-jeu0-mojito.png` | Mojito révélé |
     | `img-jeu0-pinacolada.png` | Piña Colada révélée |
     | `img-jeu0-daiquiri.png` | Daiquiri révélé |
     | `img-jeu0-margarita.png` | Margarita révélée |
     | `img-jeu0-pornstarmartini.png` | Pornstar Martini révélé |
     
-    > ⚠️ **Une seule silhouette pour les cinq cocktails.** Si elle avait la forme du bon verre, elle donnerait la réponse.
-    La silhouette occupe 40 % de la hauteur de l'écran : prévois-la en **1024 px de haut minimum**, PNG transparent.
+    > *(§C2, 06/09/2026)* `img-jeu0-silhouette.png` n'est plus un asset attendu : la silhouette détourée a été retirée de l'écran (rendu raté), sans remplacement. Le bouton "Un coup d'œil" montre directement une de ces 5 images révélées, brièvement.
     > 
     
     ### Jeu 1 — "Zeste Ninja"
@@ -445,8 +443,8 @@
     3. Les 4 `sfx-bulle-*.mp3` — le seul jeu qui ne fonctionne pas sans son
     4. `img-jeu3-puzzle.webp` — le seul jeu qui ne fonctionne pas sans image
     5. Les 6 `img-bouton-jeu*.png` — le cœur visuel du hub
-    6. Les 5 `img-lieu-0*-a.webp` — sans elles, la chasse n'a pas d'indices
-    7. `img-jeu0-silhouette.png` + les 5 cocktails révélés — le premier jeu que la joueuse verra
+    6. Les 5 `img-lieu-0*-a.webp` (+ `-b.webp`, fournies le 06/09/2026) — sans elles, la chasse n'a pas d'indices
+    7. Les 5 cocktails révélés du jeu 0 — le premier jeu que la joueuse verra (plus de silhouette à fournir, retirée le 06/09/2026)
     
     Tout le reste peut rester en placeholder et être remplacé au fur et à mesure.
     

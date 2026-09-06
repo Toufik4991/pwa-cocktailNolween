@@ -231,6 +231,29 @@ def process_opaque_webp(name, out_name, target_wh=None, dest_dir=IMAGES):
     })
 
 
+def process_photo_no_crop(name, out_name, max_width=1080, quality=90, dest_dir=IMAGES):
+    """Photos des lieux IRL (§G1, 06/09/2026) : jamais de recadrage (un code
+    ecrit dessus doit rester entierement visible), redimensionnement en
+    largeur seulement si besoin (jamais d'agrandissement), qualite webp
+    elevee pour rester lisible."""
+    im = open_src(name)
+    orig_size = im.size
+    w, h = im.size
+    resized = False
+    if w > max_width:
+        scale = max_width / w
+        im = im.resize((max_width, round(h * scale)), Image.LANCZOS)
+        resized = True
+    dest = os.path.join(dest_dir, out_name)
+    save_webp(im, dest, quality=quality)
+    log({
+        "op": "resize-largeur-sans-recadrage" if resized else "aucun-redimensionnement",
+        "source": name, "dest": os.path.relpath(dest, ROOT),
+        "orig_format": "PNG", "final_format": "WEBP",
+        "orig_size": list(orig_size), "final_size": list(im.size),
+    })
+
+
 def process_texture_square(name, out_name, target, dest_dir=IMAGES, out_fmt="webp"):
     src_path = os.path.join(SRC, name)
     raw = Image.open(src_path)
@@ -366,8 +389,10 @@ def main():
     for suffix in ["canne", "glacon", "prosecco", "secret", "sirop", "zeste"]:
         process_detour_square(f"img-ingredient-{suffix}.png", f"img-ingredient-{suffix}.png", (512, 512))
 
-    # ---- 6. Jeu 0 : silhouette + cocktails revele (hauteur 1024, PAS de contrainte de cadrage commun) ----
-    for base in ["img-jeu0-silhouette", "img-jeu0-daiquiri", "img-jeu0-margarita",
+    # ---- 6. Jeu 0 : cocktails reveles (hauteur 1024, PAS de contrainte de cadrage commun) ----
+    # img-jeu0-silhouette retiree des assets attendus (§C2, 06/09/2026) :
+    # detourage rate, jamais remplacee, l'ecran ne l'affiche plus du tout.
+    for base in ["img-jeu0-daiquiri", "img-jeu0-margarita",
                  "img-jeu0-mojito", "img-jeu0-pinacolada", "img-jeu0-pornstarmartini"]:
         im = open_src(f"{base}.png")
         orig = im.size
@@ -447,6 +472,16 @@ def main():
 
     # ---- 14. Puzzle jeu 3 : opaque, crop carre + webp ----
     process_texture_square("img-jeu3-puzzle.png", "img-jeu3-puzzle.webp", (1024, 1024))
+
+    # ---- 15. Photos des lieux (indices IRL, §G1 06/09/2026) : -a (photo du
+    # lieu, un code y est ecrit) et -b (rappel carte) pour les etapes 1 a 5.
+    # Jamais de recadrage ni de compression agressive : le code doit rester
+    # lisible. NB: ici/img-lieu-02-a (2).png est un doublon ecarte (2 photos
+    # differentes sous des noms voisins), seule img-lieu-02-a.png est traitee.
+    for n in range(1, 6):
+        num = f"{n:02d}"
+        process_photo_no_crop(f"img-lieu-{num}-a.png", f"img-lieu-{num}-a.webp")
+        process_photo_no_crop(f"img-lieu-{num}-b.png", f"img-lieu-{num}-b.webp")
 
     with open(os.path.join(ROOT, "scripts", "process_log.json"), "w", encoding="utf-8") as f:
         json.dump(LOG, f, ensure_ascii=False, indent=2)

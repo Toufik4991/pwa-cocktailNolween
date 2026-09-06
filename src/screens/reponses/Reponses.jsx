@@ -9,7 +9,10 @@ function lieuSuivant(numero) {
   // Étape 5 mène directement à la finale : pas de nouveau lieu.
   if (numero >= 5) return null;
   const n = String(numero + 1).padStart(2, "0");
-  return asset(`assets/images/img-lieu-${n}-a.webp`);
+  return {
+    a: asset(`assets/images/img-lieu-${n}-a.webp`),
+    b: asset(`assets/images/img-lieu-${n}-b.webp`),
+  };
 }
 
 export default function Reponses({ onRetour }) {
@@ -42,13 +45,22 @@ export default function Reponses({ onRetour }) {
                     <span>{INGREDIENTS[numero].nom}</span>
                   </div>
                   {lieu && (
-                    <button
-                      className="reponses__lieu"
-                      onClick={() => setPhotoPleinEcran(lieu)}
-                      aria-label="Voir la photo en plein écran"
-                    >
-                      <img src={lieu} alt={`Lieu à retrouver pour l'étape ${numero + 1}`} />
-                    </button>
+                    <div className="reponses__lieu-paire">
+                      <button
+                        className="reponses__lieu"
+                        onClick={() => setPhotoPleinEcran(lieu.a)}
+                        aria-label="Voir la photo du lieu en plein écran"
+                      >
+                        <img src={lieu.a} alt={`Lieu à retrouver pour l'étape ${numero + 1}`} />
+                      </button>
+                      <button
+                        className="reponses__lieu"
+                        onClick={() => setPhotoPleinEcran(lieu.b)}
+                        aria-label="Voir le rappel du lieu en plein écran"
+                      >
+                        <img src={lieu.b} alt={`Repère pour retrouver le lieu de l'étape ${numero + 1}`} />
+                      </button>
+                    </div>
                   )}
                 </>
               ) : (

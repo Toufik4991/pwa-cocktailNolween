@@ -21,7 +21,7 @@ export function precharger(noms) {
 }
 
 export function jouerSon(nom, { volume = 1 } = {}) {
-  if (!sonActif) return;
+  if (!sonActif) return null;
   let base = cache.get(nom);
   if (!base) {
     base = new Audio(asset(`assets/audio/${nom}`));
@@ -33,4 +33,7 @@ export function jouerSon(nom, { volume = 1 } = {}) {
     // Lecture bloquée (pas encore d'interaction utilisateur sur iOS, etc.) :
     // on ignore, le jeu reste jouable sans son.
   });
+  // Retourné pour les cas où l'appelant doit pouvoir couper explicitement
+  // ce son avant la fin de sa lecture (ex. bulles du jeu 2, §E1).
+  return instance;
 }

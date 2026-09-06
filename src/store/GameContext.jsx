@@ -12,6 +12,9 @@ function reducer(etat, action) {
     case "MARQUER_OUVERTURE_VUE":
       return { ...etat, ouvertureVue: true };
 
+    case "MARQUER_FINALE_VUE":
+      return { ...etat, finaleVue: true };
+
     case "VALIDER_CODE":
       return {
         ...etat,

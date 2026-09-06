@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { jouerSon } from "../hooks/useAudio.js";
-
-const VITESSE_MS_PAR_CARACTERE = 28;
+import { VITESSE_ECRITURE } from "../config/index.js";
 
 // Découpe "texte\n\nsuite **gras**" en paragraphes de segments {text, bold},
 // pour typer lettre par lettre tout en gérant les paragraphes et le gras.
@@ -66,7 +65,7 @@ export default function Typewriter({ texte, skipSignal, onTermine }) {
         }
         return suivant;
       });
-    }, VITESSE_MS_PAR_CARACTERE);
+    }, VITESSE_ECRITURE);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chars]);

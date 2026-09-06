@@ -12,7 +12,12 @@ export * from "./textes-courts.js";
 export { SEQUENCES, BOUTON_SUIVANT_PAR_DEFAUT } from "./sequences.js";
 export { DECORS, COULEUR_TEXTE, COULEUR_ACCENT } from "./theme.js";
 
-export { JEU_0, COCKTAILS, REPLIQUES_MAUVAISE_REPONSE } from "./jeu-0.config.js";
+export {
+  JEU_0,
+  COCKTAILS,
+  REPLIQUES_MAUVAISE_REPONSE,
+  REPLIQUES_TRANSITION_COCKTAIL,
+} from "./jeu-0.config.js";
 export {
   JEU_1,
   AGRUMES,
@@ -47,6 +52,11 @@ export {
 // mus-final (animation finale uniquement). Les 3 pistes tournent en fondu
 // enchaîné, jamais de coupure nette ni de redémarrage — sauf mus-final qui
 // repart du début à chaque lancement de l'animation (effet dramatique).
+// Vitesse de l'effet machine à écrire des séquences narratives, en ms par
+// caractère (plus grand = plus lent). Ralenti de 25% le 06/09/2026 (§B2) :
+// 28 -> 35.
+export const VITESSE_ECRITURE = 35;
+
 export const AUDIO = {
   VOLUME_MUSIQUE_NORMAL: 0.6, // accueil, pseudo, hub, séquences texte, Réponses
   VOLUME_MUSIQUE_JEU: 0.35, // pendant les mini-jeux (hors jeu 2), plus discret que le hub

@@ -51,15 +51,19 @@
     
     La séquence commence à **3 bulles** et s'allonge d'une par tour jusqu'à **6**. Quatre tours au total.
     
+    *(§E1, 06/09/2026 : pauses et allumages allongés — les bulles s'entrechoquaient et rendaient la séquence impossible à mémoriser. Table dérivée par interpolation linéaire des 4 constantes de la section "Paramètres configurables" ci-dessous, qui pilotent désormais réellement le jeu.)*
+    
     | Tour | Longueur | Durée d'allumage | Pause entre bulles |
     | --- | --- | --- | --- |
-    | 1 | 3 | 600 ms | 300 ms |
-    | 2 | 4 | 520 ms | 270 ms |
-    | 3 | 5 | 440 ms | 240 ms |
-    | 4 | 6 | 360 ms | 210 ms |
+    | 1 | 3 | 650 ms | 550 ms |
+    | 2 | 4 | 583 ms | 500 ms |
+    | 3 | 5 | 517 ms | 450 ms |
+    | 4 | 6 | 450 ms | 400 ms |
     
     > **La séquence est cumulative** : on reprend la même et on y ajoute une bulle, comme dans le Simon original. C'est ce qui rend la mémorisation possible. Ne pas générer une séquence entièrement nouvelle à chaque tour.
     > 
+    
+    Une pause supplémentaire de **700 ms** (`PAUSE_FIN_ECOUTE`) sépare la fin de la démonstration jouée par le jeu du moment où le joueur peut répondre, pour ne pas confondre la dernière bulle de la démo avec sa propre première réponse.
     
     ---
     
@@ -119,10 +123,11 @@
     ```
     LONGUEUR_DEPART        = 3
     LONGUEUR_VICTOIRE      = 6
-    DUREE_ALLUMAGE_DEPART  = 600   // ms
-    DUREE_ALLUMAGE_MIN     = 360   // ms
-    PAUSE_DEPART           = 300   // ms
-    PAUSE_MIN              = 210   // ms
+    DUREE_ALLUMAGE_DEPART  = 650   // ms  (§E1, 06/09/2026 : 600 -> 650)
+    DUREE_ALLUMAGE_MIN     = 450   // ms  (§E1 : 360 -> 450)
+    PAUSE_DEPART           = 550   // ms  (§E1 : 300 -> 550)
+    PAUSE_MIN              = 400   // ms  (§E1 : 210 -> 400)
+    PAUSE_FIN_ECOUTE       = 700   // ms  (§E1, nouveau)
     REPRISE_APRES_ERREUR   = "meme_tour"   // ou "tour_precedent"
     SEUIL_ABANDON          = 5
     ```
@@ -146,9 +151,11 @@
     - **Précharger les 4 sons** au lancement. Un son chargé à la volée arrive en retard et casse la mémorisation.
     - Sur iOS, l'audio ne démarre qu'après une **première interaction utilisateur**. Prévoir un bouton "Commencer" qui déclenche l'initialisation audio.
     - Le joueur ne doit **pas** pouvoir appuyer pendant la phase d'écoute — désactiver les contrôles.
+    - **Couper explicitement le son de bulle précédent avant d'en jouer un nouveau** *(§E1, 06/09/2026)* : chaque son est un clone audio indépendant, mais si le timing devient serré (par ex. une pause raccourcie manuellement dans les paramètres ci-dessus), rien n'empêchait auparavant deux sons de se chevaucher. Le code garde une référence au dernier son de bulle joué et le met en pause avant de lancer le suivant.
+    - Durée réelle mesurée des 4 fichiers (06/09/2026) : `sfx-bulle-01.mp3` **3,74 s**, `sfx-bulle-02.mp3` **0,72 s**, `sfx-bulle-03.mp3` **0,82 s**, `sfx-bulle-04.mp3` **0,67 s**. Les 4 dépassent les 500 ms visés — `sfx-bulle-01` de très loin (presque 4 secondes). Tant qu'un fichier dépasse la pause qui le suit, sa fin est coupée nette par le son suivant (cf. point ci-dessus) plutôt que de se superposer, mais pour un rendu propre ces 4 fichiers gagneraient à être raccourcis à la source.
     
     ---
     
     ## Points à trancher
     
-    Aucun — la longueur de victoire à 6 et la reprise au même tour sont actées.
+    Aucun côté logique — la longueur de victoire à 6 et la reprise au même tour sont actées. Reste ouvert : raccourcir les 4 fichiers `sfx-bulle-*.mp3` à la source (voir Notes techniques).

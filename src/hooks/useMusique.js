@@ -17,6 +17,7 @@ const elements = {};
 const volumesCibles = { hub: 0, jeu: 0, final: 0 };
 const idsAnimation = {};
 let sonActif = true;
+let generationTransition = 0;
 
 function obtenirElement(nom) {
   if (!elements[nom]) {
@@ -82,19 +83,38 @@ export function definirSonActifMusique(actif) {
 }
 
 /**
- * Rend une piste seule audible (les 2 autres redescendent à 0 en même
- * temps). `redemarrer` remet la piste à 0:00 avant de la faire remonter
- * (utilisé pour mus-final à chaque lancement de l'animation).
+ * Rend une piste seule audible. `redemarrer` remet la piste à 0:00 avant
+ * de la faire remonter (utilisé pour mus-final à chaque lancement de
+ * l'animation).
+ *
+ * Les autres pistes sont d'abord coupées (fondu à 0 sur la 1re moitié de
+ * `dureeMs`), et la piste cible ne commence à monter QU'UNE FOIS CE FONDU
+ * TERMINÉ (2e moitié) : jamais de vrai crossfade simultané, qui laissait
+ * 2 pistes clairement audibles en même temps pendant ~la moitié de la
+ * transition (§A2, 06/09/2026 — mesuré : ~0.22 de volume sur les 2 pistes
+ * à la fois à mi-transition). Un `generationTransition` annule les fondus
+ * d'entrée programmés par un appel devenu obsolète si un nouvel écran est
+ * atteint avant la fin de la transition précédente.
  */
 function activerPisteSeule(nom, volume, dureeMs, redemarrer = false) {
+  const generation = ++generationTransition;
   if (redemarrer) {
     const el = obtenirElement(nom);
     el.currentTime = 0;
   }
+  const demiDuree = Math.max(0, dureeMs / 2);
   for (const autre of Object.keys(FICHIERS)) {
-    volumesCibles[autre] = autre === nom ? volume : 0;
-    appliquerVolume(autre, dureeMs);
+    if (autre === nom) continue;
+    volumesCibles[autre] = 0;
+    appliquerVolume(autre, demiDuree);
   }
+  const lancerFonduEntree = () => {
+    if (generation !== generationTransition) return; // transition plus récente entre-temps
+    volumesCibles[nom] = volume;
+    appliquerVolume(nom, demiDuree);
+  };
+  if (demiDuree <= 0) lancerFonduEntree();
+  else setTimeout(lancerFonduEntree, demiDuree);
 }
 
 /**

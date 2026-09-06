@@ -15,50 +15,47 @@
     
     ---
     
-    ## Déroulé
+    ## Déroulé *(mis à jour le 06/09/2026, §C1 — annule l'ancienne règle "un seul cocktail suffit")*
     
-    1. Un cocktail est **tiré au sort** parmi les 5 de la liste au lancement du jeu.
-    2. Le **premier indice** s'affiche, avec un champ de saisie.
-    3. Le joueur tape une réponse et valide.
-    4. **Bonne réponse** → victoire immédiate, quel que soit le nombre d'indices vus.
-    5. **Mauvaise réponse** → réplique taquine de Mixapéro, et **l'indice suivant se dévoile**. Les indices précédents restent visibles, empilés.
-    6. Quand tous les indices du cocktail sont dévoilés, le joueur peut continuer à tenter sa chance indéfiniment.
-    7. Au **5ᵉ échec**, la proposition d'abandon apparaît.
+    1. Les **5 cocktails sont à trouver un par un**, dans un **ordre tiré au sort** à chaque partie (jamais deux fois le même ordre).
+    2. Un compteur de progression reste visible en haut : « Cocktail 3 / 5 ».
+    3. Le **premier indice** du cocktail en cours s'affiche, avec un champ de saisie.
+    4. Le joueur tape une réponse et valide.
+    5. **Bonne réponse** → courte transition (réplique de Mixapéro) puis le cocktail suivant démarre, avec ses propres indices repartant de zéro. Sur le 5ᵉ et dernier cocktail, une bonne réponse valide directement l'étape et renvoie au hub.
+    6. **Mauvaise réponse** → réplique taquine de Mixapéro, et **l'indice suivant se dévoile**. Les indices précédents restent visibles, empilés.
+    7. Quand tous les indices du cocktail en cours sont dévoilés, le joueur peut continuer à tenter sa chance indéfiniment.
+    8. Au **5ᵉ échec cumulé** (tous cocktails confondus), la proposition d'abandon apparaît.
     
     ---
     
-    ## Interface
+    ## Interface *(mise à jour le 06/09/2026, §C2)*
     
-    ⚠️ **La silhouette du cocktail doit être GRANDE et CENTRALE**, pas reléguée en fond ou en coin. C'est l'élément visuel principal du jeu.
+    ⚠️ **La silhouette détourée a été retirée**, sans remplacement : le détourage rendait mal et cassait l'ambiance. L'espace ainsi libéré revient aux indices et au champ de réponse.
     
     Disposition, de haut en bas :
     
-    1. **Compteur d'indices** (`Indice 2 / 5`) — petit, en haut
-    2. **La silhouette du cocktail** — au centre, occupant environ **40 % de la hauteur de l'écran**, bien détourée et lisible
-    3. **La pile d'indices dévoilés** — le plus récent mis en avant, les précédents plus petits et atténués. Zone défilable si nécessaire.
+    1. **Compteur de progression** (`Cocktail 3 / 5`) puis **compteur d'indices** (`Indice 2 / 5`) — en haut
+    2. Le bouton **« Un coup d'œil »**
+    3. **La pile d'indices dévoilés** — le plus récent mis en avant, les précédents plus petits et atténués. Zone défilable, agrandie depuis le retrait de la silhouette.
     4. **Le champ de saisie** + bouton **"Répondre"** — en bas
     
-    À la victoire, la silhouette laisse place à l'image du cocktail révélé, avec une transition en fondu et un effet lumineux.
-    
-    > Si la pile d'indices devient trop haute (5 indices), la silhouette peut se réduire légèrement, mais **jamais en dessous de 25 % de la hauteur**.
-    > 
+    À la victoire du dernier cocktail, transition normale vers la séquence de fin du jeu (pas d'effet spécifique dans l'écran de jeu lui-même).
     
     ---
     
-    ## Le bouton de levée du voile *(ajouté le 05/09/2026)*
+    ## Le bouton "Un coup d'œil" *(revu le 06/09/2026, §C3 — remplace l'ancien comportement "lève la silhouette")*
     
-    Un bouton permet d'entrevoir le cocktail caché sous la silhouette.
+    Sans silhouette ni voile à soulever, le bouton montre directement une image du **vrai cocktail en cours**, brièvement.
     
     - Libellé : **« Un coup d'œil »**
-    - Au clic, la silhouette disparaît **exactement 2 secondes**, laissant voir le vrai cocktail, puis revient
+    - Au clic, l'image du cocktail en cours apparaît en plein écran (fondu) pendant **exactement 2 secondes**, puis disparaît
     - Transition en fondu de **300 ms** à l'apparition comme à la disparition
     - Un **compte à rebours** reste visible pendant les 2 secondes
-    - **Une seule utilisation par partie** : après usage, le bouton est grisé mais **reste visible**, pour que la joueuse sache qu'elle l'a déjà consommé
-    - **Une nouvelle partie** (nouveau cocktail tiré au sort) **réinitialise la charge**
+    - **Une utilisation par cocktail** (donc jusqu'à 5 par partie) : après usage, le bouton est grisé jusqu'au cocktail suivant, où il redevient disponible
     - Son réutilisé : `sfx-jeu5-indice.mp3`
     - Réplique de Mixapéro à l'usage, par exemple : « Deux secondes. Pas une de plus. »
     
-    Ce bouton ne remplace pas les indices textuels : c'est un raccourci visuel indépendant, disponible dès le premier indice.
+    Ce bouton ne remplace pas les indices textuels : c'est un raccourci visuel indépendant, disponible dès le premier indice de chaque cocktail.
     
     ---
     
@@ -78,7 +75,7 @@
     
     ## Les 5 cocktails
     
-    Un seul est tiré au sort par partie.
+    Tous les 5 sont à trouver, un par un, dans un ordre tiré au sort à chaque partie *(§C1, 06/09/2026)*.
     
     ### A — Mojito *(5 indices)*
     
@@ -162,23 +159,31 @@
     
     ---
     
+    ## Répliques de transition entre deux cocktails *(ajouté le 06/09/2026, §C1)*
+    
+    - « Un de plus. File, le suivant t'attend. »
+    - « Pas mal. On enchaîne. »
+    - « Bien joué. Suivant ! »
+    - « Encore un qui est démasqué. Au tour du prochain. »
+    - « Tu progresses. Ça me dérange un peu, mais bon. »
+    
+    ---
+    
     ## Paramètres configurables
     
     ```
-    TIRAGE_ALEATOIRE   = true
     SEUIL_ABANDON      = 5
     DUREE_LEVEE_VOILE  = 2      // secondes
-    CHARGES_LEVEE_VOILE = 1     // par partie
     FONDU_VOILE        = 300    // ms
     ```
     
-    Le nombre d'indices n'est **pas** un paramètre global : il dépend de chaque cocktail et se déduit de la longueur de sa liste d'indices.
+    Le nombre d'indices n'est **pas** un paramètre global : il dépend de chaque cocktail et se déduit de la longueur de sa liste d'indices. Le tirage au sort porte désormais sur l'**ordre des 5 cocktails**, plus sur "en tirer un seul".
     
     ---
     
     ## Condition de victoire
     
-    Réponse correcte saisie. Le nombre d'indices utilisés n'a aucune incidence : pas de score, pas de pénalité.
+    Les 5 cocktails trouvés. Le nombre d'indices utilisés par cocktail n'a aucune incidence : pas de score, pas de pénalité.
     
     ---
     
@@ -187,23 +192,22 @@
     | Fichier | Usage |
     | --- | --- |
     | `bg-jeu0.webp` | Fond |
-    | `img-jeu0-carte-indice.png` | Cadre d'affichage d'un indice |
-    | `img-jeu0-silhouette.png` | **Silhouette mystère générique** (un verre indéfini, sans forme reconnaissable) |
-    | `img-jeu0-mojito.png` | Mojito révélé |
+    | `img-jeu0-mojito.png` | Mojito révélé (aperçu + fin de cocktail) |
     | `img-jeu0-pinacolada.png` | Piña Colada révélée |
     | `img-jeu0-daiquiri.png` | Daiquiri révélé |
     | `img-jeu0-margarita.png` | Margarita révélée |
     | `img-jeu0-pornstarmartini.png` | Pornstar Martini révélé |
     | `sfx-clic.mp3` | Validation |
     | `sfx-code-faux.mp3` | Mauvaise réponse |
-    | `sfx-victoire.mp3` | Bonne réponse |
-    | `sfx-jeu5-indice.mp3` | Réutilisé pour le bouton « Un coup d'œil » *(ajouté le 05/09/2026)* |
+    | `sfx-code-ok.mp3` | Cocktail trouvé (avant le dernier) |
+    | `sfx-victoire.mp3` | Les 5 cocktails trouvés |
+    | `sfx-jeu5-indice.mp3` | Réutilisé pour le bouton « Un coup d'œil » |
     
-    > ⚠️ **La silhouette est générique, pas une par cocktail.** Si elle avait la forme du bon verre, elle donnerait la réponse. Un seul fichier suffit.
+    > ⚠️ **`img-jeu0-silhouette.png` a été retiré des assets attendus** (§C2, 06/09/2026) : la silhouette détourée générique n'est plus affichée nulle part dans l'écran.
     > 
     
     ---
     
     ## Points à trancher
     
-    Aucun — le tirage au sort (avec sa chance sur cinq de tomber sur le Pornstar Martini) et le contenu des cinq cocktails sont actés.
+    Aucun — les 5 cocktails à trouver dans un ordre aléatoire, la silhouette retirée, et le nouveau bouton "Un coup d'œil" (aperçu du vrai cocktail) sont actés le 06/09/2026.

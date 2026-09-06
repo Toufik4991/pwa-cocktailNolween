@@ -20,6 +20,7 @@ export function etatInitial() {
     etapes,
     reglages: { son: true, vibration: true },
     modeTest: false,
+    finaleVue: false,
   };
 }
 

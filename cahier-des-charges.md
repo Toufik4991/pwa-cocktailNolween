@@ -336,6 +336,19 @@
     
     ## 8. Animation finale
     
+    ### Déclenchement *(revu le 06/09/2026, §A1 — corrige un écran blanc en fin de jeu 5)*
+    
+    L'animation finale n'est **plus enchaînée automatiquement** après le jeu 5 :
+    
+    1. Gagner le jeu 5 → séquence de texte de fin (« Six sur six… ») → **retour au hub**, pas d'enchaînement direct sur l'animation.
+    2. Une fois les 6 étapes terminées, un bouton **« FIN »** apparaît sur le hub, bien visible sous la grille des 6 étapes. Il **clignote doucement** (pulsation lente de luminosité et d'échelle) pour attirer l'œil sans agresser, tant que la finale n'a jamais été vue.
+    3. Cliquer sur ce bouton lance la séquence de dialogue puis l'animation.
+    4. Après l'animation, retour au hub. Le bouton reste disponible pour revoir la fin (libellé **« Revoir la fin »**), mais **ne clignote plus** une fois vu au moins une fois.
+    
+    Cet état "finale déjà vue" est sauvegardé (persistant), pas seulement pour la session en cours.
+    
+    ### Déroulé de l'animation
+    
     - Les six ingrédients tombent un à un dans le verre, de façon animée
     - L'image du cocktail final apparaît en grand, au centre, avec un effet lumineux
     - Message de clôture par-dessus (texte dans le scénario)
@@ -344,8 +357,12 @@
     
     - Un bouton **"Retour au hub"** ramène au hub, désormais entièrement complété (6/6)
     - Depuis ce hub terminé, la joueuse peut **rejouer n'importe quel mini-jeu** librement, et **revoir n'importe quelle séquence texte**
-    - Un bouton **"Revoir la fin"** apparaît sur le hub pour rejouer l'animation finale
+    - Le bouton **"Revoir la fin"** (ex-bouton FIN, non clignotant) permet de rejouer l'animation finale à volonté
     - La progression reste à 6/6, rejouer ne la remet pas à zéro
+    
+    ### Robustesse *(ajouté le 06/09/2026, §A1)*
+    
+    Un `ErrorBoundary` global entoure toute l'application : si une exception non gérée survenait malgré tout pendant un rendu (n'importe où dans l'app, pas seulement la finale), une page de récupération s'affiche avec un bouton de retour, plutôt qu'un écran blanc silencieux.
     
     ---
     
@@ -408,9 +425,9 @@
     
     Vibration courte (`navigator.vibrate`) sur : code correct, mot trouvé, pièce de puzzle échangée, fruit tranché. Désactivable avec le son dans le menu.
     
-    ### 9.8 Musiques *(mise à jour du 06/09/2026 — 3 pistes, volume dédié au jeu et fondu à 800 ms)*
+    ### 9.8 Musiques *(mise à jour du 06/09/2026 — 3 pistes, volume dédié au jeu, transition en 2 temps)*
     
-    **3 musiques**, une seule audible à la fois, en fondu enchaîné (~800 ms) :
+    **3 musiques**, **jamais plus d'une audible à la fois** *(§A2, 06/09/2026 : un vrai fondu croisé simultané laissait les 2 pistes clairement audibles en même temps pendant la moitié de la transition — mesuré à l'écran, ~0.22 de volume sur les 2 pistes à la fois)*. La transition se fait désormais en 2 temps successifs sur la durée totale configurée (~800 ms) : d'abord la piste active descend à 0 (1ʳᵉ moitié), puis seulement ensuite la nouvelle piste monte (2ᵉ moitié) — jamais les deux en même temps :
     
     - `mus-hub` : accueil, saisie du pseudo, hub, séquences de texte, page Réponses
     - `mus-jeu` : pendant les 6 mini-jeux

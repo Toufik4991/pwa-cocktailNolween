@@ -2,19 +2,21 @@
 // Contenu et paramètres de difficulté. Modifiable sans risque.
 
 export const JEU_0 = {
-  TIRAGE_ALEATOIRE: true,
   SEUIL_ABANDON: 5,
 
-  // Bouton "Un coup d'œil" (ajouté le 05/09/2026)
+  // Bouton "Un coup d'œil" (§C3, 06/09/2026 : la silhouette a été retirée,
+  // le bouton montre maintenant la vraie image du cocktail en cours
+  // pendant DUREE_LEVEE_VOILE secondes). Une utilisation par cocktail.
   DUREE_LEVEE_VOILE: 2, // secondes
-  CHARGES_LEVEE_VOILE: 1, // par partie
   FONDU_VOILE: 300, // ms
   REPLIQUE_LEVEE_VOILE: "Deux secondes. Pas une de plus.",
 };
 
-// Un seul cocktail est tiré au sort par partie. Le nombre d'indices
-// dépend de la longueur de la liste "indices" de chaque cocktail (le
-// Pornstar Martini n'en a volontairement qu'un seul).
+// Les 5 cocktails sont tous à trouver, un par un, dans un ordre tiré au
+// sort à chaque partie (§C1, 06/09/2026 — annule l'ancienne consigne d'un
+// seul cocktail tiré au sort). Le nombre d'indices dépend de la longueur
+// de la liste "indices" de chaque cocktail (le Pornstar Martini n'en a
+// volontairement qu'un seul).
 export const COCKTAILS = [
   {
     id: "mojito",
@@ -77,6 +79,16 @@ export const COCKTAILS = [
     // gérer un nombre d'indices variable, pas fixe à 5.
     indices: ["Ton top 3 cocktail !!!!"],
   },
+];
+
+// Réplique de Mixapéro affichée pendant la courte transition entre deux
+// cocktails trouvés (§C1, 06/09/2026).
+export const REPLIQUES_TRANSITION_COCKTAIL = [
+  "Un de plus. File, le suivant t'attend.",
+  "Pas mal. On enchaîne.",
+  "Bien joué. Suivant !",
+  "Encore un qui est démasqué. Au tour du prochain.",
+  "Tu progresses. Ça me dérange un peu, mais bon.",
 ];
 
 export const REPLIQUES_MAUVAISE_REPONSE = {

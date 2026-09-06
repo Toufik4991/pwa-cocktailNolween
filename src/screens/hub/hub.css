@@ -38,12 +38,37 @@
   object-fit: contain;
 }
 
-.hub__revoir-fin {
-  background: transparent;
-  color: var(--color-text);
-  box-shadow: none;
-  text-decoration: underline;
-  font-size: 0.9rem;
+/* Bouton FIN (§A1, 06/09/2026) : visible et centré sous la grille des 6
+   étapes, il clignote doucement (luminosité + échelle) tant que la finale
+   n'a jamais été vue, pour attirer l'œil sans agresser. Une fois vue, il
+   reste disponible pour la revoir mais arrête de clignoter. */
+.hub__bouton-fin {
+  font-family: var(--font-title);
+  font-weight: var(--font-weight-titre);
+  font-size: 1.1rem;
+  padding: 0.7em 2em;
+}
+
+.hub__bouton-fin--attire-oeil {
+  animation: hub-fin-pulsation 2.2s ease-in-out infinite;
+}
+
+@keyframes hub-fin-pulsation {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.06);
+    filter: brightness(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub__bouton-fin--attire-oeil {
+    animation: none;
+  }
 }
 
 .hub__message-verrouille {

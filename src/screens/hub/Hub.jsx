@@ -40,7 +40,7 @@ const COMPOSANTS_JEU = { 0: Jeu0, 1: Jeu1, 2: Jeu2, 3: Jeu3, 4: Jeu4, 5: Jeu5 };
 
 export default function Hub() {
   const etat = useGameState();
-  const { pseudo, etapes, reglages, modeTest } = etat;
+  const { pseudo, etapes, reglages, modeTest, finaleVue } = etat;
   const dispatch = useGameDispatch();
   const [vue, setVue] = useState("hub"); // 'hub' | 'reponses' | 'aide'
   const [codeDemande, setCodeDemande] = useState(null);
@@ -115,7 +115,15 @@ export default function Hub() {
       />
     );
   } else if (finalePhase === "animation") {
-    contenu = <FinaleAnimation pseudo={pseudo} onRetourHub={() => setFinalePhase(null)} />;
+    contenu = (
+      <FinaleAnimation
+        pseudo={pseudo}
+        onRetourHub={() => {
+          if (!finaleVue) dispatch({ type: "MARQUER_FINALE_VUE" });
+          setFinalePhase(null);
+        }}
+      />
+    );
   } else if (etapeEnCours) {
     const { numero, phase } = etapeEnCours;
 
@@ -181,16 +189,16 @@ export default function Hub() {
         </>
       );
     } else {
-      // phase === "fin"
+      // phase === "fin" — dans tous les cas (y compris l'étape 5), la
+      // séquence de fin ramène au hub. L'animation finale n'est plus
+      // enchaînée automatiquement : elle se lance depuis le bouton FIN du
+      // hub, une fois les 6 étapes terminées (§A1, 06/09/2026).
       contenu = (
         <SequenceEngine
           ecrans={SEQUENCES[CLE_SEQUENCE_FIN(numero)]}
           pseudo={pseudo}
-          libelleBoutonFinal={numero === 5 ? "Terminer" : "Retour au hub"}
-          onTerminee={() => {
-            setEtapeEnCours(null);
-            if (numero === 5) setFinalePhase("sequence");
-          }}
+          libelleBoutonFinal="Retour au hub"
+          onTerminee={() => setEtapeEnCours(null)}
           onQuitter={() => setEtapeEnCours(null)}
         />
       );
@@ -220,8 +228,11 @@ export default function Hub() {
         </button>
 
         {toutTermine && (
-          <button className="hub__revoir-fin" onClick={() => setFinalePhase("sequence")}>
-            Revoir la fin
+          <button
+            className={`hub__bouton-fin ${finaleVue ? "" : "hub__bouton-fin--attire-oeil"}`}
+            onClick={() => setFinalePhase("sequence")}
+          >
+            {finaleVue ? "Revoir la fin" : "FIN"}
           </button>
         )}
 
