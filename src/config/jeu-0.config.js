@@ -78,8 +78,27 @@ export const COCKTAILS = [
     // Volontairement un seul indice : blague personnelle. Le moteur doit
     // gérer un nombre d'indices variable, pas fixe à 5.
     indices: ["Ton top 3 cocktail !!!!"],
+    // §B, 17/09/2026 : ce cocktail n'a pas de vraie réponse à trouver.
+    // reponseLibre fait accepter TOUTE saisie (y compris vide) comme
+    // correcte ; sansApercu masque le bouton "Un coup d'œil", inutile
+    // puisqu'il n'y a rien à deviner ; repliqueValidation remplace le
+    // tirage aléatoire dans REPLIQUES_TRANSITION_COCKTAIL par cette
+    // réplique dédiée. Ce cocktail ne peut jamais être tiré en 1re ou
+    // dernière position (voir construireOrdre dans Jeu0.jsx) : le
+    // repliqueValidation n'a donc jamais besoin de gérer le cas "dernier
+    // cocktail".
+    reponseLibre: true,
+    sansApercu: true,
+    repliqueValidation:
+      "Mais nan !!! Pas mal, celui-ci, j'avoue !\nMoi c'est le Pornstar Martini... à la cuillère. Pas au shaker.",
   },
 ];
+
+// Réplique de Mixapéro à la découverte du 5ᵉ et dernier cocktail (§B3,
+// 17/09/2026 : la victoire finale affiche désormais le même encart de
+// transition que les autres, avec un bouton "Terminer" au lieu d'un
+// enchaînement automatique — il lui faut donc, comme elles, une réplique).
+export const REPLIQUE_VICTOIRE_JEU_0 = "Les cinq sont démasqués. Ça, c'est du travail bien fait.";
 
 // Réplique de Mixapéro affichée pendant la courte transition entre deux
 // cocktails trouvés (§C1, 06/09/2026).

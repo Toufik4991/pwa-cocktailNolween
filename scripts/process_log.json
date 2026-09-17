@@ -614,21 +614,6 @@
   },
   {
     "op": "detour+crop+resize-hauteur",
-    "source": "img-jeu0-silhouette.png",
-    "dest": "public\\assets\\images\\img-jeu0-silhouette.png",
-    "orig_format": "PNG",
-    "final_format": "PNG",
-    "orig_size": [
-      1080,
-      1350
-    ],
-    "final_size": [
-      700,
-      660
-    ]
-  },
-  {
-    "op": "detour+crop+resize-hauteur",
     "source": "img-jeu0-daiquiri.png",
     "dest": "public\\assets\\images\\img-jeu0-daiquiri.png",
     "orig_format": "PNG",
@@ -904,26 +889,6 @@
   },
   {
     "op": "detour+crop+contain",
-    "source": "img-jeu1-zesteur.png",
-    "dest": "public\\assets\\images\\img-jeu1-zesteur.png",
-    "orig_format": "PNG",
-    "final_format": "PNG",
-    "orig_size": [
-      1080,
-      1350
-    ],
-    "final_size": [
-      200,
-      200
-    ],
-    "content_size": [
-      185,
-      200
-    ],
-    "scale": 0.253
-  },
-  {
-    "op": "detour+crop+contain",
     "source": "img-jeu4-canne.png",
     "dest": "public\\assets\\images\\img-jeu4-canne.png",
     "orig_format": "PNG",
@@ -1070,18 +1035,18 @@
     ]
   },
   {
-    "op": "resize-largeur-sans-recadrage",
+    "op": "aucun-redimensionnement",
     "source": "img-lieu-01-a.png",
     "dest": "public\\assets\\images\\img-lieu-01-a.webp",
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      1843,
-      585
+      1079,
+      809
     ],
     "final_size": [
-      1080,
-      343
+      1079,
+      809
     ]
   },
   {
@@ -1091,12 +1056,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      499,
-      386
+      1080,
+      1350
     ],
     "final_size": [
-      499,
-      386
+      1080,
+      1350
     ]
   },
   {
@@ -1106,12 +1071,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      1712,
-      613
+      1415,
+      689
     ],
     "final_size": [
       1080,
-      387
+      526
     ]
   },
   {
@@ -1121,27 +1086,27 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      584,
-      337
+      1080,
+      1350
     ],
     "final_size": [
-      584,
-      337
+      1080,
+      1350
     ]
   },
   {
-    "op": "aucun-redimensionnement",
+    "op": "resize-largeur-sans-recadrage",
     "source": "img-lieu-03-a.png",
     "dest": "public\\assets\\images\\img-lieu-03-a.webp",
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      1033,
-      568
+      1418,
+      629
     ],
     "final_size": [
-      1033,
-      568
+      1080,
+      479
     ]
   },
   {
@@ -1151,12 +1116,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      492,
-      292
+      1080,
+      1350
     ],
     "final_size": [
-      492,
-      292
+      1080,
+      1350
     ]
   },
   {
@@ -1166,12 +1131,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      1769,
-      557
+      1477,
+      523
     ],
     "final_size": [
       1080,
-      340
+      382
     ]
   },
   {
@@ -1181,12 +1146,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      665,
-      509
+      1080,
+      1350
     ],
     "final_size": [
-      665,
-      509
+      1080,
+      1350
     ]
   },
   {
@@ -1196,12 +1161,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      1674,
-      560
+      1392,
+      563
     ],
     "final_size": [
       1080,
-      361
+      437
     ]
   },
   {
@@ -1211,12 +1176,12 @@
     "orig_format": "PNG",
     "final_format": "WEBP",
     "orig_size": [
-      487,
-      401
+      1080,
+      1350
     ],
     "final_size": [
-      487,
-      401
+      1080,
+      1350
     ]
   }
 ]

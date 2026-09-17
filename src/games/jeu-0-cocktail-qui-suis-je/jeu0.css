@@ -155,4 +155,12 @@
   text-align: center;
   font-size: 1.15rem;
   font-weight: 600;
+  white-space: pre-line;
+}
+
+/* Bouton de passage manuel (§B3, 17/09/2026) : "Suivant" ou "Terminer",
+   remplace l'ancien enchaînement automatique par minuteur. */
+.jeu0__transition-suivant {
+  margin-top: 0.4rem;
+  padding: 0.8em 2em;
 }

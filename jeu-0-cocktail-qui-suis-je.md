@@ -15,16 +15,16 @@
     
     ---
     
-    ## Déroulé *(mis à jour le 06/09/2026, §C1 — annule l'ancienne règle "un seul cocktail suffit")*
+    ## Déroulé *(mis à jour le 17/09/2026, §B — le Pornstar Martini devient une blague, et le passage entre cocktails devient manuel pour les 5)*
     
-    1. Les **5 cocktails sont à trouver un par un**, dans un **ordre tiré au sort** à chaque partie (jamais deux fois le même ordre).
+    1. Les **5 cocktails sont à trouver un par un**, dans un **ordre tiré au sort** à chaque partie (jamais deux fois le même ordre), à l'exception du **Pornstar Martini qui ne peut tomber qu'en position 2, 3 ou 4** (voir plus bas, section E).
     2. Un compteur de progression reste visible en haut : « Cocktail 3 / 5 ».
     3. Le **premier indice** du cocktail en cours s'affiche, avec un champ de saisie.
     4. Le joueur tape une réponse et valide.
-    5. **Bonne réponse** → courte transition (réplique de Mixapéro) puis le cocktail suivant démarre, avec ses propres indices repartant de zéro. Sur le 5ᵉ et dernier cocktail, une bonne réponse valide directement l'étape et renvoie au hub.
-    6. **Mauvaise réponse** → réplique taquine de Mixapéro, et **l'indice suivant se dévoile**. Les indices précédents restent visibles, empilés.
+    5. **Bonne réponse** → un encart de transition apparaît (réplique de Mixapéro + bouton). **L'encart reste affiché tant que la joueuse n'a pas cliqué : aucun enchaînement automatique, sur aucun des 5 cocktails.** Le bouton dit **« Suivant »** s'il reste des cocktails à trouver, **« Terminer »** s'il s'agissait du 5ᵉ et dernier — c'est ce clic, et lui seul, qui déclenche la suite (cocktail suivant, ou sortie du mini-jeu et retour au hub).
+    6. **Mauvaise réponse** → réplique taquine de Mixapéro, et **l'indice suivant se dévoile**. Les indices précédents restent visibles, empilés. *(Ne peut jamais se produire sur le Pornstar Martini, voir section E.)*
     7. Quand tous les indices du cocktail en cours sont dévoilés, le joueur peut continuer à tenter sa chance indéfiniment.
-    8. Au **5ᵉ échec cumulé** (tous cocktails confondus), la proposition d'abandon apparaît.
+    8. Au **5ᵉ échec cumulé** (tous cocktails confondus), la proposition d'abandon apparaît. *(Le Pornstar Martini ne peut jamais générer d'échec : il ne fait donc jamais progresser ce compteur.)*
     
     ---
     
@@ -39,7 +39,7 @@
     3. **La pile d'indices dévoilés** — le plus récent mis en avant, les précédents plus petits et atténués. Zone défilable, agrandie depuis le retrait de la silhouette.
     4. **Le champ de saisie** + bouton **"Répondre"** — en bas
     
-    À la victoire du dernier cocktail, transition normale vers la séquence de fin du jeu (pas d'effet spécifique dans l'écran de jeu lui-même).
+    À la victoire du dernier cocktail *(revu le 17/09/2026, §B3)*, le même encart de transition s'affiche que pour les 4 précédents, avec le bouton « Terminer » à la place de « Suivant ». Ce n'est qu'au clic sur ce bouton que l'étape se termine et que le jeu renvoie au hub.
     
     ---
     
@@ -56,6 +56,8 @@
     - Réplique de Mixapéro à l'usage, par exemple : « Deux secondes. Pas une de plus. »
     
     Ce bouton ne remplace pas les indices textuels : c'est un raccourci visuel indépendant, disponible dès le premier indice de chaque cocktail.
+    
+    ⚠️ **Exception, 17/09/2026, §B2 :** sur le Pornstar Martini, il n'y a rien à deviner (voir section E) — le bouton est **masqué**, sans consommer sa charge, plutôt que simplement grisé.
     
     ---
     
@@ -125,19 +127,23 @@
     
     **Réponse :** `margarita` · **Alias :** `la margarita`
     
-    ### E — Pornstar Martini *(1 seul indice)* ⭐
+    ### E — Pornstar Martini *(1 seul indice, aucune vraie réponse à trouver)* ⭐ *(revu le 17/09/2026, §B)*
     
     | # | Indice |
     | --- | --- |
     | 1 | Ton top 3 cocktail !!!! |
     
-    **Réponse :** `pornstar martini` · **Alias :** `pornstar`, `porn star martini`, `pornstarmartini`
+    Ce cocktail n'a **ni réponse ni alias** : c'est une blague personnelle adressée à la joueuse, pas une vraie devinette.
     
-    > ⚠️ **Ce cocktail n'a qu'un seul indice, c'est volontaire** — c'est une blague personnelle adressée à la joueuse. Le moteur doit donc gérer un **nombre d'indices variable selon le cocktail**, pas une valeur fixe à 5.
-    > 
-    > 
-    > S'il est tiré au sort et que la joueuse se trompe, il n'y a plus d'indice à dévoiler : afficher à la place une réplique de Mixapéro qui s'agace gentiment (voir plus bas).
-    > 
+    - **Un seul indice.** Le moteur gère un **nombre d'indices variable selon le cocktail** (pas une valeur fixe à 5) : c'est déjà le cas pour tous, ce cocktail-ci se contente d'en utiliser un seul.
+    - **Toute réponse saisie est acceptée comme correcte**, quelle qu'elle soit — y compris une réponse **vide**. Il n'y a donc **jamais de mauvaise réponse possible** sur ce cocktail : ni réplique d'erreur, ni progression du compteur d'échecs cumulé.
+    - Le bouton **« Un coup d'œil »** n'a plus d'utilité (rien à montrer en avance) : il est **masqué**, et ne consomme pas sa charge.
+    - Dès la validation, l'encart de transition affiche cette réplique dédiée à la place du tirage aléatoire habituel :
+    
+      > « Mais nan !!! Pas mal, celui-ci, j'avoue !
+      > Moi c'est le Pornstar Martini... à la cuillère. Pas au shaker. »
+    
+    - **Position imposée dans l'ordre aléatoire : jamais en 1re ni en dernière position** (donc toujours 2ᵉ, 3ᵉ ou 4ᵉ sur 5). En 1re position, la joueuse croirait le jeu cassé avant d'en avoir compris les règles ; en dernière, l'étape se terminerait sur une réponse acceptée d'office au lieu d'une vraie victoire. Les 4 autres cocktails se répartissent aléatoirement sur les positions restantes. Vérifié sur une dizaine de tirages successifs (voir §B4 de la correction du 17/09/2026).
     
     ---
     
@@ -167,6 +173,8 @@
     - « Encore un qui est démasqué. Au tour du prochain. »
     - « Tu progresses. Ça me dérange un peu, mais bon. »
     
+    > Sur le Pornstar Martini, ce tirage aléatoire est remplacé par sa réplique dédiée (voir section E). Sur le 5ᵉ et dernier cocktail *(§B3, 17/09/2026)*, l'encart affiche à la place : « Les cinq sont démasqués. Ça, c'est du travail bien fait. »
+    
     ---
     
     ## Paramètres configurables
@@ -183,7 +191,7 @@
     
     ## Condition de victoire
     
-    Les 5 cocktails trouvés. Le nombre d'indices utilisés par cocktail n'a aucune incidence : pas de score, pas de pénalité.
+    Les 5 cocktails trouvés — le Pornstar Martini compte comme trouvé dès la première saisie, quelle qu'elle soit (section E). Le nombre d'indices utilisés par cocktail n'a aucune incidence : pas de score, pas de pénalité.
     
     ---
     
@@ -210,4 +218,4 @@
     
     ## Points à trancher
     
-    Aucun — les 5 cocktails à trouver dans un ordre aléatoire, la silhouette retirée, et le nouveau bouton "Un coup d'œil" (aperçu du vrai cocktail) sont actés le 06/09/2026.
+    Aucun — les 5 cocktails à trouver dans un ordre aléatoire, la silhouette retirée, et le nouveau bouton "Un coup d'œil" (aperçu du vrai cocktail) sont actés le 06/09/2026. Le comportement du Pornstar Martini (réponse libre, position 2/3/4 imposée) et le bouton de passage manuel après chaque cocktail sont actés le 17/09/2026, §B.

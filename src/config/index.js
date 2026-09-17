@@ -17,6 +17,7 @@ export {
   COCKTAILS,
   REPLIQUES_MAUVAISE_REPONSE,
   REPLIQUES_TRANSITION_COCKTAIL,
+  REPLIQUE_VICTOIRE_JEU_0,
 } from "./jeu-0.config.js";
 export {
   JEU_1,

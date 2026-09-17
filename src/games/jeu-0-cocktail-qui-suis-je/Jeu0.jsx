@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { JEU_0, COCKTAILS, REPLIQUES_MAUVAISE_REPONSE, REPLIQUES_TRANSITION_COCKTAIL } from "../../config/index.js";
+import {
+  JEU_0,
+  COCKTAILS,
+  REPLIQUES_MAUVAISE_REPONSE,
+  REPLIQUES_TRANSITION_COCKTAIL,
+  REPLIQUE_VICTOIRE_JEU_0,
+} from "../../config/index.js";
 import { reponsesCorrespondent } from "../../utils/textNormalize.js";
 import { precharger, jouerSon, jouerMusique } from "../../audio/audio.js";
 import { asset } from "../../utils/assetUrl.js";
@@ -18,6 +24,28 @@ function melanger(liste) {
   return copie;
 }
 
+// §B4, 17/09/2026 : le cocktail à réponse libre (reponseLibre) ne doit
+// jamais tomber en 1re position (la joueuse croirait le jeu cassé avant
+// d'en avoir compris les règles) ni en dernière (l'étape se terminerait
+// sur une réponse acceptée d'office au lieu d'une vraie victoire). Les
+// autres cocktails se répartissent aléatoirement sur les positions
+// restantes. Générique : ne dépend pas de l'ordre ou du nombre de
+// cocktails marqués reponseLibre (aucun s'il n'y en a pas).
+function construireOrdre(cocktails) {
+  const indices = cocktails.map((_, i) => i);
+  const indexContraint = cocktails.findIndex((c) => c.reponseLibre);
+  if (indexContraint === -1 || cocktails.length < 3) return melanger(indices);
+
+  const autres = melanger(indices.filter((i) => i !== indexContraint));
+  const positionsAutorisees = [];
+  for (let p = 1; p < cocktails.length - 1; p++) positionsAutorisees.push(p);
+  const position = auHasard(positionsAutorisees);
+
+  const ordre = autres;
+  ordre.splice(position, 0, indexContraint);
+  return ordre;
+}
+
 // §C1, 06/09/2026 : les 5 cocktails sont à trouver un par un, dans un
 // ordre aléatoire tiré à chaque partie (annule l'ancienne règle "un seul
 // cocktail suffit"). §C2 : la silhouette détourée a été retirée (rendu
@@ -25,7 +53,7 @@ function melanger(liste) {
 // maintenant la vraie image du cocktail en cours, brièvement, une fois
 // par cocktail.
 export default function Jeu0({ onVictoire, onEchec }) {
-  const [ordre] = useState(() => melanger(COCKTAILS.map((_, i) => i)));
+  const [ordre] = useState(() => construireOrdre(COCKTAILS));
   const [position, setPosition] = useState(0);
   const [indexIndice, setIndexIndice] = useState(0);
   const [saisie, setSaisie] = useState("");
@@ -86,19 +114,24 @@ export default function Jeu0({ onVictoire, onEchec }) {
 
   const repondre = (e) => {
     e.preventDefault();
-    if (phase !== "jeu" || !saisie.trim()) return;
+    if (phase !== "jeu") return;
+    if (!cocktail.reponseLibre && !saisie.trim()) return;
 
-    if (reponsesCorrespondent(saisie, cocktail.reponse, cocktail.alias)) {
+    // §B1, 17/09/2026 : reponseLibre accepte toute saisie, y compris vide,
+    // comme correcte — il n'y a pas de vraie réponse à trouver ici.
+    const correct = cocktail.reponseLibre || reponsesCorrespondent(saisie, cocktail.reponse, cocktail.alias);
+
+    if (correct) {
+      const texteReplique = cocktail.repliqueValidation ?? auHasard(REPLIQUES_TRANSITION_COCKTAIL);
+      setMessage(null);
       if (dernierCocktail) {
-        setPhase("victoire");
-        setMessage(null);
         jouerSon("sfx-victoire.mp3");
-        setTimeout(() => onVictoire(), 1500);
+        setReplique(REPLIQUE_VICTOIRE_JEU_0);
+        setPhase("victoire");
       } else {
         jouerSon("sfx-code-ok.mp3");
-        setReplique(auHasard(REPLIQUES_TRANSITION_COCKTAIL));
+        setReplique(texteReplique);
         setPhase("transition");
-        setTimeout(passerAuSuivant, 1800);
       }
       return;
     }
@@ -111,11 +144,17 @@ export default function Jeu0({ onVictoire, onEchec }) {
     if (!dernierIndice) setIndexIndice((i) => i + 1);
   };
 
-  if (phase === "transition") {
+  // §B3, 17/09/2026 : l'encart reste affiché jusqu'au clic de la joueuse,
+  // pour les 5 cocktails (y compris le dernier) — plus d'enchaînement
+  // automatique par minuteur, seul ce bouton déclenche la suite.
+  if (phase === "transition" || phase === "victoire") {
     return (
       <div className="jeu0 jeu0--transition">
         <img className="jeu0__transition-mixapero" src={asset("assets/images/img-mixapero-content.png")} alt="Mixapéro" />
         <p className="jeu0__transition-texte">{replique}</p>
+        <button className="jeu0__transition-suivant" onClick={phase === "victoire" ? onVictoire : passerAuSuivant}>
+          {phase === "victoire" ? "Terminer" : "Suivant"}
+        </button>
       </div>
     );
   }
@@ -129,9 +168,11 @@ export default function Jeu0({ onVictoire, onEchec }) {
         Indice {indexIndice + 1} / {cocktail.indices.length}
       </p>
 
-      <button className="jeu0__coup-oeil" onClick={declencherApercu} disabled={indiceUtilise || phase !== "jeu"}>
-        Un coup d'œil
-      </button>
+      {!cocktail.sansApercu && (
+        <button className="jeu0__coup-oeil" onClick={declencherApercu} disabled={indiceUtilise || phase !== "jeu"}>
+          Un coup d'œil
+        </button>
+      )}
 
       <div className="jeu0__indices">
         {[...indicesVisibles].reverse().map((texte, i) => (
