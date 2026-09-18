@@ -5,7 +5,7 @@ import { CONFIRMATION_RESET } from "../config/index.js";
 import ConfirmDialog from "./ConfirmDialog.jsx";
 import "./hub-menu.css";
 
-export default function HubMenu({ onOuvrirAide }) {
+export default function HubMenu({ onOuvrirCommentJouer }) {
   const etat = useGameState();
   const dispatch = useGameDispatch();
   const [ouvert, setOuvert] = useState(false);
@@ -78,7 +78,7 @@ export default function HubMenu({ onOuvrirAide }) {
             <button onClick={() => setEditionPseudo(true)}>Pseudo : {etat.pseudo}</button>
           )}
 
-          <button onClick={onOuvrirAide}>Aide</button>
+          <button onClick={onOuvrirCommentJouer}>Comment jouer</button>
 
           <button onClick={() => setPanneauSauvegarde(panneauSauvegarde === "export" ? null : "export")}>
             Exporter ma progression

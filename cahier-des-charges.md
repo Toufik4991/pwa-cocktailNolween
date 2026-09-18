@@ -410,14 +410,16 @@
     - Utiliser la **Wake Lock API** pour empêcher l'écran de s'éteindre pendant un mini-jeu. Rien de plus agaçant qu'un écran qui s'éteint en pleine partie de Zeste Ninja.
     - Ne pas maintenir le wake lock sur le hub ou les séquences texte, pour économiser la batterie pendant les déplacements.
     
-    ### 9.3 Page d'aide
+    ### 9.3 Page « Comment jouer »
     
     Accessible depuis le menu déroulant du hub. Elle contient :
     
-    - Le rappel du principe : trouver les codes sur les lieux réels
+    - Le principe en deux phrases
+    - Le déroulé d'une étape, numéroté
+    - Une photo d'exemple d'étiquette (`img-aide-etiquette.webp`), dans le même cadre que les
+      photos de lieux, ouvrable en plein écran et zoomable — voir §9.5
     - Quoi faire si on est bloqué
-    - Comment couper le son
-    - Le fait que l'app fonctionne hors ligne
+    - Le bon à savoir : hors ligne, son, sauvegarde
     
     ### 9.4 Installation de la PWA
     
@@ -461,7 +463,7 @@
     
     **Répartition des 3 musiques** — chaque écran déclare la musique qu'il veut, une seule fois, à son entrée (pas de sélecteur central branché sur plusieurs paramètres) :
     
-    - `mus-hub` : accueil, saisie du pseudo, hub, séquences de dialogue (ouverture, intros/fins de jeux, dialogue précédant l'animation finale), page Réponses, page Aide
+    - `mus-hub` : accueil, saisie du pseudo, hub, séquences de dialogue (ouverture, intros/fins de jeux, dialogue précédant l'animation finale), page Réponses, page Comment jouer
     - `mus-jeu` : pendant les jeux 0, 1, 3, 4, 5 (les 5 mini-jeux où la musique est permise)
     - `mus-final` : l'animation finale uniquement
     
@@ -470,7 +472,7 @@
     Changement de piste en fondu de 800 ms (400 ms pour couper la piste active, puis 400 ms pour faire monter la nouvelle). Redéclarer la même musique en passant d'un écran à l'autre ne la redémarre jamais ; quitter un écran n'arrête rien de force, c'est l'écran suivant qui déclare ce qu'il veut. Une piste différemment nommée repart en revanche toujours de 0:00 (conséquence directe du lecteur unique : il ne peut retenir qu'une seule position de lecture à la fois).
     
     ```
-    VOLUME_MUSIQUE_HUB   = 0.6   // accueil, pseudo, hub, dialogues, Réponses, Aide
+    VOLUME_MUSIQUE_HUB   = 0.6   // accueil, pseudo, hub, dialogues, Réponses, Comment jouer
     VOLUME_MUSIQUE_JEU   = 0.35  // pendant les mini-jeux (hors jeu 2), plus discret que le hub
     // jeu 2 : jouerMusique(null), pas une histoire de volume
     DUREE_FONDU           = 800  // ms, fondu croisé en 2 temps de 400 ms

@@ -1,6 +1,6 @@
 # Inventaire des assets — "Pina Tresolada"
 
-*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 06/09/2026 (soir, §G1/§C2) : les 10 photos de lieux (`img-lieu-01..05-a/b.webp`) sont fournies et traitées (pas de recadrage, largeur max 1080 px, qualité webp élevée — un code y est écrit et doit rester lisible) ; `img-jeu0-silhouette.png` est retiré des assets attendus (détourage raté, écran redessiné sans elle, voir `jeu-0-cocktail-qui-suis-je.md`). Mise à jour précédente (06/09/2026, matin) : logo réel intégré (`image-logo.png` → `img-logo-pinatresolada.png`), `img-glacant-02` traité (paire d'animation, voir cahier des charges §3 ter), 3 nouvelles expressions Mixapéro (`diabolique`/`triste`/`rêveur`) traitées dans le même lot que les 3 premières, `img-jeu3-puzzle` retraité (source mise à jour dans `ici/`). Les 4 bulles et la flûte du jeu 2 ne sont plus en attente d'asset : décidé qu'elles restent en CSS pur (voir `jeu-2-des-bulles.md`). `bg-jeu0.webp` → `bg-jeu5.webp` ne sont plus utilisés (mini-jeux passés en aplat de couleur, cahier des charges §2 bis).*
+*Généré à partir de `ici/` selon la section 6 du cahier des charges. Mise à jour du 18/09/2026 : la section « Aide » est renommée « Comment jouer » et reçoit une photo d'exemple d'étiquette (`img-aide-etiquette.webp`, même traitement que les photos de lieux). Mise à jour du 06/09/2026 (soir, §G1/§C2) : les 10 photos de lieux (`img-lieu-01..05-a/b.webp`) sont fournies et traitées (pas de recadrage, largeur max 1080 px, qualité webp élevée — un code y est écrit et doit rester lisible) ; `img-jeu0-silhouette.png` est retiré des assets attendus (détourage raté, écran redessiné sans elle, voir `jeu-0-cocktail-qui-suis-je.md`). Mise à jour précédente (06/09/2026, matin) : logo réel intégré (`image-logo.png` → `img-logo-pinatresolada.png`), `img-glacant-02` traité (paire d'animation, voir cahier des charges §3 ter), 3 nouvelles expressions Mixapéro (`diabolique`/`triste`/`rêveur`) traitées dans le même lot que les 3 premières, `img-jeu3-puzzle` retraité (source mise à jour dans `ici/`). Les 4 bulles et la flûte du jeu 2 ne sont plus en attente d'asset : décidé qu'elles restent en CSS pur (voir `jeu-2-des-bulles.md`). `bg-jeu0.webp` → `bg-jeu5.webp` ne sont plus utilisés (mini-jeux passés en aplat de couleur, cahier des charges §2 bis).*
 
 Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont été **copiés puis traités** vers `public/assets/`. Scripts dans `scripts/` : `process_assets.py` (images), `gen_audio_placeholders.sh` / `gen_image_placeholders.py` (placeholders restants).
 
@@ -8,7 +8,7 @@ Le dossier `ici/` n'a jamais été modifié : tous les fichiers ci-dessous ont �
 
 | Catégorie | Nombre |
 | --- | --- |
-| ✅ Images fournies, identifiées et traitées | 61 |
+| ✅ Images fournies, identifiées et traitées | 62 |
 | ✅ Audio réel intégré | 20 (19 SFX + 1 musique) |
 | ✅ Polices sourcées | 2 |
 | ❌ Assets manquants avec placeholder (images seulement, l'audio n'en a plus besoin) | 6 |
@@ -167,6 +167,14 @@ Traitement dédié (`process_photo_no_crop` dans `process_assets.py`) : **jamais
 | `img-lieu-05-a.webp` / `img-lieu-05-b.webp` | idem | Révélé après l'étape 4 |
 
 ⚠️ `ici/img-lieu-02-a (2).png` est un doublon écarté (deux photos différentes sous des noms voisins) : seule `img-lieu-02-a.png` (sans suffixe) a été traitée, sur confirmation explicite. Les fichiers `scrnli_*.png` et autres captures d'écran isolées trouvées dans `ici/` ne sont pas des assets de jeu et n'ont pas été traités.
+
+### Photo d'exemple d'étiquette (1 fichier, fournie le 18/09/2026)
+
+Même traitement dédié que les photos de lieux (`process_photo_no_crop`) : pas de recadrage, le numéro et le code doivent rester lisibles.
+
+| Fichier | Usage | Rattachement |
+| --- | --- | --- |
+| `img-aide-etiquette.webp` | Exemple d'étiquette numérotée | Section 3 de la page « Comment jouer » |
 
 ### Polices (2 fichiers, sourcées réellement — pas de placeholder)
 

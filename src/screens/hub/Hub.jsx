@@ -18,7 +18,7 @@ import ConfirmDialog from "../../components/ConfirmDialog.jsx";
 import TestPanel from "../../components/TestPanel.jsx";
 import SequenceEngine from "../../engine/SequenceEngine.jsx";
 import Reponses from "../reponses/Reponses.jsx";
-import Aide from "../aide/Aide.jsx";
+import CommentJouer from "../comment-jouer/CommentJouer.jsx";
 import Jeu0 from "../../games/jeu-0-cocktail-qui-suis-je/Jeu0.jsx";
 import Jeu1 from "../../games/jeu-1-zeste-ninja/Jeu1.jsx";
 import Jeu2 from "../../games/jeu-2-des-bulles/Jeu2.jsx";
@@ -42,7 +42,7 @@ export default function Hub() {
   const etat = useGameState();
   const { pseudo, etapes, reglages, modeTest, finaleVue } = etat;
   const dispatch = useGameDispatch();
-  const [vue, setVue] = useState("hub"); // 'hub' | 'reponses' | 'aide'
+  const [vue, setVue] = useState("hub"); // 'hub' | 'reponses' | 'comment-jouer'
   const [codeDemande, setCodeDemande] = useState(null);
   // etape { numero, phase: 'intro' | 'jeu' | 'fin' } | null
   const [etapeEnCours, setEtapeEnCours] = useState(null);
@@ -61,7 +61,7 @@ export default function Hub() {
 
   // Grille du hub elle-même (pas de composant dédié) : déclare sa musique
   // à son entrée, comme tout autre écran (§A, 06/09/2026 — chaque jeu, la
-  // page Réponses, Aide, Splash, Pseudo et SequenceEngine font de même).
+  // page Réponses, Comment jouer, Splash, Pseudo et SequenceEngine font de même).
   const surLaGrilleDuHub = vue === "hub" && !etapeEnCours && !finalePhase && !sequencePreview;
   useEffect(() => {
     if (surLaGrilleDuHub) jouerMusique("hub");
@@ -98,8 +98,8 @@ export default function Hub() {
 
   if (vue === "reponses") {
     contenu = <Reponses onRetour={() => setVue("hub")} />;
-  } else if (vue === "aide") {
-    contenu = <Aide onRetour={() => setVue("hub")} />;
+  } else if (vue === "comment-jouer") {
+    contenu = <CommentJouer onRetour={() => setVue("hub")} />;
   } else if (sequencePreview) {
     contenu = (
       <SequenceEngine
@@ -210,7 +210,7 @@ export default function Hub() {
   } else {
     contenu = (
       <div className="hub" style={styleFondImage("assets/images/bg-hub.webp")}>
-        <HubMenu onOuvrirAide={() => setVue("aide")} />
+        <HubMenu onOuvrirCommentJouer={() => setVue("comment-jouer")} />
 
         <h1>Salut {pseudo} !</h1>
 

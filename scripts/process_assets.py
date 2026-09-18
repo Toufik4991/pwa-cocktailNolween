@@ -486,6 +486,11 @@ def main():
         process_photo_no_crop(f"img-lieu-{num}-a.png", f"img-lieu-{num}-a.webp")
         process_photo_no_crop(f"img-lieu-{num}-b.png", f"img-lieu-{num}-b.webp")
 
+    # ---- 16. Photo d'exemple d'etiquette (page Comment jouer, 18/09/2026) :
+    # meme traitement que les photos de lieux, le numero et le code ecrits
+    # dessus doivent rester lisibles, jamais de recadrage.
+    process_photo_no_crop("img-aide-etiquette.png", "img-aide-etiquette.webp", max_width=800)
+
     with open(os.path.join(ROOT, "scripts", "process_log.json"), "w", encoding="utf-8") as f:
         json.dump(LOG, f, ensure_ascii=False, indent=2)
 

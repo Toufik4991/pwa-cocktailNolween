@@ -1183,5 +1183,20 @@
       1080,
       1350
     ]
+  },
+  {
+    "op": "aucun-redimensionnement",
+    "source": "img-aide-etiquette.png",
+    "dest": "public\\assets\\images\\img-aide-etiquette.webp",
+    "orig_format": "PNG",
+    "final_format": "WEBP",
+    "orig_size": [
+      496,
+      464
+    ],
+    "final_size": [
+      496,
+      464
+    ]
   }
 ]

@@ -113,7 +113,7 @@
     
     | Fichier | Où |
     | --- | --- |
-    | `mus-hub.mp3` | Accueil, saisie du pseudo, hub, séquences de dialogue, page Réponses, page Aide |
+    | `mus-hub.mp3` | Accueil, saisie du pseudo, hub, séquences de dialogue, page Réponses, page Comment jouer |
     | `mus-jeu.mp3` | Les jeux 0, 1, 3, 4, 5 |
     | `mus-final.mp3` | L'animation finale uniquement |
     
@@ -316,6 +316,18 @@
     
     > La version `-b` est facultative (deuxième photo ou indice complémentaire).
     **Le code doit être visible sur la photo** — c'est comme ça que le joueur le récupère sur place.
+    >
+
+    ---
+
+    ## 10 bis. Photo d'exemple d'étiquette (page « Comment jouer »)
+
+    | Fichier | Usage |
+    | --- | --- |
+    | `img-aide-etiquette.webp` | Illustre à quoi ressemble une étiquette (numéro + code), section 3 de la page Comment jouer |
+
+    > Fournie le 18/09/2026 (`ici/img-aide-etiquette.png`). Même traitement que les photos de
+    > lieux : pas de recadrage, le numéro et le code doivent rester lisibles.
     > 
     
     ---
